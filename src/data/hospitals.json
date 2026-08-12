@@ -1,0 +1,38 @@
+[
+  {
+    "id": "RS-001",
+    "name": "RSUP Dr. Sardjito",
+    "type": "Rumah Sakit Umum Pusat",
+    "class": "A",
+    "address": "Jl. Kesehatan No. 1 Sekip Sinduadi, Yogyakarta",
+    "lat": -7.7688,
+    "lng": 110.3735,
+    "phone": "(0274) 587333",
+    "rating": 4.8,
+    "availability": {
+      "igd": 12,
+      "icu": 3,
+      "rawatInap": 45
+    },
+    "specialties": ["Jantung", "Kanker", "Saraf", "Anak", "Penyakit Dalam"],
+    "image": "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+  },
+  {
+    "id": "RS-002",
+    "name": "RS Panti Rapih",
+    "type": "Rumah Sakit Swasta",
+    "class": "B",
+    "address": "Jl. Cik Di Tiro No.30, Yogyakarta",
+    "lat": -7.7770,
+    "lng": 110.3768,
+    "phone": "(0274) 514004",
+    "rating": 4.7,
+    "availability": {
+      "igd": 5,
+      "icu": 0,
+      "rawatInap": 20
+    },
+    "specialties": ["Mata", "THT", "Penyakit Dalam", "Kandungan"],
+    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+  }
+]
