@@ -28,7 +28,7 @@ export default function Profil() {
                 BS
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Budi Santoso</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Eka Wahyu</h2>
                 <p className="text-gray-500 dark:text-gray-400 mb-2">NIK: 3404012345678901</p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-3">
                   <Badge variant="primary" className="px-3 py-1 text-sm">Pasien BPJS</Badge>
@@ -54,7 +54,7 @@ export default function Profil() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4">
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Nama Lengkap</p>
-                  <p className="font-medium text-gray-900 dark:text-white">Budi Santoso</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Eka Wahyu</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Tanggal Lahir</p>

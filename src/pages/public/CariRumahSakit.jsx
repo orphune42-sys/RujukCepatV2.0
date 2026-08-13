@@ -25,7 +25,7 @@ export default function CariRumahSakit() {
   return (
     <div className="bg-background dark:bg-background-dark min-h-screen">
       {/* Header & Search */}
-      <div className="bg-white dark:bg-[#15241b] border-b border-border dark:border-border-dark pt-8 pb-6 sticky top-16 z-30">
+      <div className="bg-white dark:bg-[#15241b] border-b border-border dark:border-border-dark pt-8 pb-6 sticky top-24 z-30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-4">
             <h1 className="text-2xl md:text-3xl font-bold text-text dark:text-text-dark">Cari Fasilitas Kesehatan</h1>

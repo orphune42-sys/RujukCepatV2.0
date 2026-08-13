@@ -7,10 +7,10 @@ import { slideUp } from '../../utils/animations';
 import { Search, Filter } from 'lucide-react';
 
 const mockData = [
-  { id: 'RJ-20231001-01', pasien: 'Budi Santoso', asal: 'Puskesmas Melati', tanggal: '2023-10-01', status: 'Masuk', prioritas: 'Segera' },
-  { id: 'RJ-20231001-02', pasien: 'Siti Aminah', asal: 'Klinik Sehat', tanggal: '2023-10-01', status: 'Aktif', prioritas: 'Rutin' },
-  { id: 'RJ-20231001-03', pasien: 'Agus Pratama', asal: 'RSUD Kota', tanggal: '2023-10-01', status: 'Diproses', prioritas: 'Darurat' },
-  { id: 'RJ-20230928-01', pasien: 'Rina Wati', asal: 'Puskesmas Mawar', tanggal: '2023-09-28', status: 'Riwayat', prioritas: 'Rutin' },
+  { id: 'RJ-20231001-01', pasien: 'Eka Wahyu', asal: 'Puskesmas Melati', tanggal: '2023-10-01', status: 'Masuk', prioritas: 'Segera' },
+  { id: 'RJ-20231001-02', pasien: 'Lintang Siddiq', asal: 'Klinik Sehat', tanggal: '2023-10-01', status: 'Aktif', prioritas: 'Rutin' },
+  { id: 'RJ-20231001-03', pasien: 'Salsabila Nadhira', asal: 'RSUD Kota', tanggal: '2023-10-01', status: 'Diproses', prioritas: 'Darurat' },
+  { id: 'RJ-20230928-01', pasien: 'Rindra Ramadhani', asal: 'Puskesmas Mawar', tanggal: '2023-09-28', status: 'Riwayat', prioritas: 'Rutin' },
 ];
 
 export default function RujukanList() {

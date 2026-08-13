@@ -58,7 +58,7 @@ const Dashboard = () => {
                          <div className="w-2 h-2 rounded-full bg-[#9ccda5]"></div>
                          <div>
                             <p className="font-medium text-slate-900 dark:text-white">TRX-20260812-00{i}</p>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">Pasien: Budi Santoso</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">Pasien: Eka Wahyu</p>
                          </div>
                        </div>
                        <span className="text-sm text-slate-500 dark:text-slate-400">10 menit yang lalu</span>

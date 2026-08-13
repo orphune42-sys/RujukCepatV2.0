@@ -6,6 +6,10 @@ import Button from '../../components/ui/Button';
 import { Card, CardContent } from '../../components/ui/Card';
 import { fadeIn, slideUp, staggerContainer } from '../../utils/animations';
 
+import CariRumahSakit from './CariRumahSakit';
+import Tentang from './Tentang';
+import HubungiKami from './HubungiKami';
+
 export default function Landing() {
   const features = [
     {
@@ -38,9 +42,9 @@ export default function Landing() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div id="beranda" className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-secondary/30 dark:bg-[#15241b]/50 z-0" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary/10 to-transparent dark:from-primary/5 z-0" />
         
@@ -66,11 +70,11 @@ export default function Landing() {
                   Daftar Sekarang
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Link to="/cari-rs" className="w-full sm:w-auto">
+                <a href="#cari-rs" className="w-full sm:w-auto">
                   <Button variant="outline" size="lg" className="w-full">
                     Cari Rumah Sakit
                   </Button>
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
 
@@ -157,6 +161,18 @@ export default function Landing() {
           </motion.div>
         </div>
       </section>
+
+      <div id="cari-rs" className="scroll-mt-24">
+        <CariRumahSakit />
+      </div>
+
+      <div id="tentang" className="scroll-mt-24">
+        <Tentang />
+      </div>
+
+      <div id="hubungi-kami" className="scroll-mt-24">
+        <HubungiKami />
+      </div>
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">

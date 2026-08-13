@@ -11,7 +11,7 @@ const useAppStore = create((set) => ({
   
   // Dummy user data
   user: {
-    name: 'Budi Santoso',
+    name: 'Eka Wahyu',
     id: 'P-10293',
     insurance: 'BPJS Kesehatan',
     avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704d'

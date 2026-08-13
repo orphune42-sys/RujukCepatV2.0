@@ -16,7 +16,7 @@ export default function Dashboard() {
     >
       <motion.div variants={slideUp} className="flex justify-between items-end">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Halo, Budi Santoso</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Halo, Eka Wahyu</h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">Berikut adalah ringkasan kesehatan Anda hari ini.</p>
         </div>
       </motion.div>
