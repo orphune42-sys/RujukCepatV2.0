@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import useAppStore from './store/useAppStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 // Layouts
 import PublicLayout from './components/layout/PublicLayout';
@@ -35,11 +36,12 @@ import AdminApotekTransaksi from './pages/admin-apotek/Transaksi';
 import AdminApotekDetailTransaksi from './pages/admin-apotek/DetailTransaksi';
 import AdminApotekRiwayatTransaksi from './pages/admin-apotek/RiwayatTransaksi';
 
-// Role Swapper (Demo)
-import RoleSwapper from './components/shared/RoleSwapper';
+// Welcome Screen
+import WelcomeScreen from './components/shared/WelcomeScreen';
 
 function App() {
   const { isDarkMode, role } = useAppStore();
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -48,6 +50,14 @@ function App() {
       document.documentElement.classList.remove('dark');
     }
   }, [isDarkMode]);
+
+  useEffect(() => {
+    // Simulate initial loading for welcome screen
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Middleware / Guard - in a real app, this would check auth tokens
   const RequireRole = ({ children, allowedRole }) => {
@@ -122,8 +132,9 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         
-        {/* Development Role Swapper UI */}
-        <RoleSwapper />
+        <AnimatePresence>
+          {isInitialLoading && <WelcomeScreen />}
+        </AnimatePresence>
       </div>
     </BrowserRouter>
   );

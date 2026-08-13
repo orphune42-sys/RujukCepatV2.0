@@ -3,10 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { HeartPulse, Menu, X, Sun, Moon } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import Button from '../ui/Button';
+import LoginModal from '../shared/LoginModal';
 
 export default function Navbar() {
   const { isDarkMode, toggleDarkMode, role } = useAppStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const location = useLocation();
 
   const publicLinks = [
@@ -64,7 +66,7 @@ export default function Navbar() {
                 <Button variant="primary">Masuk Dashboard</Button>
               </Link>
             ) : (
-              <Button variant="primary">Masuk</Button>
+              <Button variant="primary" onClick={() => setIsLoginModalOpen(true)}>Masuk</Button>
             )}
           </div>
 
@@ -110,12 +112,21 @@ export default function Navbar() {
                   <Button className="w-full">Masuk Dashboard</Button>
                 </Link>
               ) : (
-                <Button className="w-full">Masuk</Button>
+                <Button className="w-full" onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsLoginModalOpen(true);
+                }}>Masuk</Button>
               )}
             </div>
           </nav>
         </div>
       )}
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </header>
   );
 }

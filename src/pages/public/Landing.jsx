@@ -52,10 +52,6 @@ export default function Landing() {
               variants={staggerContainer}
               className="max-w-2xl"
             >
-              <motion.div variants={slideUp} className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-accent dark:text-primary mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-accent dark:bg-primary mr-2 animate-pulse"></span>
-                RujukCepat V2.0 Telah Hadir
-              </motion.div>
               
               <motion.h1 variants={slideUp} className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text dark:text-text-dark mb-6 leading-tight">
                 Akses Layanan Kesehatan Lebih Cepat & Terpadu
@@ -66,12 +62,12 @@ export default function Landing() {
               </motion.p>
               
               <motion.div variants={slideUp} className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="group">
+                <Button size="lg" className="group w-full sm:w-auto">
                   Daftar Sekarang
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Link to="/cari-rs">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                <Link to="/cari-rs" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full">
                     Cari Rumah Sakit
                   </Button>
                 </Link>
