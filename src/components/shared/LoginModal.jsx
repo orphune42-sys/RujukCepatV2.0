@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Shield, Stethoscope } from 'lucide-react';
+import { X, User, Shield, Stethoscope, Mail, Lock, UserPlus, ArrowLeft } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import { useNavigate } from 'react-router-dom';
-import Button from '../ui/Button';
 
 export default function LoginModal({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('pasien');
+  const [mode, setMode] = useState('login'); // 'login' or 'register'
   const { setRole } = useAppStore();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // Reset state when opened
+  useEffect(() => {
+    if (isOpen) {
+      setMode('login');
+      setActiveTab('pasien');
+    }
+  }, [isOpen]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setRole(activeTab);
     onClose();
@@ -23,80 +32,202 @@ export default function LoginModal({ isOpen, onClose }) {
     { id: 'admin_apotek', label: 'Admin Apotek', icon: <Stethoscope className="h-5 w-5" /> },
   ];
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-[#15241b] rounded-2xl shadow-2xl z-50 overflow-hidden border border-border dark:border-border-dark"
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="relative w-full max-w-[420px] bg-white dark:bg-[#0f1a13] rounded-[24px] shadow-2xl overflow-hidden border border-border dark:border-border-dark flex flex-col max-h-[90vh]"
           >
-            <div className="flex justify-between items-center p-6 border-b border-border dark:border-border-dark">
-              <h2 className="text-2xl font-bold text-text dark:text-text-dark">Masuk ke Akun</h2>
-              <button onClick={onClose} className="p-2 text-muted hover:bg-secondary dark:hover:bg-[#1c3626] rounded-full transition-colors">
-                <X className="h-5 w-5" />
+            <div className="relative flex items-center justify-center p-6 shrink-0">
+              {mode === 'register' && (
+                <button 
+                  onClick={() => setMode('login')} 
+                  type="button"
+                  className="absolute left-6 flex h-8 w-8 items-center justify-center rounded-full bg-secondary dark:bg-[#1c3626] text-text dark:text-text-dark transition-transform active:scale-75"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+              )}
+              <h2 className="text-xl font-semibold tracking-tight text-text dark:text-text-dark">
+                {mode === 'login' ? 'Masuk ke Akun' : 'Daftar Akun Baru'}
+              </h2>
+              <button 
+                onClick={onClose} 
+                className="absolute right-6 flex h-8 w-8 items-center justify-center rounded-full bg-secondary dark:bg-[#1c3626] text-text dark:text-text-dark transition-transform active:scale-75"
+              >
+                <X className="h-5 w-5 opacity-75" />
               </button>
             </div>
             
-            <div className="p-6">
-              <div className="flex p-1 bg-secondary dark:bg-[#1c3626] rounded-lg mb-6">
-                {roles.map((r) => (
-                  <button
-                    key={r.id}
-                    onClick={() => setActiveTab(r.id)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-md transition-colors ${
-                      activeTab === r.id 
-                        ? 'bg-white dark:bg-[#204a35] text-accent dark:text-primary shadow-sm' 
-                        : 'text-muted hover:text-text dark:hover:text-text-dark'
-                    }`}
-                  >
-                    {r.icon}
-                    <span className="hidden sm:inline">{r.label}</span>
-                  </button>
-                ))}
+            <div className="px-6 pb-6 overflow-y-auto custom-scrollbar">
+              <div className="relative flex p-1 bg-secondary/70 dark:bg-[#1c3626]/50 rounded-[16px] mb-6 shrink-0">
+                {roles.map((r) => {
+                  const isActive = activeTab === r.id;
+                  return (
+                    <button
+                      key={r.id}
+                      type="button"
+                      onClick={() => setActiveTab(r.id)}
+                      className={`relative flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2 px-1 text-[10px] sm:text-sm font-medium rounded-xl transition-colors duration-200 z-10 ${
+                        isActive 
+                          ? 'text-accent dark:text-primary' 
+                          : 'text-muted hover:text-text dark:hover:text-text-dark'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-tab"
+                          className="absolute inset-0 bg-white dark:bg-[#204a35] rounded-xl shadow-sm border border-border/50 dark:border-border-dark/50"
+                          transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                      <span className="relative z-20 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 leading-none">
+                        {r.icon}
+                        <span>{r.label}</span>
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
               
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">Email / Username</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-2 bg-white dark:bg-[#0a120e] border border-border dark:border-border-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-text dark:text-text-dark transition-colors" 
-                    placeholder="Masukkan email Anda" 
-                    defaultValue={`demo@${activeTab}.com`}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">Password</label>
-                  <input 
-                    type="password" 
-                    className="w-full px-4 py-2 bg-white dark:bg-[#0a120e] border border-border dark:border-border-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-text dark:text-text-dark transition-colors" 
-                    placeholder="••••••••" 
-                    defaultValue="password123"
-                    required
-                  />
-                </div>
-                <div className="pt-2">
-                  <Button type="submit" className="w-full">Masuk</Button>
-                </div>
-                <div className="text-center text-sm text-muted mt-4">
-                  Belum punya akun? <a href="#" className="text-accent dark:text-primary hover:underline">Daftar sekarang</a>
-                </div>
-              </form>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.form 
+                  key={mode}
+                  initial={{ opacity: 0, x: mode === 'register' ? 20 : -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: mode === 'register' ? -20 : 20 }}
+                  transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+                  onSubmit={handleSubmit} 
+                  className="space-y-4"
+                >
+                  {mode === 'register' && (
+                    <div>
+                      <label className="sr-only">Nama Lengkap</label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                          <UserPlus className="h-5 w-5 text-muted dark:text-gray-500" />
+                        </div>
+                        <input 
+                          type="text" 
+                          className="w-full h-12 pl-12 pr-4 bg-secondary/40 dark:bg-[#15241b] border border-transparent focus:border-accent focus:ring-1 focus:ring-accent dark:focus:border-primary dark:focus:ring-primary rounded-2xl outline-none transition-all placeholder:text-muted dark:placeholder:text-gray-500 text-text dark:text-text-dark text-sm" 
+                          placeholder="Nama Lengkap" 
+                          required
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="sr-only">Email / Username</label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Mail className="h-5 w-5 text-muted dark:text-gray-500" />
+                      </div>
+                      <input 
+                        type="text" 
+                        className="w-full h-12 pl-12 pr-4 bg-secondary/40 dark:bg-[#15241b] border border-transparent focus:border-accent focus:ring-1 focus:ring-accent dark:focus:border-primary dark:focus:ring-primary rounded-2xl outline-none transition-all placeholder:text-muted dark:placeholder:text-gray-500 text-text dark:text-text-dark text-sm" 
+                        placeholder="Email atau username" 
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="sr-only">Password</label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Lock className="h-5 w-5 text-muted dark:text-gray-500" />
+                      </div>
+                      <input 
+                        type="password" 
+                        className="w-full h-12 pl-12 pr-4 bg-secondary/40 dark:bg-[#15241b] border border-transparent focus:border-accent focus:ring-1 focus:ring-accent dark:focus:border-primary dark:focus:ring-primary rounded-2xl outline-none transition-all placeholder:text-muted dark:placeholder:text-gray-500 text-text dark:text-text-dark text-sm" 
+                        placeholder="Password" 
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {mode === 'register' && (
+                    <div>
+                      <label className="sr-only">Konfirmasi Password</label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                          <Lock className="h-5 w-5 text-muted dark:text-gray-500" />
+                        </div>
+                        <input 
+                          type="password" 
+                          className="w-full h-12 pl-12 pr-4 bg-secondary/40 dark:bg-[#15241b] border border-transparent focus:border-accent focus:ring-1 focus:ring-accent dark:focus:border-primary dark:focus:ring-primary rounded-2xl outline-none transition-all placeholder:text-muted dark:placeholder:text-gray-500 text-text dark:text-text-dark text-sm" 
+                          placeholder="Konfirmasi password" 
+                          required
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-2">
+                    <button 
+                      type="submit" 
+                      className="inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-2xl bg-accent dark:bg-primary px-2.5 text-base font-medium text-white dark:text-[#0f1a13] transition-all active:scale-95 shadow-sm hover:opacity-90"
+                    >
+                      {mode === 'login' ? 'Masuk Sekarang' : 'Daftar Sekarang'}
+                    </button>
+                  </div>
+
+                  {mode === 'login' && (
+                    <button
+                      type="button"
+                      className="w-full text-sm text-muted dark:text-gray-400 hover:text-text dark:hover:text-text-dark transition-colors py-1"
+                    >
+                      Lupa password?
+                    </button>
+                  )}
+
+                  <div className="text-center text-sm text-muted mt-2">
+                    {mode === 'login' ? (
+                      <>
+                        Belum punya akun?{' '}
+                        <button 
+                          type="button" 
+                          onClick={() => setMode('register')}
+                          className="text-accent dark:text-primary hover:underline font-medium"
+                        >
+                          Daftar
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        Sudah punya akun?{' '}
+                        <button 
+                          type="button" 
+                          onClick={() => setMode('login')}
+                          className="text-accent dark:text-primary hover:underline font-medium"
+                        >
+                          Masuk
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </motion.form>
+              </AnimatePresence>
             </div>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );
+
+  if (typeof document === 'undefined') return null;
+  return createPortal(modalContent, document.body);
 }
