@@ -10,23 +10,50 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const location = useLocation();
-  const [activeHash, setActiveHash] = useState('');
+  const [activeHash, setActiveHash] = useState('/#beranda');
 
+  // Track which section is in view using IntersectionObserver
   useEffect(() => {
-    setActiveHash(location.hash || '#beranda');
-  }, [location]);
+    const sectionIds = ['beranda', 'cari-fk', 'tentang', 'hubungi-kami'];
 
-  const publicLinks = [
-    { name: 'Beranda', path: '#beranda' },
-    { name: 'Cari Rumah Sakit', path: '#cari-rs' },
-    { name: 'Tentang', path: '#tentang' },
-    { name: 'Hubungi Kami', path: '#hubungi-kami' },
-  ];
+    // Defer slightly so that all section IDs are rendered in the DOM
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setActiveHash(`/#${entry.target.id}`);
+            }
+          });
+        },
+        {
+          rootMargin: '-20% 0px -70% 0px',
+          threshold: 0,
+        }
+      );
+
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      return () => observer.disconnect();
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLinkClick = (hash) => {
     setIsMobileMenuOpen(false);
     setActiveHash(hash);
   };
+
+  const publicLinks = [
+    { name: 'Beranda', path: '/#beranda' },
+    { name: 'Cari Fasilitas Kesehatan', path: '/#cari-fk' },
+    { name: 'Tentang', path: '/#tentang' },
+    { name: 'Hubungi Kami', path: '/#hubungi-kami' },
+  ];
 
   return (
     <header className="fixed top-3 left-3 right-3 md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[90%] md:max-w-5xl z-50 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-lg border border-border/50 dark:border-border-dark/50 rounded-2xl md:rounded-full shadow-lg shadow-black/5 transition-all duration-300">
@@ -45,9 +72,9 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {publicLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.path}
+                to={link.path}
                 onClick={() => handleLinkClick(link.path)}
                 className={`text-sm font-semibold transition-colors hover:text-accent dark:hover:text-primary ${
                   activeHash === link.path 
@@ -56,7 +83,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -102,9 +129,9 @@ export default function Navbar() {
         <div className="md:hidden absolute top-[110%] left-0 right-0 bg-white dark:bg-[#15241b] border border-border dark:border-border-dark rounded-2xl shadow-xl py-4 px-4 overflow-hidden">
           <nav className="flex flex-col gap-2">
             {publicLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.path}
+                to={link.path}
                 onClick={() => handleLinkClick(link.path)}
                 className={`text-sm font-semibold py-3 px-4 rounded-xl transition-colors ${
                   activeHash === link.path 
@@ -113,7 +140,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="pt-4 mt-2 border-t border-border dark:border-border-dark">
               {role !== 'guest' ? (

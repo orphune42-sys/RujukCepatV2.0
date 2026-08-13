@@ -74,10 +74,10 @@ function App() {
           {/* Public Routes */}
           <Route path="/" element={<PublicLayout />}>
             <Route index element={<Landing />} />
-            <Route path="cari-rs" element={<CariRumahSakit />} />
+            <Route path="cari-rs" element={<Navigate to="/#cari-rs" replace />} />
             <Route path="rs/:id" element={<DetailRumahSakit />} />
-            <Route path="tentang" element={<Tentang />} />
-            <Route path="hubungi-kami" element={<HubungiKami />} />
+            <Route path="tentang" element={<Navigate to="/#tentang" replace />} />
+            <Route path="hubungi-kami" element={<Navigate to="/#hubungi-kami" replace />} />
           </Route>
 
           {/* Pasien Routes */}

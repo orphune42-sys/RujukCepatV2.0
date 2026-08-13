@@ -26,7 +26,7 @@ export default function DetailRumahSakit() {
         
         <div className="absolute inset-0 pt-16 flex items-end">
           <div className="container mx-auto px-4 md:px-6 pb-8">
-            <Link to="/cari-rs" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
+            <Link to="/#cari-fk" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
               <ArrowLeft className="h-4 w-4 mr-2" /> Kembali ke Pencarian
             </Link>
             
