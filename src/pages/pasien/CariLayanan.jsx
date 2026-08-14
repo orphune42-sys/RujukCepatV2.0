@@ -5,7 +5,7 @@ import { slideUp, staggerContainer, fadeIn } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Search, MapPin, Building, ActivitySquare, UserRound, Navigation } from 'lucide-react';
+import { Search, MapPin, Building, Navigation } from 'lucide-react';
 
 const services = [
   { id: 1, name: 'RSUD Kota Malang', type: 'rumah-sakit', distance: '2.5 km', address: 'Jl. Wirosaban No. 1', queue: '12 Orang', rooms: '8 Kamar', available: false },
@@ -15,16 +15,17 @@ const services = [
 ];
 
 export default function CariLayanan() {
-  const [activeTab, setActiveTab] = useState('rumah-sakit');
+  const [activeTab, setActiveTab] = useState('semua');
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const tabs = [
-    { id: 'rumah-sakit', label: 'Rumah Sakit', icon: Building },
-    { id: 'igd', label: 'IGD Darurat', icon: ActivitySquare },
-    { id: 'spesialis', label: 'Spesialis', icon: UserRound },
+    { id: 'semua', label: 'Semua' },
+    { id: 'rumah-sakit', label: 'Rumah Sakit' },
+    { id: 'igd', label: 'IGD Darurat' },
+    { id: 'spesialis', label: 'Spesialis' },
   ];
   const visibleServices = services.filter((service) =>
-    service.type === activeTab && `${service.name} ${service.address}`.toLowerCase().includes(searchTerm.toLowerCase())
+    (activeTab === 'semua' || service.type === activeTab) && `${service.name} ${service.address}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -44,8 +45,8 @@ export default function CariLayanan() {
 
       <motion.div variants={slideUp} className="flex overflow-x-auto pb-2 gap-2">
         {tabs.map((tab) => (
-          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-medium transition-all ${activeTab === tab.id ? 'bg-primary text-[#1a3826]' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-secondary dark:hover:bg-gray-700'}`}>
-            <tab.icon className="w-4 h-4" /> {tab.label}
+          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-medium transition-all ${activeTab === tab.id ? 'bg-accent text-white' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-secondary dark:hover:bg-gray-700'}`}>
+            {tab.label}
           </button>
         ))}
       </motion.div>

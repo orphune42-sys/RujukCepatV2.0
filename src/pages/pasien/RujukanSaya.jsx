@@ -39,7 +39,7 @@ export default function RujukanSaya() {
               onClick={() => setFilter(f)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 filter === f 
-                  ? 'bg-primary text-[#1a3826]' 
+                ? 'bg-accent text-white'
                   : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
               }`}
             >

@@ -29,10 +29,7 @@ export default function Dashboard() {
         <motion.div variants={slideUp} className="lg:col-span-2">
           <Card className="h-full">
             <CardHeader className="flex flex-col items-start gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-              <CardTitle className="flex items-center gap-2">
-                <Activity className="w-5 h-5 text-primary" />
-                Rujukan Aktif
-              </CardTitle>
+              <CardTitle>Rujukan Aktif</CardTitle>
               <Badge variant={isReferralCancelled ? 'default' : 'primary'} className="shrink-0">{isReferralCancelled ? 'Dibatalkan' : 'Menunggu Konfirmasi'}</Badge>
             </CardHeader>
             <CardContent className="p-4 sm:p-6">

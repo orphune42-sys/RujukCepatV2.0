@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HeartPulse, Menu, X, Sun, Moon } from 'lucide-react';
+import { HeartPulse, Menu, X } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import Button from '../ui/Button';
 import LoginModal from '../shared/LoginModal';
 
 export default function Navbar() {
-  const { isDarkMode, toggleDarkMode, role } = useAppStore();
+  const { role } = useAppStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [activeHash, setActiveHash] = useState('/#beranda');
@@ -62,6 +63,13 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 72);
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
+
   const handleLinkClick = (hash) => {
     setIsMobileMenuOpen(false);
     setActiveHash(hash);
@@ -75,7 +83,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-3 left-3 right-3 md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[90%] md:max-w-5xl z-50 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-lg border border-border/50 dark:border-border-dark/50 rounded-2xl md:rounded-full shadow-lg shadow-black/5 transition-all duration-300">
+    <header className={`fixed top-3 left-3 right-3 md:left-1/2 md:-translate-x-1/2 z-50 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-lg border border-border/50 dark:border-border-dark/50 rounded-2xl md:rounded-full shadow-lg shadow-black/5 transition-all duration-300 ${isScrolled ? 'md:top-4 md:w-[62%] md:max-w-4xl' : 'md:top-6 md:w-[90%] md:max-w-5xl'}`}>
       <div className="px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -108,14 +116,6 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <button 
-              onClick={toggleDarkMode}
-              className="p-2 text-muted hover:bg-secondary dark:hover:bg-[#1c3626] rounded-full transition-colors"
-              aria-label="Toggle Dark Mode"
-            >
-              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
-            
             {role !== 'guest' ? (
               <Link to={`/${role.replace('_', '-')}`}>
                 <Button variant="primary" className="rounded-full px-6">Dashboard</Button>
@@ -127,12 +127,6 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-2 lg:hidden">
-            <button 
-              onClick={toggleDarkMode}
-              className="p-2 text-muted bg-secondary/50 dark:bg-black/20 rounded-full"
-            >
-              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
             <button
               className="p-2 text-text dark:text-text-dark bg-secondary/50 dark:bg-black/20 rounded-full"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
