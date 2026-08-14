@@ -36,7 +36,7 @@ export default function LayananObat() {
               <div className="flex justify-between items-center mt-4">
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Dari Kunjungan</p>
-                  <p className="font-medium text-gray-900 dark:text-white">Poli Penyakit Dalam - RSUP Dr. Sardjito</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Poli Penyakit Dalam - RSUD Kota Malang</p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Estimasi Selesai</p>

@@ -68,7 +68,7 @@ export default function RujukanSaya() {
                         <p className="font-medium text-lg text-gray-900 dark:text-white">Poli Penyakit Dalam</p>
                         <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
                           <MapPin className="w-4 h-4" />
-                          <span>RSUP Dr. Sardjito</span>
+                          <span>RSUD Kota Malang</span>
                         </div>
                       </div>
                       <div className="md:text-right">

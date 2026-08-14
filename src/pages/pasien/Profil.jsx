@@ -70,7 +70,7 @@ export default function Profil() {
                 </div>
                 <div className="sm:col-span-2">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Alamat Lengkap</p>
-                  <p className="font-medium text-gray-900 dark:text-white">Jl. Kaliurang KM 5, Gg. Kenari No. 12, Sleman, DI Yogyakarta</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Jl. Bendungan Sigura-Gura No. 19 A, Sumbersari, Lowokwaru, Malang</p>
                 </div>
               </div>
             </CardContent>

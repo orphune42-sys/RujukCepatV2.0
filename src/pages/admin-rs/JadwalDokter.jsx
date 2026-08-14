@@ -7,7 +7,7 @@ import { Calendar as CalendarIcon, Clock, User, Filter, Search } from 'lucide-re
 const doctorSchedules = [
   { id: 1, name: 'dr. Lintang Siddiq, Sp.PD', spesialis: 'Penyakit Dalam', hari: 'Senin, Rabu, Jumat', jam: '08:00 - 14:00', status: 'Tersedia' },
   { id: 2, name: 'dr. Eka Wahyu, Sp.B', spesialis: 'Bedah Umum', hari: 'Selasa, Kamis', jam: '10:00 - 16:00', status: 'Operasi' },
-  { id: 3, name: 'dr. Salsabila Nadhira, Sp.A', spesialis: 'Anak', hari: 'Senin - Jumat', jam: '09:00 - 15:00', status: 'Tersedia' },
+  { id: 3, name: 'dr. Salsabila Nadhira, Sp.N', spesialis: 'Neurologi', hari: 'Senin - Jumat', jam: '09:00 - 15:00', status: 'Tersedia' },
   { id: 4, name: 'dr. Muhammad Maulidan, Sp.OG', spesialis: 'Kandungan', hari: 'Rabu, Sabtu', jam: '13:00 - 18:00', status: 'Cuti' },
   { id: 5, name: 'dr. Rindra Ramadhani, Sp.J', spesialis: 'Jantung', hari: 'Senin, Kamis', jam: '08:00 - 12:00', status: 'Tersedia' },
 ];

@@ -6,10 +6,10 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { MapPin, Navigation, Star, Clock, Phone } from 'lucide-react';
 
 const facilities = [
-  { id: 1, name: 'RS Umum Daerah Pusat', type: 'Rumah Sakit Tipe A', distance: '2.5 km', time: '10 menit', rating: 4.8, availableBeds: 15, img: 'bg-blue-100' },
-  { id: 2, name: 'RS Khusus Jantung Sehat', type: 'Rumah Sakit Khusus', distance: '4.1 km', time: '15 menit', rating: 4.9, availableBeds: 3, img: 'bg-red-100' },
-  { id: 3, name: 'RS Ibu dan Anak Sejahtera', type: 'Rumah Sakit Ibu & Anak', distance: '5.8 km', time: '22 menit', rating: 4.6, availableBeds: 8, img: 'bg-pink-100' },
-  { id: 4, name: 'Klinik Utama Medika', type: 'Klinik Utama', distance: '1.2 km', time: '5 menit', rating: 4.5, availableBeds: 2, img: 'bg-green-100' },
+  { id: 1, name: 'RS Umum Daerah Dr. Saiful Anwar', type: 'Rumah Sakit Tipe A', distance: '2.3 km', time: '8 menit', rating: 4.8, availableBeds: 10, img: 'bg-blue-100' },
+  { id: 2, name: 'RS Umum Lavalette', type: 'Rumah Sakit Tipe B', distance: '3.1 km', time: '10 menit', rating: 4.7, availableBeds: 8, img: 'bg-red-100' },
+  { id: 3, name: 'RSIA Puri Bunda Malang', type: 'Rumah Sakit Ibu & Anak', distance: '4.5 km', time: '14 menit', rating: 4.7, availableBeds: 5, img: 'bg-pink-100' },
+  { id: 4, name: 'Klinik Brawijaya Medical Center', type: 'Klinik Utama', distance: '1.0 km', time: '5 menit', rating: 4.5, availableBeds: 2, img: 'bg-green-100' },
 ];
 
 export default function RekomendasiFasilitas() {

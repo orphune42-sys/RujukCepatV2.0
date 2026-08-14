@@ -8,8 +8,8 @@ import { MapPin, Phone, Building, CheckCircle2, Circle, Clock, FileText, Downloa
 
 export default function DetailRujukan() {
   const timeline = [
-    { status: 'Rujukan Dibuat', time: '12 Okt 2026, 08:30 WIB', description: 'Rujukan diterbitkan oleh Puskesmas Umbulharjo', completed: true },
-    { status: 'Diverifikasi RS', time: '12 Okt 2026, 14:00 WIB', description: 'Rujukan telah diterima dan diverifikasi oleh RSUP Dr. Sardjito', completed: true },
+    { status: 'Rujukan Dibuat', time: '12 Okt 2026, 08:30 WIB', description: 'Rujukan diterbitkan oleh Puskesmas Cidasea', completed: true },
+    { status: 'Diverifikasi RS', time: '12 Okt 2026, 14:00 WIB', description: 'Rujukan telah diterima dan diverifikasi oleh RS Umum Lavalette', completed: true },
     { status: 'Menunggu Kunjungan', time: '15 Okt 2026, 09:00 WIB', description: 'Silakan datang sesuai jadwal ke Poli Penyakit Dalam', completed: false, current: true },
     { status: 'Selesai', time: '-', description: 'Pemeriksaan telah selesai dilakukan', completed: false }
   ];

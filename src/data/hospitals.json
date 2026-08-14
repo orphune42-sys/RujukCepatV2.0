@@ -1,38 +1,38 @@
 [
   {
     "id": "RS-001",
-    "name": "RSUP Dr. Sardjito",
-    "type": "Rumah Sakit Umum Pusat",
+    "name": "RSUD Dr. Saiful Anwar",
+    "type": "Rumah Sakit Umum Daerah",
     "class": "A",
-    "address": "Jl. Kesehatan No. 1 Sekip Sinduadi, Yogyakarta",
-    "lat": -7.7688,
-    "lng": 110.3735,
-    "phone": "(0274) 587333",
+    "address": "Jl. Jaksa Agung Suprapto No. 2, Klojen, Kota Malang, Jawa Timur",
+    "lat": -7.9767,
+    "lng": 112.6344,
+    "phone": "(0341) 362101",
     "rating": 4.8,
     "availability": {
-      "igd": 12,
-      "icu": 3,
+      "igd": 15,
+      "icu": 4,
       "rawatInap": 45
     },
-    "specialties": ["Jantung", "Kanker", "Saraf", "Anak", "Penyakit Dalam"],
-    "image": "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "specialties": ["Jantung", "Bedah", "Saraf", "Anak", "Penyakit Dalam", "Obstetri & Ginekologi"],
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1qE0c1msns5qEa3RUbUwueqn0B2YdJewUFpVA3EtibJNrbhR-9cAhXdI&s=10"
   },
   {
     "id": "RS-002",
-    "name": "RS Panti Rapih",
-    "type": "Rumah Sakit Swasta",
+    "name": "RS Lavalette",
+    "type": "Rumah Sakit Umum",
     "class": "B",
-    "address": "Jl. Cik Di Tiro No.30, Yogyakarta",
-    "lat": -7.7770,
-    "lng": 110.3768,
-    "phone": "(0274) 514004",
+    "address": "Jl. W.R. Supratman No. 10, Klojen, Kota Malang, Jawa Timur",
+    "lat": -7.9717,
+    "lng": 112.6329,
+    "phone": "(0341) 470805",
     "rating": 4.7,
     "availability": {
       "igd": 5,
-      "icu": 0,
+      "icu": 2,
       "rawatInap": 20
     },
-    "specialties": ["Mata", "THT", "Penyakit Dalam", "Kandungan"],
-    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "specialties": ["Mata", "THT", "Penyakit Dalam", "Kandungan", "Anak", "Bedah"],
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5D2TM-O4_UxCl4WSKBnD5Xeda1lOrTekFvj4xhV2CgOmS6jtqE3EsWezB_elluhgho1M-1wcJ1cPRoAmfTb3fEM1j3ET_ss_Zi4hdppEwyP6OmAuFsYcoZWq2_BYBtOjiHIWI0cqGfKo/w1200-h630-p-k-no-nu/RS+Lavalette+Malang+-+Jadwal+Praktek+Dokter.jpg"
   }
 ]
