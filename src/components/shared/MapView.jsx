@@ -45,7 +45,10 @@ export default function MapView({ hospitals = [], height = "400px", center = [-7
             <Popup className="custom-popup">
               <div className="p-1 min-w-[200px]">
                 <h3 className="font-bold text-sm mb-1">{hospital.name}</h3>
-                <p className="text-xs text-gray-500 mb-2">{hospital.type} - Kelas {hospital.class}</p>
+                <p className="text-xs text-gray-500 mb-2">
+                  {hospital.type}
+                  {(hospital.type.toLowerCase().includes('rumah sakit') || hospital.type.toLowerCase().includes('rs')) && hospital.class && ` - Kelas ${hospital.class}`}
+                </p>
                 
                 <div className="flex gap-2 text-xs mb-3 font-medium bg-gray-50 p-2 rounded">
                   <div className="flex flex-col items-center flex-1">

@@ -12,6 +12,7 @@ import mockHospitals from '../../data/hospitals.json';
 export default function DetailRumahSakit() {
   const { id } = useParams();
   const hospital = mockHospitals.find(h => h.id === id) || mockHospitals[0];
+  const isHospital = hospital.type.toLowerCase().includes('rumah sakit') || hospital.type.toLowerCase().includes('rs');
 
   return (
     <div className="bg-background dark:bg-background-dark min-h-screen pb-20">
@@ -32,9 +33,11 @@ export default function DetailRumahSakit() {
             
             <motion.div initial="initial" animate="animate" variants={fadeIn}>
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                <Badge variant="primary" className="bg-primary text-[#1a2e22]">
-                  Kelas {hospital.class}
-                </Badge>
+                {isHospital && hospital.class && (
+                  <Badge variant="primary" className="bg-primary text-[#1a2e22]">
+                    Kelas {hospital.class}
+                  </Badge>
+                )}
                 <div className="flex items-center gap-1 text-yellow-400 bg-black/30 backdrop-blur-sm px-2 py-1 rounded-md text-sm font-medium">
                   <Star className="h-4 w-4 fill-current" /> {hospital.rating}
                 </div>

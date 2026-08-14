@@ -45,7 +45,7 @@ export default function CariRumahSakit() {
   return (
     <div className="relative isolate min-h-screen overflow-hidden bg-white dark:bg-background-dark">
       {/* Header & Search */}
-      <div className="relative z-10 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-sm border-b border-border dark:border-border-dark pt-10 pb-7">
+      <div className="relative z-20 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-sm border-b border-border dark:border-border-dark pt-10 pb-7">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
             <div>
@@ -201,10 +201,12 @@ export default function CariRumahSakit() {
                               />
                               {/* Gradient */}
                               <div className="absolute inset-0 bg-gradient-to-tr from-black/50 via-transparent to-transparent" />
-                              {/* Class badge */}
-                              <span className="absolute top-3 left-3 bg-primary text-[#1a2e22] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md">
-                                Kelas {hospital.class}
-                              </span>
+                              {/* Kelas hanya berlaku untuk rumah sakit. */}
+                              {getFacilityCategory(hospital.type) === 'Rumah Sakit' && hospital.class && (
+                                <span className="absolute top-3 left-3 bg-primary text-[#1a2e22] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md">
+                                  Kelas {hospital.class}
+                                </span>
+                              )}
                             </div>
 
                             {/* Main content */}
