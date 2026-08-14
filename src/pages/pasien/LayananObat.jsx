@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
@@ -7,9 +7,11 @@ import Button from '../../components/ui/Button';
 import { Pill, AlertCircle, PackageCheck, Truck } from 'lucide-react';
 
 export default function LayananObat() {
+  const [pickupMethod, setPickupMethod] = useState('pickup');
+  const [isConfirmed, setIsConfirmed] = useState(false);
   return (
     <motion.div 
-      className="p-6 max-w-7xl mx-auto space-y-6"
+      className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6"
       variants={staggerContainer}
       initial="initial"
       animate="animate"
@@ -23,36 +25,36 @@ export default function LayananObat() {
         {/* Active Prescription */}
         <motion.div variants={slideUp} className="space-y-6">
           <Card>
-            <CardHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
-              <div className="flex justify-between items-center">
-                <CardTitle className="flex items-center gap-2">
+            <CardHeader className="px-4 py-4 sm:px-6 border-b border-gray-100 dark:border-gray-800">
+              <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <CardTitle className="flex items-center gap-2 leading-tight">
                   <Pill className="w-5 h-5 text-accent" />
                   Resep Hari Ini
                 </CardTitle>
-                <Badge variant="warning">Sedang Disiapkan</Badge>
+                <Badge variant="warning" className="shrink-0">Sedang Disiapkan</Badge>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex justify-between items-center mt-4">
-                <div>
+            <CardContent className="space-y-5 p-4 sm:p-6">
+              <div className="grid grid-cols-1 gap-4 rounded-xl bg-gray-50 p-4 dark:bg-black/20 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+                <div className="min-w-0">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Dari Kunjungan</p>
-                  <p className="font-medium text-gray-900 dark:text-white">Poli Penyakit Dalam - RSUD Kota Malang</p>
+                  <p className="mt-1 font-semibold leading-6 text-gray-900 dark:text-white">Poli Penyakit Dalam <span className="text-gray-400">·</span> RSUD Kota Malang</p>
                 </div>
-                <div className="text-right">
+                <div className="border-t border-gray-200 pt-3 dark:border-gray-700 sm:border-0 sm:pt-0 sm:text-right">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Estimasi Selesai</p>
-                  <p className="font-bold text-gray-900 dark:text-white">11:30 WIB</p>
+                  <p className="mt-1 text-lg font-bold text-gray-900 dark:text-white">11:30 WIB</p>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <h4 className="font-semibold text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-800 pb-2">Daftar Obat</h4>
-                <div className="flex justify-between items-center p-3 bg-secondary/30 dark:bg-black/20 rounded-lg">
+                <div className="p-3 bg-secondary/30 dark:bg-black/20 rounded-lg">
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">Paracetamol 500mg</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">10 Tablet • 3x Sehari (Sesudah makan)</p>
                   </div>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-secondary/30 dark:bg-black/20 rounded-lg">
+                <div className="p-3 bg-secondary/30 dark:bg-black/20 rounded-lg">
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">Amoxicillin 500mg</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">15 Tablet • 3x Sehari (Habiskan)</p>
@@ -73,36 +75,37 @@ export default function LayananObat() {
         {/* Options */}
         <motion.div variants={slideUp} className="space-y-6">
           <Card>
-            <CardHeader>
+            <CardHeader className="px-4 py-4 sm:px-6">
               <CardTitle>Opsi Pengambilan</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <label className="flex items-start gap-4 p-4 border border-primary bg-primary/5 dark:bg-primary/10 rounded-xl cursor-pointer">
-                <input type="radio" name="pickup" className="mt-1 w-4 h-4 text-primary" defaultChecked />
-                <div>
-                  <div className="flex items-center gap-2">
+            <CardContent className="space-y-3 p-4 sm:p-6">
+              <label className={`grid grid-cols-[20px_minmax(0,1fr)] items-start gap-3 p-4 border rounded-xl cursor-pointer ${pickupMethod === 'pickup' ? 'border-primary bg-primary/5 dark:bg-primary/10' : 'border-gray-200 dark:border-gray-700'}`}>
+                <input type="radio" name="pickup" value="pickup" checked={pickupMethod === 'pickup'} onChange={() => setPickupMethod('pickup')} className="mt-1 h-4 w-4 text-primary" />
+                <div className="min-w-0">
+                  <div className="flex items-start gap-2">
                     <PackageCheck className="w-5 h-5 text-accent" />
-                    <h4 className="font-semibold text-gray-900 dark:text-white">Ambil Sendiri di Apotek</h4>
+                    <h4 className="font-semibold leading-6 text-gray-900 dark:text-white">Ambil Sendiri di Apotek</h4>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">Silakan datang ke Apotek Rawat Jalan lantai 1 RSUP Dr. Sardjito dengan menunjukkan nomor antrean.</p>
+                  <p className="mt-2 text-sm leading-5 text-gray-500">Silakan datang ke Apotek Rawat Jalan lantai 1 RSUP Dr. Sardjito dengan menunjukkan nomor antrean.</p>
                 </div>
               </label>
 
-              <label className="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary rounded-xl cursor-pointer transition-colors">
-                <input type="radio" name="pickup" className="mt-1 w-4 h-4 text-primary" />
-                <div className="w-full">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+              <label className={`grid grid-cols-[20px_minmax(0,1fr)] items-start gap-3 p-4 border rounded-xl cursor-pointer transition-colors ${pickupMethod === 'delivery' ? 'border-primary bg-primary/5 dark:bg-primary/10' : 'border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary'}`}>
+                <input type="radio" name="pickup" value="delivery" checked={pickupMethod === 'delivery'} onChange={() => setPickupMethod('delivery')} className="mt-1 h-4 w-4 text-primary" />
+                <div className="min-w-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex min-w-0 items-start gap-2">
                       <Truck className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-                      <h4 className="font-semibold text-gray-900 dark:text-white">Kirim ke Rumah</h4>
+                      <h4 className="font-semibold leading-6 text-gray-900 dark:text-white">Kirim ke Rumah</h4>
                     </div>
-                    <Badge variant="default">Rp 15.000</Badge>
+                    <Badge variant="default" className="shrink-0">Rp 15.000</Badge>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">Obat akan dikirimkan ke alamat yang terdaftar pada profil Anda via kurir rekanan.</p>
+                  <p className="mt-2 text-sm leading-5 text-gray-500">Obat akan dikirimkan ke alamat yang terdaftar pada profil Anda via kurir rekanan.</p>
                 </div>
               </label>
 
-              <Button variant="primary" className="w-full mt-4">Konfirmasi Pilihan</Button>
+              <Button variant="primary" className="w-full mt-4" onClick={() => setIsConfirmed(true)}>{isConfirmed ? 'Pilihan Terkonfirmasi' : 'Konfirmasi Pilihan'}</Button>
+              {isConfirmed && <p className="text-sm text-center text-accent dark:text-primary">{pickupMethod === 'pickup' ? 'Pengambilan di apotek telah dipilih.' : 'Pengiriman ke rumah telah dipilih.'}</p>}
             </CardContent>
           </Card>
         </motion.div>

@@ -89,7 +89,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          <nav className="hidden lg:flex items-center gap-6 lg:gap-8">
             {publicLinks.map((link) => (
               <Link
                 key={link.name}
@@ -107,7 +107,7 @@ export default function Navbar() {
           </nav>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <button 
               onClick={toggleDarkMode}
               className="p-2 text-muted hover:bg-secondary dark:hover:bg-[#1c3626] rounded-full transition-colors"
@@ -126,7 +126,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <button 
               onClick={toggleDarkMode}
               className="p-2 text-muted bg-secondary/50 dark:bg-black/20 rounded-full"
@@ -145,7 +145,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-[110%] left-0 right-0 bg-white dark:bg-[#15241b] border border-border dark:border-border-dark rounded-2xl shadow-xl py-4 px-4 overflow-hidden">
+        <div className="lg:hidden absolute top-[110%] left-0 right-0 bg-white dark:bg-[#15241b] border border-border dark:border-border-dark rounded-2xl shadow-xl py-4 px-4 overflow-hidden">
           <nav className="flex flex-col gap-2">
             {publicLinks.map((link) => (
               <Link

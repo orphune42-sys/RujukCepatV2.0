@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
@@ -8,22 +9,29 @@ import { Filter, Calendar, MapPin, ChevronRight, Activity } from 'lucide-react';
 
 export default function RujukanSaya() {
   const [filter, setFilter] = useState('Semua');
+  const navigate = useNavigate();
   const filters = ['Semua', 'Aktif', 'Selesai', 'Dibatalkan'];
+  const referrals = [
+    { id: 1, status: 'Aktif' },
+    { id: 2, status: 'Selesai' },
+    { id: 3, status: 'Dibatalkan' },
+  ];
+  const visibleReferrals = referrals.filter((referral) => filter === 'Semua' || referral.status === filter);
 
   return (
     <motion.div 
-      className="p-6 max-w-7xl mx-auto space-y-6"
+      className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6"
       variants={staggerContainer}
       initial="initial"
       animate="animate"
     >
-      <motion.div variants={slideUp} className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <motion.div variants={slideUp} className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Rujukan Saya</h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">Kelola riwayat rujukan dan kunjungan Anda.</p>
         </div>
         
-        <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+        <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0">
           <Filter className="w-4 h-4 text-gray-400 mr-2" />
           {filters.map((f) => (
             <button
@@ -42,12 +50,12 @@ export default function RujukanSaya() {
       </motion.div>
 
       <motion.div variants={staggerContainer} className="space-y-4">
-        {[1, 2, 3].map((item) => (
+        {visibleReferrals.map(({ id: item, status }) => (
           <motion.div variants={slideUp} key={item}>
-            <Card hover className="cursor-pointer group">
+            <Card hover className="cursor-pointer group" role="link" tabIndex={0} onClick={() => navigate(`/pasien/rujukan/RJ-20261015-${item}A`)} onKeyDown={(event) => event.key === 'Enter' && navigate(`/pasien/rujukan/RJ-20261015-${item}A`)}>
               <CardContent className="p-0">
-                <div className="flex flex-col md:flex-row items-stretch">
-                  <div className="p-4 md:p-6 flex-1">
+                <div className="flex flex-col lg:flex-row items-stretch">
+                  <div className="p-4 lg:p-6 flex-1">
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex items-center gap-2">
                         <div className="p-2 bg-secondary/50 rounded-lg">
@@ -58,12 +66,12 @@ export default function RujukanSaya() {
                           <p className="font-semibold text-gray-900 dark:text-white">RJ-20261015-{item}A</p>
                         </div>
                       </div>
-                      <Badge variant={item === 1 ? "primary" : item === 2 ? "success" : "default"}>
-                        {item === 1 ? "Aktif" : item === 2 ? "Selesai" : "Dibatalkan"}
+                      <Badge variant={status === 'Aktif' ? "primary" : status === 'Selesai' ? "success" : "default"}>
+                        {status}
                       </Badge>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                       <div>
                         <p className="font-medium text-lg text-gray-900 dark:text-white">Poli Penyakit Dalam</p>
                         <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
@@ -71,16 +79,16 @@ export default function RujukanSaya() {
                           <span>RSUD Kota Malang</span>
                         </div>
                       </div>
-                      <div className="md:text-right">
+                      <div className="lg:text-right">
                         <p className="font-medium text-gray-900 dark:text-white">Jadwal Kunjungan</p>
-                        <div className="flex items-center md:justify-end gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
+                        <div className="flex items-center lg:justify-end gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
                           <Calendar className="w-4 h-4" />
                           <span>15 Okt 2026, 09:00 WIB</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-black/20 p-4 md:w-32 flex items-center justify-center border-t md:border-t-0 md:border-l border-gray-100 dark:border-gray-800 group-hover:bg-secondary/20 transition-colors">
+                  <div className="bg-gray-50 dark:bg-black/20 p-4 lg:w-32 flex items-center justify-center border-t lg:border-t-0 lg:border-l border-gray-100 dark:border-gray-800 group-hover:bg-secondary/20 transition-colors">
                     <span className="text-accent font-medium flex items-center">
                       Detail <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -90,6 +98,7 @@ export default function RujukanSaya() {
             </Card>
           </motion.div>
         ))}
+        {visibleReferrals.length === 0 && <p className="rounded-xl border border-dashed border-border p-8 text-center text-muted">Tidak ada rujukan dengan status ini.</p>}
       </motion.div>
     </motion.div>
   );

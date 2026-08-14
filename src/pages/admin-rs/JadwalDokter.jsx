@@ -22,7 +22,7 @@ export default function JadwalDokter() {
 
   return (
     <motion.div 
-      className="p-6 space-y-6 max-w-7xl mx-auto"
+      className="space-y-6 max-w-7xl mx-auto sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
       variants={slideUp}

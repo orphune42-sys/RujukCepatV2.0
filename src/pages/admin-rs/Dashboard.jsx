@@ -20,7 +20,7 @@ const bedStats = [
 export default function Dashboard() {
   return (
     <motion.div 
-      className="p-6 space-y-6"
+      className="space-y-6 sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
       variants={staggerContainer}

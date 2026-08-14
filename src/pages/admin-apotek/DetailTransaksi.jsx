@@ -8,7 +8,7 @@ import { ArrowLeft, Printer, CheckCircle, Package, Check } from 'lucide-react';
 
 const DetailTransaksi = () => {
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6 sm:p-2 lg:p-6">
       <motion.div variants={slideUp} initial="initial" animate="animate" className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Button variant="ghost" className="p-2 h-auto rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">

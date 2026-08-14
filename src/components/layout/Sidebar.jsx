@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen = false, onClose = () => {} }) {
   const { role, setRole, isDarkMode, toggleDarkMode } = useAppStore();
   const navigate = useNavigate();
 
@@ -50,7 +50,9 @@ export default function Sidebar() {
   const menu = getMenuByRole();
 
   return (
-    <aside className="w-64 bg-white dark:bg-[#15241b] border-r border-border dark:border-border-dark hidden md:flex flex-col">
+    <>
+      {isOpen && <button type="button" aria-label="Tutup menu" onClick={onClose} className="fixed inset-0 z-30 bg-black/30 lg:hidden" />}
+      <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-border bg-white shadow-xl transition-transform dark:border-border-dark dark:bg-[#15241b] lg:static lg:z-auto lg:w-64 lg:translate-x-0 lg:shadow-none ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="h-16 flex items-center px-6 border-b border-border dark:border-border-dark">
         <div className="flex items-center gap-2">
           <HeartPulse className="h-6 w-6 text-accent dark:text-primary" />
@@ -66,6 +68,7 @@ export default function Sidebar() {
             <NavLink
               key={index}
               to={item.path}
+              onClick={onClose}
               end={item.path === `/${role.replace('_', '-')}`}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors ${
@@ -98,6 +101,7 @@ export default function Sidebar() {
           Keluar
         </button>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

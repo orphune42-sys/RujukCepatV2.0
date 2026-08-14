@@ -19,7 +19,7 @@ export default function BuatRujukan() {
 
   return (
     <motion.div 
-      className="p-6 max-w-4xl mx-auto space-y-6"
+      className="max-w-4xl mx-auto space-y-6 sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
       variants={slideUp}

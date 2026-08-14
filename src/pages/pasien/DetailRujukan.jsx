@@ -7,6 +7,15 @@ import Button from '../../components/ui/Button';
 import { MapPin, Phone, Building, CheckCircle2, Circle, Clock, FileText, Download } from 'lucide-react';
 
 export default function DetailRujukan() {
+  const downloadReferral = () => {
+    const letter = new Blob(['SURAT RUJUKAN\nNomor: RJ-20261015-1A\nTujuan: RSUP Dr. Sardjito\nPoli: Penyakit Dalam'], { type: 'text/plain' });
+    const url = URL.createObjectURL(letter);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'surat-rujukan-RJ-20261015-1A.txt';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
   const timeline = [
     { status: 'Rujukan Dibuat', time: '12 Okt 2026, 08:30 WIB', description: 'Rujukan diterbitkan oleh Puskesmas Cidasea', completed: true },
     { status: 'Diverifikasi RS', time: '12 Okt 2026, 14:00 WIB', description: 'Rujukan telah diterima dan diverifikasi oleh RS Umum Lavalette', completed: true },
@@ -16,7 +25,7 @@ export default function DetailRujukan() {
 
   return (
     <motion.div 
-      className="p-6 max-w-7xl mx-auto space-y-6"
+      className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6"
       variants={staggerContainer}
       initial="initial"
       animate="animate"
@@ -29,7 +38,7 @@ export default function DetailRujukan() {
           </div>
           <p className="text-gray-500 dark:text-gray-400">No. RJ-20261015-1A</p>
         </div>
-        <Button variant="outline"><Download className="w-4 h-4 mr-2"/> Unduh Surat Rujukan</Button>
+        <Button variant="outline" className="w-full sm:w-auto" onClick={downloadReferral}><Download className="w-4 h-4 mr-2"/> Unduh Surat Rujukan</Button>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
