@@ -23,7 +23,7 @@ const hospitalIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-export default function MapView({ hospitals = [], height = "400px", center = [-7.7956, 110.3695], zoom = 12 }) {
+export default function MapView({ hospitals = [], height = "400px", center = [-7.9666, 112.6326], zoom = 12 }) {
   return (
     <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-border dark:border-border-dark z-0 relative" style={{ height }}>
       <MapContainer 

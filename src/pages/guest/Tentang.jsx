@@ -52,7 +52,7 @@ const missions = [
   {
     Icon: Target,
     title: 'Visi Kami',
-    desc: 'Menjadi platform integrasi layanan kesehatan digital nomor satu di Indonesia yang mendobrak batas geografis dan birokrasi.',
+    desc: 'Menjadi platform layanan kesehatan digital nomor satu di Indonesia yang mendobrak batas geografis dan birokrasi.',
   },
   {
     Icon: Shield,

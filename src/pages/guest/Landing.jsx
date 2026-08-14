@@ -17,7 +17,7 @@ function SectionReveal({ children, id, className = '', delay = 0 }) {
   const ref = useRef(null);
   // once: false → re-animates every time section enters viewport
   // margin negative membuat animasi trigger saat element sudah masuk cukup ke layar
-  const inView = useInView(ref, { once: true, margin: '-10% 0px -10% 0px' });
+  const inView = useInView(ref, { once: false, margin: '-10% 0px -10% 0px' });
 
   return (
     <motion.div

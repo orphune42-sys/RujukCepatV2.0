@@ -32,35 +32,34 @@ export default function Navbar() {
     if (location.search) navigate(location.pathname, { replace: true });
   };
 
-  // Track which section is in view using IntersectionObserver
+  // Keep the active navigation item and URL hash aligned with the scroll position.
   useEffect(() => {
     const sectionIds = ['beranda', 'cari-fk', 'tentang', 'hubungi-kami'];
 
-    // Defer slightly so that all section IDs are rendered in the DOM
-    const timer = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              setActiveHash(`/#${entry.target.id}`);
-            }
-          });
-        },
-        {
-          rootMargin: '-20% 0px -70% 0px',
-          threshold: 0,
-        }
-      );
+    const updateActiveSection = () => {
+      const marker = window.scrollY + 160;
+      let currentId = 'beranda';
 
-      sectionIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= marker) currentId = id;
       });
 
-      return () => observer.disconnect();
-    }, 300);
+      const nextHash = `/#${currentId}`;
+      setActiveHash((currentHash) => currentHash === nextHash ? currentHash : nextHash);
+      if (window.location.hash !== `#${currentId}`) {
+        window.history.replaceState(null, '', nextHash);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
   }, []);
 
   const handleLinkClick = (hash) => {
