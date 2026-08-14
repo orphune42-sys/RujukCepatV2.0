@@ -8,11 +8,11 @@ import PublicLayout from './components/layout/PublicLayout';
 import DashboardLayout from './components/layout/DashboardLayout';
 
 // Public Pages
-import Landing from './pages/public/Landing';
-import CariRumahSakit from './pages/public/CariRumahSakit';
-import DetailRumahSakit from './pages/public/DetailRumahSakit';
-import Tentang from './pages/public/Tentang';
-import HubungiKami from './pages/public/HubungiKami';
+import Landing from './pages/guest/Landing';
+import CariRumahSakit from './pages/guest/CariRumahSakit';
+import DetailRumahSakit from './pages/guest/DetailRumahSakit';
+import Tentang from './pages/guest/Tentang';
+import HubungiKami from './pages/guest/HubungiKami';
 
 // Pasien Pages
 import PasienDashboard from './pages/pasien/Dashboard';

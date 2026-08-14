@@ -6,7 +6,7 @@ import Button from '../../components/ui/Button';
 import CariRumahSakit from './CariRumahSakit';
 import Tentang from './Tentang';
 import HubungiKami from './HubungiKami';
-import HeroIllustration from '../../assets/undraw_medical.svg';
+import HeroIllustration from '../../assets/medical.svg';
 
 /**
  * Wraps children with a fade+slide+blur reveal triggered ONCE when entering viewport.

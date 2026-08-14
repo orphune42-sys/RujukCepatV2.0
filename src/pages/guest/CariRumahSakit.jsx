@@ -8,11 +8,7 @@ import mockHospitals from '../../data/hospitals.json';
 
 const MotionLink = motion(Link);
 
-const bedColor = (val) => {
-  if (val === 0) return { text: 'text-red-500', bg: 'bg-red-50 dark:bg-red-900/20', border: 'border-red-200 dark:border-red-800' };
-  if (val <= 5)  return { text: 'text-amber-500', bg: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-200 dark:border-amber-800' };
-  return          { text: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-900/20', border: 'border-emerald-200 dark:border-emerald-800' };
-};
+
 
 export default function CariRumahSakit() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -91,9 +87,9 @@ export default function CariRumahSakit() {
 
               <div className="space-y-4">
                 {filteredHospitals.map((hospital, i) => {
-                  const igd = bedColor(hospital.availability.igd);
-                  const icu = bedColor(hospital.availability.icu);
-                  const inap = bedColor(hospital.availability.rawatInap);
+                  const igd = { text: 'text-green-600 dark:text-green-400', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
+                  const icu = { text: 'text-red-500', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
+                  const inap = { text: 'text-blue-500', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
 
                   return (
                     <motion.div
@@ -136,10 +132,7 @@ export default function CariRumahSakit() {
                                     {hospital.type} · {hospital.address}
                                   </p>
                                 </div>
-                                <div className="flex items-center gap-1 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 text-amber-600 dark:text-amber-400 text-sm font-bold px-2.5 py-1 rounded-lg shrink-0">
-                                  <Star className="h-3.5 w-3.5 fill-current" />
-                                  {hospital.rating}
-                                </div>
+
                               </div>
 
                               {/* Row 2: Bed availability */}
@@ -159,18 +152,7 @@ export default function CariRumahSakit() {
 
                               {/* Row 3: Specialties + CTA */}
                               <div className="flex items-center justify-between gap-3 mt-auto">
-                                <div className="flex flex-wrap gap-1.5 min-w-0">
-                                  {hospital.specialties.slice(0, 3).map((spec, idx) => (
-                                    <span key={idx} className="text-[11px] bg-secondary/70 dark:bg-[#1c3626] text-accent dark:text-primary px-2.5 py-0.5 rounded-full font-medium border border-primary/15">
-                                      {spec}
-                                    </span>
-                                  ))}
-                                  {hospital.specialties.length > 3 && (
-                                    <span className="text-[11px] text-muted px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-black/20 border border-border/50">
-                                      +{hospital.specialties.length - 3}
-                                    </span>
-                                  )}
-                                </div>
+                                <div></div>
                                 <span className="flex items-center gap-1 text-sm font-bold text-accent dark:text-primary shrink-0 group-hover:gap-2 transition-all">
                                   Detail <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </span>

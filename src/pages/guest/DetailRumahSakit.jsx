@@ -82,24 +82,6 @@ export default function DetailRumahSakit() {
                 </div>
               </motion.section>
 
-              {/* Spesialisasi */}
-              <motion.section variants={slideUp}>
-                <h2 className="text-2xl font-bold text-text dark:text-text-dark mb-4 flex items-center gap-2">
-                  Layanan Spesialis
-                </h2>
-                <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
-                  <CardContent className="p-6">
-                    <div className="flex flex-wrap gap-3">
-                      {hospital.specialties.map((spec, idx) => (
-                        <div key={idx} className="bg-secondary/50 dark:bg-black/20 text-text dark:text-gray-200 px-4 py-2 rounded-lg text-sm font-medium border border-border dark:border-border-dark">
-                          {spec}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.section>
-
             </motion.div>
           </div>
 
