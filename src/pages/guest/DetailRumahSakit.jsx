@@ -49,10 +49,10 @@ export default function DetailRumahSakit() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 mt-8">
-        <div className="grid lg:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 md:px-6 mt-8 max-w-6xl">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-8">
             <motion.div initial="initial" animate="animate" variants={staggerContainer} className="space-y-8">
               
               {/* Ketersediaan */}
@@ -60,23 +60,23 @@ export default function DetailRumahSakit() {
                 <h2 className="text-2xl font-bold text-text dark:text-text-dark mb-4 flex items-center gap-2">
                   Informasi Ketersediaan
                 </h2>
-                <div className="grid sm:grid-cols-3 gap-4">
-                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
-                    <CardContent className="p-6 text-center">
-                      <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">IGD</h3>
-                      <p className="text-3xl font-bold text-green-600 dark:text-green-400">{hospital.availability.igd} <span className="text-sm font-normal">Bed</span></p>
+                <div className="flex flex-col gap-4">
+                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm transition-all hover:shadow-md">
+                    <CardContent className="p-6 flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-muted dark:text-gray-400 mb-0">IGD</h3>
+                      <p className="text-4xl font-bold text-green-600 dark:text-green-400">{hospital.availability.igd} <span className="text-base font-normal">Bed</span></p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
-                    <CardContent className="p-6 text-center">
-                      <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">ICU</h3>
-                      <p className="text-3xl font-bold text-red-500">{hospital.availability.icu} <span className="text-sm font-normal">Bed</span></p>
+                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm transition-all hover:shadow-md">
+                    <CardContent className="p-6 flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-muted dark:text-gray-400 mb-0">ICU</h3>
+                      <p className="text-4xl font-bold text-red-500">{hospital.availability.icu} <span className="text-base font-normal">Bed</span></p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
-                    <CardContent className="p-6 text-center">
-                      <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">Rawat Inap</h3>
-                      <p className="text-3xl font-bold text-blue-500">{hospital.availability.rawatInap} <span className="text-sm font-normal">Bed</span></p>
+                  <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm transition-all hover:shadow-md">
+                    <CardContent className="p-6 flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-muted dark:text-gray-400 mb-0">Rawat Inap</h3>
+                      <p className="text-4xl font-bold text-blue-500">{hospital.availability.rawatInap} <span className="text-base font-normal">Bed</span></p>
                     </CardContent>
                   </Card>
                 </div>
@@ -86,24 +86,24 @@ export default function DetailRumahSakit() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="space-y-6">
             <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm sticky top-[90px]">
-              <CardContent className="p-6">
-                <Button size="lg" className="w-full mb-6 text-lg shadow-lg shadow-primary/20">
+              <CardContent className="p-8">
+                <Button size="lg" className="w-full mb-8 text-lg py-6 shadow-lg shadow-primary/20">
                   Buat Rujukan Kesini
                 </Button>
                 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
                     <h4 className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">Kontak</h4>
-                    <p className="flex items-center gap-2 text-text dark:text-gray-300 font-medium">
-                      <Phone className="h-4 w-4 text-primary" /> {hospital.phone}
+                    <p className="flex items-center gap-2 text-text dark:text-gray-300 font-medium text-lg">
+                      <Phone className="h-5 w-5 text-primary" /> {hospital.phone}
                     </p>
                   </div>
                   
-                  <div className="pt-4 border-t border-border dark:border-border-dark">
+                  <div className="pt-6 border-t border-border dark:border-border-dark">
                     <h4 className="text-xs font-semibold text-muted uppercase tracking-wider mb-3">Lokasi</h4>
-                    <div className="rounded-xl overflow-hidden shadow-sm h-[200px] border border-border dark:border-border-dark">
+                    <div className="rounded-xl overflow-hidden shadow-sm h-[320px] border border-border dark:border-border-dark relative">
                       <MapView hospitals={[hospital]} height="100%" center={[hospital.lat, hospital.lng]} zoom={15} />
                     </div>
                     <a 

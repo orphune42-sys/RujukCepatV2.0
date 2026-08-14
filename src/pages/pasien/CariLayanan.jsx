@@ -33,7 +33,7 @@ export default function CariLayanan() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input 
             type="text" 
-            placeholder="Cari nama rumah sakit, spesialis, atau layanan..." 
+            placeholder="Cari nama rumah sakit, fasilitas kesehatan, atau layanan..." 
             className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#15241b] text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
           />
         </div>

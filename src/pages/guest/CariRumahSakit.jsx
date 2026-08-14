@@ -52,7 +52,7 @@ export default function CariRumahSakit() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
               <input
                 type="text"
-                placeholder="Cari nama RS, spesialisasi, atau lokasi..."
+                placeholder="Cari nama RS, fasilitas kesehatan, atau lokasi..."
                 className="w-full h-12 pl-11 pr-4 rounded-xl border border-border dark:border-border-dark bg-[#f8faf9] dark:bg-[#0a120e] text-text dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/60 transition-shadow text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
