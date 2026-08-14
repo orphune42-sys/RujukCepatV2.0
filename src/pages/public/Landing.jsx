@@ -134,28 +134,7 @@ export default function Landing() {
         <HubungiKami />
       </SectionReveal>
 
-      {/* ── CTA Banner ── */}
-      <SectionReveal delay={0}>
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-accent dark:bg-[#204a35] z-0" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 z-0" />
-          <motion.div
-            className="absolute inset-0 z-0 pointer-events-none"
-            animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
-            transition={{ duration: 20, repeat: Infinity, repeatType: 'mirror' }}
-            style={{ background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.07) 0%, transparent 60%)' }}
-          />
-          <div className="container mx-auto px-4 md:px-6 relative z-10 text-center py-24">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Siap Memulai Perjalanan Sehat Anda?</h2>
-            <p className="text-lg text-[#ddefe3] mb-10 max-w-2xl mx-auto">
-              Bergabunglah dengan ribuan pengguna lainnya yang telah merasakan kemudahan akses layanan kesehatan terpadu.
-            </p>
-            <Button size="lg" className="bg-white text-accent hover:bg-gray-100 border-none shadow-xl">
-              Buat Akun Sekarang
-            </Button>
-          </div>
-        </div>
-      </SectionReveal>
+
 
     </div>
   );

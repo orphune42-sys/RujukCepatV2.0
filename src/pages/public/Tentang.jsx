@@ -73,17 +73,7 @@ export default function Tentang() {
       <section className="pt-24 pb-16 bg-white dark:bg-[#15241b] border-b border-border dark:border-border-dark">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <FadeUp delay={0}>
-              <div className="flex justify-center mb-6">
-                <motion.div
-                  className="bg-primary/20 p-4 rounded-2xl"
-                  animate={{ rotate: [0, -6, 6, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <HeartPulse className="h-12 w-12 text-accent dark:text-primary" />
-                </motion.div>
-              </div>
-            </FadeUp>
+
             <FadeUp delay={0.1}>
               <h1 className="text-4xl md:text-5xl font-bold text-text dark:text-text-dark mb-4">
                 Tentang RujukCepat

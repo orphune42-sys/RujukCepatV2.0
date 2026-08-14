@@ -18,17 +18,7 @@ export default function Footer() {
             <p className="text-muted dark:text-gray-400 text-sm leading-relaxed">
               Platform integrasi layanan kesehatan yang menghubungkan rumah sakit, pasien, dan apotek dalam satu sistem digital terpadu untuk mempercepat akses informasi dan proses rujukan medis.
             </p>
-            <div className="flex gap-4 pt-2">
-              <a href="#" className="text-muted hover:text-accent dark:hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted hover:text-accent dark:hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted hover:text-accent dark:hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
+
           </div>
 
           {/* Links */}

@@ -58,26 +58,23 @@ export default function DetailRumahSakit() {
               {/* Ketersediaan */}
               <motion.section variants={slideUp}>
                 <h2 className="text-2xl font-bold text-text dark:text-text-dark mb-4 flex items-center gap-2">
-                  <HeartPulse className="h-6 w-6 text-accent" /> Informasi Ketersediaan
+                  Informasi Ketersediaan
                 </h2>
                 <div className="grid sm:grid-cols-3 gap-4">
                   <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
                     <CardContent className="p-6 text-center">
-                      <Activity className="h-8 w-8 text-green-500 mx-auto mb-3" />
                       <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">IGD</h3>
                       <p className="text-3xl font-bold text-green-600 dark:text-green-400">{hospital.availability.igd} <span className="text-sm font-normal">Bed</span></p>
                     </CardContent>
                   </Card>
                   <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
                     <CardContent className="p-6 text-center">
-                      <Activity className="h-8 w-8 text-red-500 mx-auto mb-3" />
                       <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">ICU</h3>
                       <p className="text-3xl font-bold text-red-500">{hospital.availability.icu} <span className="text-sm font-normal">Bed</span></p>
                     </CardContent>
                   </Card>
                   <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
                     <CardContent className="p-6 text-center">
-                      <BedDouble className="h-8 w-8 text-blue-500 mx-auto mb-3" />
                       <h3 className="text-sm font-medium text-muted dark:text-gray-400 mb-1">Rawat Inap</h3>
                       <p className="text-3xl font-bold text-blue-500">{hospital.availability.rawatInap} <span className="text-sm font-normal">Bed</span></p>
                     </CardContent>
@@ -88,7 +85,7 @@ export default function DetailRumahSakit() {
               {/* Spesialisasi */}
               <motion.section variants={slideUp}>
                 <h2 className="text-2xl font-bold text-text dark:text-text-dark mb-4 flex items-center gap-2">
-                  <Shield className="h-6 w-6 text-accent" /> Layanan Spesialis
+                  Layanan Spesialis
                 </h2>
                 <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm">
                   <CardContent className="p-6">
