@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { HeartPulse, Target, Shield, Users } from 'lucide-react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import SectionWaveBackground from '../../components/shared/SectionWaveBackground';
 
 /* ─── Reusable reveal primitives ─────────────────────────── */
 function FadeUp({ children, delay = 0, className = '' }) {
@@ -10,10 +11,10 @@ function FadeUp({ children, delay = 0, className = '' }) {
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 48, filter: 'blur(6px)' }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView
-        ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-        : { opacity: 0, y: 48, filter: 'blur(6px)' }
+        ? { opacity: 1, y: 0 }
+        : { opacity: 0, y: 20 }
       }
       transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -67,10 +68,11 @@ const missions = [
 
 export default function Tentang() {
   return (
-    <div className="bg-background dark:bg-background-dark">
+    <div className="relative isolate overflow-hidden bg-white dark:bg-background-dark">
+      <SectionWaveBackground />
 
       {/* ── Header ── */}
-      <section className="pt-24 pb-16 bg-white dark:bg-[#15241b] border-b border-border dark:border-border-dark">
+      <section className="relative z-10 pt-24 pb-16 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-sm border-b border-border dark:border-border-dark">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
 
@@ -89,7 +91,7 @@ export default function Tentang() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="py-14 bg-white dark:bg-[#0a120e] border-b border-border dark:border-border-dark">
+      <section className="relative z-10 py-14 bg-white/70 dark:bg-[#0a120e]/90 backdrop-blur-sm border-b border-border dark:border-border-dark">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-border dark:divide-border-dark">
             {stats.map((stat, i) => (
@@ -107,7 +109,7 @@ export default function Tentang() {
       </section>
 
       {/* ── Misi ── */}
-      <section className="py-24">
+      <section className="relative z-10 py-24">
         <div className="container mx-auto px-4 md:px-6">
           <FadeUp className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-text-dark mb-3">

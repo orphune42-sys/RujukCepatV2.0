@@ -16,20 +16,20 @@ function SectionReveal({ children, id, className = '', delay = 0 }) {
   const ref = useRef(null);
   // once: false → re-animates every time section enters viewport
   // margin negative membuat animasi trigger saat element sudah masuk cukup ke layar
-  const inView = useInView(ref, { once: false, margin: '-10% 0px -10% 0px' });
+  const inView = useInView(ref, { once: true, margin: '-10% 0px -10% 0px' });
 
   return (
     <motion.div
       ref={ref}
       id={id}
       className={`scroll-mt-24 ${className}`}
-      initial={{ opacity: 0, y: 90, filter: 'blur(12px)' }}
+      initial={{ opacity: 0, y: 24 }}
       animate={
         inView
-          ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-          : { opacity: 0, y: 90, filter: 'blur(12px)' }
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: 24 }
       }
-      transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

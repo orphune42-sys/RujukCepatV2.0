@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, X } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import SectionWaveBackground from '../../components/shared/SectionWaveBackground';
 
 function FadeUp({ children, delay = 0, className = '' }) {
   const [ref, inView] = useScrollAnimation();
@@ -10,10 +11,10 @@ function FadeUp({ children, delay = 0, className = '' }) {
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView
-        ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-        : { opacity: 0, y: 40, filter: 'blur(6px)' }
+        ? { opacity: 1, y: 0 }
+        : { opacity: 0, y: 20 }
       }
       transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -63,9 +64,12 @@ const inputClass =
   'w-full h-11 px-4 rounded-xl border border-border dark:border-border-dark bg-[#f8faf9] dark:bg-[#0a120e] text-text dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all placeholder:text-muted/50 text-sm';
 
 export default function HubungiKami() {
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
   return (
-    <div className="bg-[#f8faf9] dark:bg-background-dark pt-24 pb-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+    <div className="relative isolate overflow-hidden bg-white dark:bg-background-dark pt-24 pb-24">
+      <SectionWaveBackground />
+      <div className="relative z-10 container mx-auto px-4 md:px-6 max-w-5xl">
 
         {/* Header */}
         <FadeUp className="text-center mb-16">
@@ -114,7 +118,7 @@ export default function HubungiKami() {
           <SlideIn direction="right" delay={0.2} className="lg:col-span-3">
             <div className="bg-white dark:bg-[#15241b] rounded-2xl border border-border dark:border-border-dark shadow-sm p-8">
               <h3 className="text-2xl font-bold text-text dark:text-text-dark mb-7">Kirim Pesan</h3>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsSuccessOpen(true); }}>
                 <div className="grid md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-muted uppercase tracking-wider">Nama Lengkap</label>
@@ -151,6 +155,36 @@ export default function HubungiKami() {
 
         </div>
       </div>
+
+      {isSuccessOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 grid place-items-center bg-[#102719]/45 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="success-title"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setIsSuccessOpen(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+            className="relative w-full max-w-md rounded-3xl bg-white dark:bg-[#15241b] p-8 text-center shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button type="button" onClick={() => setIsSuccessOpen(false)} className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-secondary hover:text-text dark:hover:bg-[#1c3626] dark:hover:text-text-dark" aria-label="Tutup notifikasi">
+              <X className="h-5 w-5" />
+            </button>
+            <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-accent dark:text-primary">
+              <CheckCircle2 className="h-9 w-9" />
+            </div>
+            <h2 id="success-title" className="text-2xl font-bold text-text dark:text-text-dark">Pesan berhasil dikirim</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted dark:text-gray-400">Terima kasih sudah menghubungi kami. Tim RujukCepat akan meninjau pesan Anda dan segera merespons.</p>
+            <Button type="button" onClick={() => setIsSuccessOpen(false)} className="mt-7 w-full justify-center">Kembali</Button>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Search, MapPin, Filter, Star, ArrowUpRight, Activity, BedDouble, Heart } from 'lucide-react';
+import { Search, MapPin, Filter, ArrowUpRight, Check, RotateCcw, X } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import MapView from '../../components/shared/MapView';
 import mockHospitals from '../../data/hospitals.json';
@@ -13,18 +13,39 @@ const MotionLink = motion(Link);
 export default function CariRumahSakit() {
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('list');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const hospitals = mockHospitals;
+  const facilityTypes = ['Rumah Sakit', 'Puskesmas', 'Klinik', 'Apotek', 'Laboratorium'];
+
+  const getFacilityCategory = (type) => {
+    const normalizedType = type.toLowerCase();
+    if (normalizedType.includes('rumah sakit') || normalizedType.includes('rs')) return 'Rumah Sakit';
+    if (normalizedType.includes('puskesmas')) return 'Puskesmas';
+    if (normalizedType.includes('klinik')) return 'Klinik';
+    if (normalizedType.includes('apotek')) return 'Apotek';
+    if (normalizedType.includes('laboratorium')) return 'Laboratorium';
+    return type;
+  };
+
+  const toggleFacilityType = (type) => {
+    setSelectedTypes((current) =>
+      current.includes(type) ? current.filter((item) => item !== type) : [...current, type]
+    );
+  };
+
   const filteredHospitals = hospitals.filter(h =>
-    h.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    h.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    h.specialties.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()))
+    (h.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      h.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      h.specialties.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()))) &&
+    (selectedTypes.length === 0 || selectedTypes.includes(getFacilityCategory(h.type)))
   );
 
   return (
-    <div className="bg-[#f8faf9] dark:bg-background-dark min-h-screen">
+    <div className="relative isolate min-h-screen overflow-hidden bg-white dark:bg-background-dark">
       {/* Header & Search */}
-      <div className="bg-white dark:bg-[#15241b] border-b border-border dark:border-border-dark pt-10 pb-7">
+      <div className="relative z-10 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-sm border-b border-border dark:border-border-dark pt-10 pb-7">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
             <div>
@@ -47,7 +68,7 @@ export default function CariRumahSakit() {
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 relative">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
               <input
@@ -58,15 +79,83 @@ export default function CariRumahSakit() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <button className="h-12 px-5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#1c3626] text-sm font-semibold flex items-center gap-2 hover:bg-secondary dark:hover:bg-[#243d2e] transition-colors text-text dark:text-text-dark">
+            <button
+              type="button"
+              onClick={() => setIsFilterOpen((open) => !open)}
+              aria-expanded={isFilterOpen}
+              aria-controls="facility-filter"
+              className="h-12 px-5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#1c3626] text-sm font-semibold flex items-center gap-2 hover:bg-secondary dark:hover:bg-[#243d2e] transition-colors text-text dark:text-text-dark"
+            >
               <Filter className="h-4 w-4" /> Filter
+              {selectedTypes.length > 0 && (
+                <span className="grid place-items-center min-w-5 h-5 px-1 rounded-full bg-primary text-[11px] text-accent font-bold">
+                  {selectedTypes.length}
+                </span>
+              )}
             </button>
+
+            <AnimatePresence>
+              {isFilterOpen && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Tutup filter"
+                    className="fixed inset-0 z-10 cursor-default"
+                    onClick={() => setIsFilterOpen(false)}
+                  />
+                  <motion.div
+                    id="facility-filter"
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute z-20 right-0 top-14 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-border dark:border-border-dark bg-white dark:bg-[#15241b] p-4 shadow-xl"
+                  >
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div>
+                        <h2 className="font-bold text-text dark:text-text-dark">Jenis fasilitas</h2>
+                        <p className="text-xs text-muted mt-0.5">Pilih fasilitas yang ingin ditampilkan</p>
+                      </div>
+                      <button type="button" onClick={() => setIsFilterOpen(false)} className="p-1 text-muted hover:text-text dark:hover:text-text-dark" aria-label="Tutup">
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+
+                    <div className="space-y-1">
+                      {facilityTypes.map((type) => {
+                        const isSelected = selectedTypes.includes(type);
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => toggleFacilityType(type)}
+                            className={`w-full flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${isSelected ? 'bg-primary/20 text-accent dark:text-primary' : 'text-text dark:text-text-dark hover:bg-secondary dark:hover:bg-[#1c3626]'}`}
+                          >
+                            {type}
+                            <span className={`grid place-items-center h-5 w-5 rounded-md border ${isSelected ? 'border-accent bg-accent text-white dark:border-primary dark:bg-primary dark:text-[#15301e]' : 'border-border dark:border-border-dark'}`}>
+                              {isSelected && <Check className="h-3.5 w-3.5" />}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="flex items-center justify-between border-t border-border dark:border-border-dark mt-3 pt-3">
+                      <button type="button" onClick={() => setSelectedTypes([])} disabled={selectedTypes.length === 0} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted hover:text-accent disabled:opacity-40 disabled:cursor-not-allowed">
+                        <RotateCcw className="h-3.5 w-3.5" /> Reset
+                      </button>
+                      <button type="button" onClick={() => setIsFilterOpen(false)} className="text-xs font-bold text-accent dark:text-primary">Terapkan</button>
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-8">
         <AnimatePresence mode="wait">
           {viewMode === 'list' ? (
             <motion.div

@@ -7,6 +7,6 @@ import { useInView } from 'framer-motion';
  */
 export function useScrollAnimation(options = {}) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: '-10% 0px -10% 0px', ...options });
+  const isInView = useInView(ref, { once: true, margin: '-10% 0px -10% 0px', ...options });
   return [ref, isInView];
 }
