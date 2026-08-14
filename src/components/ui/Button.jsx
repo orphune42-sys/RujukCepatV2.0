@@ -13,7 +13,7 @@ const Button = React.forwardRef(({
   const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background";
   
   const variants = {
-    primary: "bg-primary text-text hover:bg-[#86b58e] shadow-sm",
+    primary: "bg-accent text-white hover:bg-[#3d8b69] shadow-sm dark:bg-primary dark:text-[#0f1a13] dark:hover:bg-[#aee0b8]",
     secondary: "bg-secondary text-accent hover:bg-[#cbe3d2]",
     outline: "border border-border bg-transparent hover:bg-secondary text-text",
     ghost: "hover:bg-secondary hover:text-accent text-muted",

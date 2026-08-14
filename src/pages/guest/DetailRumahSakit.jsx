@@ -89,9 +89,11 @@ export default function DetailRumahSakit() {
           <div className="space-y-6">
             <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm sticky top-[90px]">
               <CardContent className="p-8">
-                <Button size="lg" className="w-full mb-8 text-lg py-6 shadow-lg shadow-primary/20">
-                  Buat Rujukan Kesini
-                </Button>
+                <Link to="/login" className="block">
+                  <Button size="lg" className="w-full mb-8 text-lg py-6 shadow-lg shadow-primary/20">
+                    Buat Rujukan
+                  </Button>
+                </Link>
                 
                 <div className="space-y-6">
                   <div>

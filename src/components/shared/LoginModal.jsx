@@ -5,7 +5,7 @@ import { X, User, Shield, Stethoscope, Mail, Lock, UserPlus, ArrowLeft } from 'l
 import useAppStore from '../../store/useAppStore';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginModal({ isOpen, onClose }) {
+export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
   const [activeTab, setActiveTab] = useState('pasien');
   const [mode, setMode] = useState('login'); // 'login' or 'register'
   // Ref untuk wrapper — kita set pointer-events:none segera saat close
@@ -16,13 +16,13 @@ export default function LoginModal({ isOpen, onClose }) {
   // Reset state when opened
   useEffect(() => {
     if (isOpen) {
-      setMode('login');
+      setMode(initialMode);
       setActiveTab('pasien');
       if (wrapperRef.current) {
         wrapperRef.current.style.pointerEvents = 'auto';
       }
     }
-  }, [isOpen]);
+  }, [isOpen, initialMode]);
 
   // Close on Escape key
   useEffect(() => {

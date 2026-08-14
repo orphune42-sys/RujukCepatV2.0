@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HeartPulse, Menu, X, Sun, Moon } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import Button from '../ui/Button';
@@ -9,8 +9,28 @@ export default function Navbar() {
   const { isDarkMode, toggleDarkMode, role } = useAppStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeHash, setActiveHash] = useState('/#beranda');
+
+  useEffect(() => {
+    const mode = new URLSearchParams(location.search).get('auth');
+    if (mode === 'login' || mode === 'register') {
+      setAuthMode(mode);
+      setIsLoginModalOpen(true);
+    }
+  }, [location.search]);
+
+  const openLogin = () => {
+    setAuthMode('login');
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLogin = () => {
+    setIsLoginModalOpen(false);
+    if (location.search) navigate(location.pathname, { replace: true });
+  };
 
   // Track which section is in view using IntersectionObserver
   useEffect(() => {
@@ -102,7 +122,7 @@ export default function Navbar() {
                 <Button variant="primary" className="rounded-full px-6">Dashboard</Button>
               </Link>
             ) : (
-              <Button variant="primary" className="rounded-full px-6" onClick={() => setIsLoginModalOpen(true)}>Masuk</Button>
+              <Button variant="primary" className="rounded-full px-6" onClick={openLogin}>Masuk</Button>
             )}
           </div>
 
@@ -150,7 +170,7 @@ export default function Navbar() {
               ) : (
                 <Button className="w-full rounded-xl" onClick={() => {
                   setIsMobileMenuOpen(false);
-                  setIsLoginModalOpen(true);
+                  openLogin();
                 }}>Masuk</Button>
               )}
             </div>
@@ -161,7 +181,8 @@ export default function Navbar() {
       {/* Login Modal */}
       <LoginModal 
         isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
+        onClose={closeLogin}
+        initialMode={authMode}
       />
     </header>
   );

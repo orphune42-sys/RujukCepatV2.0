@@ -76,6 +76,8 @@ function App() {
             <Route index element={<Landing />} />
             <Route path="cari-rs" element={<Navigate to="/#cari-rs" replace />} />
             <Route path="rs/:id" element={<DetailRumahSakit />} />
+            <Route path="login" element={<Navigate to="/?auth=login" replace />} />
+            <Route path="register" element={<Navigate to="/?auth=register" replace />} />
             <Route path="tentang" element={<Navigate to="/#tentang" replace />} />
             <Route path="hubungi-kami" element={<Navigate to="/#hubungi-kami" replace />} />
           </Route>

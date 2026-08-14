@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import Button from '../../components/ui/Button';
@@ -91,10 +92,12 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Button size="lg" className="group shadow-lg shadow-primary/25">
-                  Daftar Sekarang
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
+                <Link to="/register">
+                  <Button size="lg" className="group shadow-lg shadow-primary/25">
+                    Daftar Sekarang
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
                 <a href="#cari-fk">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white/50 backdrop-blur-sm border-gray-200">
                     Cari Rumah Sakit
