@@ -34,5 +34,59 @@
     },
     "specialties": ["Mata", "THT", "Penyakit Dalam", "Kandungan", "Anak", "Bedah"],
     "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5D2TM-O4_UxCl4WSKBnD5Xeda1lOrTekFvj4xhV2CgOmS6jtqE3EsWezB_elluhgho1M-1wcJ1cPRoAmfTb3fEM1j3ET_ss_Zi4hdppEwyP6OmAuFsYcoZWq2_BYBtOjiHIWI0cqGfKo/w1200-h630-p-k-no-nu/RS+Lavalette+Malang+-+Jadwal+Praktek+Dokter.jpg"
+  },
+  {
+    "id": "RS-003",
+    "name": "RS Universitas Brawijaya",
+    "type": "Rumah Sakit Umum",
+    "class": "C",
+    "address": "Jl. Soekarno Hatta, Jatimulyo, Lowokwaru, Kota Malang, Jawa Timur",
+    "lat": -7.9519,
+    "lng": 112.6137,
+    "phone": "(0341) 403000",
+    "rating": 4.6,
+    "availability": {
+      "igd": 8,
+      "icu": 3,
+      "rawatInap": 30
+    },
+    "specialties": ["Penyakit Dalam", "Anak", "Bedah", "Kandungan", "Jantung", "Saraf"],
+    "image": "https://prasetya.ub.ac.id/wp-content/uploads/2020/10/IMG-20201015-WA0015.jpg"
+  },
+  {
+    "id": "PKM-001",
+    "name": "Puskesmas Dinoyo",
+    "type": "Puskesmas",
+    "class": null,
+    "address": "Jl. MT. Haryono No. 134, Dinoyo, Lowokwaru, Kota Malang, Jawa Timur",
+    "lat": -7.9468,
+    "lng": 112.6095,
+    "phone": "(0341) 567890",
+    "rating": 4.5,
+    "availability": {
+      "igd": 0,
+      "icu": 0,
+      "rawatInap": 0
+    },
+    "specialties": ["Pelayanan Umum", "KIA", "Gigi", "Imunisasi", "Laboratorium"],
+    "image": "https://tbcpuskesmasdinoyo.weebly.com/uploads/3/3/2/0/3320660/5689182_orig.jpg"
+  },
+  {
+    "id": "KLINIK-001",
+    "name": "Klinik Rawat Inap Brawijaya",
+    "type": "Klinik",
+    "class": null,
+    "address": "Jl. Veteran No. 8, Penanggungan, Klojen, Kota Malang, Jawa Timur",
+    "lat": -7.9705,
+    "lng": 112.6207,
+    "phone": "(0341) 456789",
+    "rating": 4.4,
+    "availability": {
+      "igd": 0,
+      "icu": 0,
+      "rawatInap": 8
+    },
+    "specialties": ["Pelayanan Umum", "Penyakit Dalam", "Anak", "Gigi"],
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvGtKIxdCOisM1A0cQJbEggUn-qwnE8oyLd58367_PAdnAn0VvMkUahSm2&s=10"
   }
 ]

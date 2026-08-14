@@ -71,7 +71,7 @@ export default function CariLayanan() {
                   {item % 2 === 0 ? "Tersedia" : "Penuh"}
                 </Badge>
               </div>
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">RSUD Kota Yogyakarta</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">RSUD Kota Malang</h3>
               <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 mb-3">
                 <MapPin className="w-4 h-4" />
                 <span>2.5 km • Jl. Wirosaban No. 1</span>

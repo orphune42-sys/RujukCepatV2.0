@@ -112,11 +112,7 @@ export default function BuatRujukan() {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Pilih Rumah Sakit Tujuan</label>
-                    <select className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]">
-                      <option>RS Umum Daerah Pusat</option>
-                      <option>RS Khusus Jantung</option>
-                      <option>RS Ibu dan Anak Sejahtera</option>
-                    </select>
+                    <input type="text" placeholder="Masukkan nama rumah sakit tujuan" className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]"/>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Prioritas Rujukan</label>
