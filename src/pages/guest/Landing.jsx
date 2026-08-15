@@ -60,7 +60,7 @@ export default function Landing() {
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             
             {/* Left Column: Text & CTAs */}

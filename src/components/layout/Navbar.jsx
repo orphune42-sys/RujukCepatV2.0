@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HeartPulse, Menu, X } from 'lucide-react';
+import { HeartPulse, Menu, X, Sun, Moon } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import Button from '../ui/Button';
 import LoginModal from '../shared/LoginModal';
 
 export default function Navbar() {
-  const { role } = useAppStore();
+  const { role, isDarkMode, toggleDarkMode } = useAppStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login');
@@ -77,8 +77,8 @@ export default function Navbar() {
 
   const publicLinks = [
     { name: 'Beranda', path: '/#beranda' },
-    { name: 'Cari Fasilitas Kesehatan', path: '/#cari-fk' },
-    { name: 'Tentang', path: '/#tentang' },
+    { name: 'Cari Faskes', path: '/#cari-fk' },
+    { name: 'Tentang Kami', path: '/#tentang' },
     { name: 'Hubungi Kami', path: '/#hubungi-kami' },
   ];
 
@@ -116,6 +116,15 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <button 
+              onClick={toggleDarkMode}
+              className="p-2 text-muted hover:bg-secondary dark:hover:bg-[#1c3626] rounded-full transition-colors"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+
+            <div className="h-5 w-[1px] bg-border dark:bg-border-dark mx-1" />
             {role !== 'guest' ? (
               <Link to={`/${role.replace('_', '-')}`}>
                 <Button variant="primary" className="rounded-full px-6">Dashboard</Button>

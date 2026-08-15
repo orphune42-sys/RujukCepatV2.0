@@ -53,8 +53,8 @@ export default function JadwalDokter() {
       <div className="grid grid-cols-1 gap-4">
         {filteredDoctors.map((doc) => (
           <Card key={doc.id} className="overflow-hidden hover:border-[#9ccda5]/50 transition-colors">
-            <div className="grid gap-4 p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:p-5 lg:grid-cols-[minmax(17rem,1.35fr)_minmax(20rem,1fr)_auto] lg:gap-8 lg:px-7">
-              <div className="flex items-start gap-4">
+            <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-start md:items-center">
+              <div className="md:col-span-5 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
                   <User className="w-6 h-6" />
                 </div>
@@ -64,18 +64,17 @@ export default function JadwalDokter() {
                 </div>
               </div>
               
-              <div className="flex flex-col gap-3 text-gray-600 dark:text-gray-300 sm:col-span-2 sm:flex-row sm:items-center sm:justify-center sm:gap-10 lg:col-span-1">
-                <div className="flex items-center gap-2">
-                  <CalendarIcon className="w-4 h-4 shrink-0 text-gray-400" />
-                  <span className="text-sm">{doc.hari}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 shrink-0 text-gray-400" />
-                  <span className="text-sm">{doc.jam}</span>
-                </div>
+              <div className="md:col-span-3 flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                <CalendarIcon className="w-4 h-4 text-gray-400 shrink-0" />
+                <span className="text-sm">{doc.hari}</span>
               </div>
 
-              <div className="flex sm:col-span-2 sm:justify-end lg:col-span-1">
+              <div className="md:col-span-2 flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                <Clock className="w-4 h-4 text-gray-400 shrink-0" />
+                <span className="text-sm">{doc.jam}</span>
+              </div>
+
+              <div className="md:col-span-2 flex md:justify-end">
                 <span className={`px-3 py-1 text-xs font-medium rounded-full ${
                   doc.status === 'Tersedia' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
                   doc.status === 'Operasi' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' :

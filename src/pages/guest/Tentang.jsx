@@ -52,17 +52,17 @@ const missions = [
   {
     Icon: Target,
     title: 'Visi Kami',
-    desc: 'Menjadi platform layanan kesehatan digital nomor satu di Indonesia yang mendobrak batas geografis dan birokrasi.',
+    desc: 'Membangun jaringan rujukan kesehatan digital terdepan di Indonesia guna mempercepat penanganan medis kritis tanpa kendala administratif.',
   },
   {
     Icon: Shield,
-    title: 'Keamanan',
-    desc: 'Infrastruktur kami dibangun dengan standar keamanan medis tertinggi untuk melindungi privasi data rekam medis pasien.',
+    title: 'Keamanan Data',
+    desc: 'Menerapkan standar enkripsi data medis tingkat tinggi untuk menjamin kerahasiaan dan privasi informasi rekam medis pasien.',
   },
   {
     Icon: Users,
-    title: 'Kolaborasi',
-    desc: 'Kami percaya pada kekuatan kolaborasi antar rumah sakit, apotek, dan pemangku kebijakan untuk melayani masyarakat.',
+    title: 'Sinergi & Kolaborasi',
+    desc: 'Mengintegrasikan rumah sakit, klinik, dan apotek untuk menciptakan ekosistem pelayanan kesehatan yang terpadu dan responsif.',
   },
 ];
 
@@ -78,12 +78,12 @@ export default function Tentang() {
 
             <FadeUp delay={0.1}>
               <h1 className="text-4xl md:text-5xl font-bold text-text dark:text-text-dark mb-4">
-                Tentang RujukCepat
+                Tentang Kami
               </h1>
             </FadeUp>
             <FadeUp delay={0.2}>
               <p className="text-xl text-muted dark:text-gray-400 leading-relaxed">
-                Menghubungkan fasilitas kesehatan untuk pelayanan pasien yang lebih baik, cepat, dan transparan.
+                RujukCepat adalah sistem rujukan medis terintegrasi yang menghubungkan berbagai tingkat fasilitas kesehatan demi pelayanan pasien yang cepat, efisien, dan transparan di seluruh Indonesia.
               </p>
             </FadeUp>
           </div>
