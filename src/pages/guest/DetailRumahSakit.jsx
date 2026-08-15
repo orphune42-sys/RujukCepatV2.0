@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Star, Activity, BedDouble, Shield, ArrowLeft, HeartPulse } from 'lucide-react';
 import Button from '../../components/ui/Button';
@@ -8,11 +8,15 @@ import { Badge } from '../../components/ui/Badge';
 import MapView from '../../components/shared/MapView';
 import { staggerContainer, slideUp, fadeIn } from '../../utils/animations';
 import mockHospitals from '../../data/hospitals.json';
+import useAppStore from '../../store/useAppStore';
 
 export default function DetailRumahSakit() {
   const { id } = useParams();
+  const location = useLocation();
+  const { role } = useAppStore();
   const hospital = mockHospitals.find(h => h.id === id) || mockHospitals[0];
   const isHospital = hospital.type.toLowerCase().includes('rumah sakit') || hospital.type.toLowerCase().includes('rs');
+  const isPasienRoute = location.pathname.startsWith('/pasien');
 
   return (
     <div className="bg-background dark:bg-background-dark min-h-screen pb-20">
@@ -27,7 +31,7 @@ export default function DetailRumahSakit() {
         
         <div className="absolute inset-0 pt-16 flex items-end">
           <div className="container mx-auto px-4 md:px-6 pb-8">
-            <Link to="/#cari-fk" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
+            <Link to={isPasienRoute ? "/pasien/cari-layanan" : "/#cari-fk"} className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
               <ArrowLeft className="h-4 w-4 mr-2" /> Kembali ke Pencarian
             </Link>
             
@@ -92,11 +96,13 @@ export default function DetailRumahSakit() {
           <div className="space-y-6">
             <Card className="bg-white dark:bg-[#15241b] border-none shadow-sm sticky top-[90px]">
               <CardContent className="p-8">
-                <Link to="/login" className="block">
-                  <Button size="lg" className="w-full mb-8 text-lg py-6 shadow-lg shadow-primary/20">
-                    Buat Rujukan
-                  </Button>
-                </Link>
+                {role !== 'pasien' && (
+                  <Link to="/login" className="block">
+                    <Button size="lg" className="w-full mb-8 text-lg py-6 shadow-lg shadow-primary/20">
+                      Buat Rujukan
+                    </Button>
+                  </Link>
+                )}
                 
                 <div className="space-y-6">
                   <div>

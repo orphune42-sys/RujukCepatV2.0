@@ -68,7 +68,7 @@ export default function CariLayanan() {
                 <div className="flex justify-between text-sm"><span className="text-gray-500">Ketersediaan</span><span className="font-medium text-gray-900 dark:text-white">{service.rooms}</span></div>
                 <div className="flex flex-col sm:flex-row gap-2 mt-4">
                   <Button variant="outline" className="flex-1" onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(service.name)}`, '_blank', 'noopener,noreferrer')}><Navigation className="w-4 h-4 mr-2" /> Rute</Button>
-                  <Button variant="primary" className="flex-1" onClick={() => navigate(`/pasien/rujukan/RJ-20261015-${service.id}A`)}>Pilih</Button>
+                  <Button variant="primary" className="flex-1" onClick={() => navigate(`/pasien/detailrs/${service.id}`)}>Pilih</Button>
                 </div>
               </div>
             </CardContent>

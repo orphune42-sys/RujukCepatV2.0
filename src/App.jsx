@@ -93,6 +93,7 @@ function App() {
           >
             <Route index element={<PasienDashboard />} />
             <Route path="cari-layanan" element={<PasienCariLayanan />} />
+            <Route path="detailrs/:id" element={<DetailRumahSakit />} />
             <Route path="rujukan" element={<PasienRujukanSaya />} />
             <Route path="rujukan/:id" element={<PasienDetailRujukan />} />
             <Route path="obat" element={<PasienLayananObat />} />
