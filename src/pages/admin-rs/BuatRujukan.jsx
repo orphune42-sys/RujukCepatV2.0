@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
+import Select from '../../components/ui/Select';
 import { slideUp } from '../../utils/animations';
 import { User, Activity, MapPin, Check } from 'lucide-react';
 
@@ -13,6 +14,7 @@ const steps = [
 
 export default function BuatRujukan() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [gender, setGender] = useState('Laki-laki');
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, steps.length));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
@@ -89,10 +91,7 @@ export default function BuatRujukan() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Jenis Kelamin</label>
-                    <select className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]">
-                      <option>Laki-laki</option>
-                      <option>Perempuan</option>
-                    </select>
+                    <Select value={gender} onChange={setGender} ariaLabel="Jenis kelamin" options={[{ value: 'Laki-laki', label: 'Laki-laki' }, { value: 'Perempuan', label: 'Perempuan' }]} />
                   </div>
                 </div>
               )}

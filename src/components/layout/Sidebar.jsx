@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { 
   HeartPulse, LayoutDashboard, Search, FileText, Pill, User,
@@ -10,6 +11,7 @@ import useAppStore from '../../store/useAppStore';
 export default function Sidebar({ isOpen = false, onClose = () => {} }) {
   const { role, setRole } = useAppStore();
   const navigate = useNavigate();
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const handleLogout = () => {
     setRole('guest');
@@ -90,7 +92,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
 
       <div className="p-4 border-t border-border dark:border-border-dark">
         <button 
-          onClick={handleLogout}
+          onClick={() => setIsLogoutDialogOpen(true)}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
         >
           <LogOut size={20} />
@@ -98,6 +100,20 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
         </button>
       </div>
       </aside>
+      <AnimatePresence>
+        {isLogoutDialogOpen && (
+          <motion.div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/45 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-modal="true" aria-labelledby="sidebar-logout-title" onMouseDown={(event) => { if (event.target === event.currentTarget) setIsLogoutDialogOpen(false); }}>
+            <motion.div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl dark:bg-[#15241b]" initial={{ scale: 0.95, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 12 }}>
+              <h2 id="sidebar-logout-title" className="text-xl font-bold text-text dark:text-text-dark">Keluar dari akun?</h2>
+              <p className="mt-2 text-sm text-muted dark:text-gray-400">Anda perlu masuk kembali untuk mengakses dashboard dan layanan.</p>
+              <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <button type="button" onClick={() => setIsLogoutDialogOpen(false)} className="h-11 rounded-lg border border-border px-4 font-medium text-text hover:bg-secondary dark:border-border-dark dark:text-text-dark">Batal</button>
+                <button type="button" onClick={handleLogout} className="h-11 rounded-lg bg-red-500 px-4 font-medium text-white hover:bg-red-600">Ya, Keluar</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
