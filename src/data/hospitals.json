@@ -88,5 +88,22 @@
     },
     "specialties": ["Pelayanan Umum", "Penyakit Dalam", "Anak", "Gigi"],
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvGtKIxdCOisM1A0cQJbEggUn-qwnE8oyLd58367_PAdnAn0VvMkUahSm2&s=10"
+  },
+  {
+    "id": "APOTEK-001",
+    "name": "Apotek K24 Soekarno Hatta",
+    "type": "Apotek",
+    "class": null,
+    "address": "Jl. Soekarno Hatta No. 8, Malang, Jawa Timur",
+    "lat": -7.9528,
+    "lng": 112.6146,
+    "phone": "(0341) 000000",
+    "availability": {
+      "ruang konsultasi": 2,
+      "resepsionis": 3,
+      "ruang tunggu": 2
+    },
+    "services": [ "Pelayanan Resep", "Konsultasi Obat", "Obat Bebas", "Vitamin & Suplemen"],
+    "image": "https://apotek-k24.com/images/blog/16777494720240618045331yunita.isnacara%20buka%20franchise.jpg"
   }
 ]

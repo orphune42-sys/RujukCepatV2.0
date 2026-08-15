@@ -129,12 +129,6 @@ export default function Profil() {
                   <span className="font-medium">Privasi & Keamanan</span>
                 </div>
               </button>
-              <button type="button" onClick={() => setIsLogoutDialogOpen(true)} className="mt-auto w-full flex items-center justify-between border-t border-gray-100 p-3 pt-4 text-left text-red-600 transition-colors hover:bg-red-50 dark:border-gray-800 dark:text-red-400 dark:hover:bg-red-900/20">
-                <div className="flex items-center gap-3">
-                  <LogOut className="w-5 h-5" />
-                  <span className="font-medium">Keluar</span>
-                </div>
-              </button>
             </CardContent>
           </Card>
         </motion.div>
