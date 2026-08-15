@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Shield, Stethoscope, Mail, Lock, UserPlus, ArrowLeft, Phone, CalendarDays, Droplets, MapPin } from 'lucide-react';
+import { X, User, Shield, Stethoscope, Mail, Lock, UserPlus, ArrowLeft, Phone, CalendarDays, Droplets, MapPin, Building2 } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import { useNavigate } from 'react-router-dom';
 import Select from '../ui/Select';
@@ -11,6 +11,9 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
   const [mode, setMode] = useState('login'); // 'login' or 'register'
   const [registrationGender, setRegistrationGender] = useState('');
   const [registrationBloodType, setRegistrationBloodType] = useState('');
+  const [facilityClass, setFacilityClass] = useState('');
+  const [registerStep, setRegisterStep] = useState(1);
+  const [registerError, setRegisterError] = useState('');
   // Ref untuk wrapper — kita set pointer-events:none segera saat close
   const wrapperRef = useRef(null);
   const { setRole } = useAppStore();
@@ -23,6 +26,9 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
       setActiveTab('pasien');
       setRegistrationGender('');
       setRegistrationBloodType('');
+      setFacilityClass('');
+      setRegisterStep(1);
+      setRegisterError('');
       if (wrapperRef.current) {
         wrapperRef.current.style.pointerEvents = 'auto';
       }
@@ -47,6 +53,19 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (mode === 'register' && registerStep === 1) {
+      if (activeTab === 'pasien' && (!registrationGender || !registrationBloodType)) {
+        setRegisterError('Pilih jenis kelamin dan golongan darah terlebih dahulu.');
+        return;
+      }
+      if (activeTab === 'admin_rs' && !facilityClass) {
+        setRegisterError('Pilih kelas rumah sakit terlebih dahulu.');
+        return;
+      }
+      setRegisterError('');
+      setRegisterStep(2);
+      return;
+    }
     setRole(activeTab);
     onClose();
     navigate(`/${activeTab.replace('_', '-')}`);
@@ -54,10 +73,13 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
 
   const roles = [
     { id: 'pasien', label: 'Pasien', icon: <User className="h-5 w-5" /> },
-    { id: 'admin_rs', label: 'Admin RS', icon: <Shield className="h-5 w-5" /> },
-    { id: 'admin_apotek', label: 'Admin Apotek', icon: <Stethoscope className="h-5 w-5" /> },
+    { id: 'admin_rs', label: 'Rumah Sakit', icon: <Shield className="h-5 w-5" /> },
+    { id: 'admin_apotek', label: 'Apotek', icon: <Stethoscope className="h-5 w-5" /> },
   ];
   const isPatientRegistration = mode === 'register' && activeTab === 'pasien';
+  const isFacilityRegistration = mode === 'register' && ['admin_rs', 'admin_apotek'].includes(activeTab);
+  const isPersonalDataStep = mode === 'register' && registerStep === 1;
+  const isCredentialStep = mode === 'login' || (mode === 'register' && registerStep === 2);
 
   const modalContent = (
     <div ref={wrapperRef}>
@@ -82,7 +104,7 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
               <div className="relative flex items-center justify-center p-6 shrink-0">
                 {mode === 'register' && (
                   <button
-                    onClick={() => setMode('login')}
+                    onClick={() => registerStep === 2 ? setRegisterStep(1) : setMode('login')}
                     type="button"
                     className="absolute left-6 flex h-8 w-8 items-center justify-center rounded-full bg-secondary dark:bg-[#1c3626] text-text dark:text-text-dark transition-transform active:scale-75"
                   >
@@ -109,7 +131,7 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                       <button
                         key={r.id}
                         type="button"
-                        onClick={() => setActiveTab(r.id)}
+                        onClick={() => { setActiveTab(r.id); setRegisterStep(1); setRegisterError(''); setFacilityClass(''); }}
                         className={`relative flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2 px-1 text-[10px] sm:text-sm font-medium rounded-xl transition-colors duration-200 z-10 ${
                           isActive
                             ? 'text-accent dark:text-primary'
@@ -134,7 +156,7 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
 
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.form
-                    key={mode}
+                    key={`${mode}-${registerStep}`}
                     initial={{ opacity: 0, x: mode === 'register' ? 20 : -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: mode === 'register' ? -20 : 20 }}
@@ -142,9 +164,9 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                     onSubmit={handleSubmit}
                     className="space-y-4"
                   >
-                    {mode === 'register' && (
+                    {isPersonalDataStep && (
                       <>
-                        <div>
+                        {isPatientRegistration && <div>
                           <label className="sr-only">Nama Lengkap</label>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -152,17 +174,21 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                             </div>
                             <input type="text" className="w-full h-12 pl-12 pr-4 bg-secondary/40 dark:bg-[#15241b] border border-transparent focus:border-accent focus:ring-1 focus:ring-accent dark:focus:border-primary dark:focus:ring-primary rounded-2xl outline-none transition-all placeholder:text-muted dark:placeholder:text-gray-500 text-text dark:text-text-dark text-sm" placeholder="Nama Lengkap" required />
                           </div>
-                        </div>
+                        </div>}
                         {isPatientRegistration && <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                          <RegisterField icon={<Phone className="h-5 w-5" />} type="tel" placeholder="Nomor telepon" />
+                          <RegisterField icon={<Phone className="h-5 w-5" />} type="tel" placeholder="Nomor telepon" required />
                           <RegisterField icon={<CalendarDays className="h-5 w-5" />} type="date" aria-label="Tanggal lahir" required />
                           <Select value={registrationGender} onChange={setRegistrationGender} icon={<User className="h-5 w-5" />} placeholder="Jenis kelamin" ariaLabel="Jenis kelamin" buttonClassName="h-12 rounded-2xl border-transparent bg-secondary/40 dark:bg-[#15241b]" options={[{ value: 'Laki-laki', label: 'Laki-laki' }, { value: 'Perempuan', label: 'Perempuan' }]} />
-                          <Select value={registrationBloodType} onChange={setRegistrationBloodType} icon={<Droplets className="h-5 w-5" />} placeholder="Golongan darah" ariaLabel="Golongan darah" buttonClassName="h-12 rounded-2xl border-transparent bg-secondary/40 dark:bg-[#15241b]" options={['A', 'B', 'AB', 'O'].map((bloodType) => ({ value: bloodType, label: bloodType }))} />
+                          <Select value={registrationBloodType} onChange={setRegistrationBloodType} icon={<Droplets className="h-5 w-5" />} placeholder="Golongan darah" ariaLabel="Golongan darah" buttonClassName="h-12 rounded-2xl border-transparent bg-secondary/40 dark:bg-[#15241b]" options={['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((bloodType) => ({ value: bloodType, label: bloodType }))} />
                           <div className="relative sm:col-span-2"><div className="absolute left-0 top-0 z-10 flex pt-3 pl-4 pointer-events-none"><MapPin className="h-5 w-5 text-muted dark:text-gray-500" /></div><textarea aria-label="Alamat lengkap" required rows="3" placeholder="Alamat lengkap" className="w-full resize-none rounded-2xl border border-transparent bg-secondary/40 py-3 pl-12 pr-4 text-sm text-text outline-none transition-all placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent dark:bg-[#15241b] dark:text-text-dark" /></div>
                         </div>}
+                        {isFacilityRegistration && <FacilityRegistrationFields role={activeTab} facilityClass={facilityClass} setFacilityClass={setFacilityClass} />}
                       </>
                     )}
 
+                    {isPersonalDataStep && registerError && <p role="alert" className="text-sm text-red-600">{registerError}</p>}
+
+                    {isCredentialStep && <>
                     <div>
                       <label className="sr-only">Email / Username</label>
                       <div className="relative">
@@ -209,13 +235,14 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                         </div>
                       </div>
                     )}
+                    </>}
 
                     <div className="pt-2">
                       <button
                         type="submit"
                         className="inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-2xl bg-accent dark:bg-primary px-2.5 text-base font-medium text-white dark:text-[#0f1a13] transition-all active:scale-95 shadow-sm hover:opacity-90"
                       >
-                        {mode === 'login' ? 'Masuk Sekarang' : 'Daftar Sekarang'}
+                        {mode === 'login' ? 'Masuk Sekarang' : registerStep === 1 ? 'Selanjutnya' : 'Daftar Sekarang'}
                       </button>
                     </div>
 
@@ -234,7 +261,7 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                           Belum punya akun?{' '}
                           <button
                             type="button"
-                            onClick={() => setMode('register')}
+                            onClick={() => { setMode('register'); setRegisterStep(1); }}
                             className="text-accent dark:text-primary hover:underline font-medium"
                           >
                             Daftar
@@ -269,4 +296,24 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
 
 function RegisterField({ icon, ...props }) {
   return <div className="relative"><div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-muted dark:text-gray-500">{icon}</div><input className="h-12 w-full rounded-2xl border border-transparent bg-secondary/40 py-2 pl-12 pr-4 text-sm text-text outline-none transition-all placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent dark:bg-[#15241b] dark:text-text-dark" {...props} /></div>;
+}
+
+function FacilityRegistrationFields({ role, facilityClass, setFacilityClass }) {
+  const isHospital = role === 'admin_rs';
+  const facilityName = isHospital ? 'Nama rumah sakit' : 'Nama apotek';
+  const licenseLabel = isHospital ? 'Nomor izin operasional' : 'Nomor izin apotek (SIA)';
+  const personLabel = isHospital ? 'Nama penanggung jawab' : 'Nama apoteker penanggung jawab';
+  const registrationNumberLabel = isHospital ? 'Nomor registrasi fasilitas' : 'Nomor STRA apoteker';
+
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="sm:col-span-2"><RegisterField icon={<Building2 className="h-5 w-5" />} placeholder={facilityName} required /></div>
+      {isHospital && <Select value={facilityClass} onChange={setFacilityClass} icon={<Shield className="h-5 w-5" />} placeholder="Kelas rumah sakit" ariaLabel="Kelas rumah sakit" buttonClassName="h-12 rounded-2xl border-transparent bg-secondary/40 dark:bg-[#15241b]" options={['Tipe A', 'Tipe B', 'Tipe C', 'Tipe D', 'Rumah Sakit Khusus'].map((facilityType) => ({ value: facilityType, label: facilityType }))} />}
+      <RegisterField icon={<Phone className="h-5 w-5" />} type="tel" placeholder="Nomor telepon fasilitas" required />
+      <div className={isHospital ? '' : 'sm:col-span-2'}><RegisterField icon={<Shield className="h-5 w-5" />} placeholder={licenseLabel} required /></div>
+      <RegisterField icon={<UserPlus className="h-5 w-5" />} placeholder={personLabel} required />
+      <RegisterField icon={<Shield className="h-5 w-5" />} placeholder={registrationNumberLabel} required />
+      <div className="relative sm:col-span-2"><div className="pointer-events-none absolute left-0 top-0 z-10 flex pt-3 pl-4"><MapPin className="h-5 w-5 text-muted dark:text-gray-500" /></div><textarea aria-label="Alamat fasilitas" required rows="3" placeholder="Alamat lengkap fasilitas" className="w-full resize-none rounded-2xl border border-transparent bg-secondary/40 py-3 pl-12 pr-4 text-sm text-text outline-none transition-all placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent dark:bg-[#15241b] dark:text-text-dark" /></div>
+    </div>
+  );
 }

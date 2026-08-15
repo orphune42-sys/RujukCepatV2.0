@@ -10,8 +10,9 @@ import { Search, MapPin, Building, Navigation } from 'lucide-react';
 const services = [
   { id: 1, name: 'RSUD Kota Malang', type: 'rumah-sakit', distance: '2.5 km', address: 'Jl. Wirosaban No. 1', queue: '12 Orang', rooms: '8 Kamar', available: false },
   { id: 2, name: 'RSUP Dr. Sardjito', type: 'rumah-sakit', distance: '4.1 km', address: 'Jl. Kesehatan No. 1', queue: '5 Orang', rooms: '12 Kamar', available: true },
-  { id: 3, name: 'IGD RS Umum Lavalette', type: 'igd', distance: '3.2 km', address: 'Jl. WR. Supratman No. 10', queue: '7 Orang', rooms: '4 Kamar', available: true },
-  { id: 4, name: 'Poli Penyakit Dalam', type: 'spesialis', distance: '2.8 km', address: 'RS Universitas Brawijaya', queue: '9 Orang', rooms: '6 Kamar', available: true },
+  { id: 3, name: 'Puskesmas Dinoyo', type: 'puskesmas', distance: '3.2 km', address: 'Jl. MT. Haryono No. 193', queue: '7 Orang', rooms: '4 Ruang', available: true },
+  { id: 4, name: 'Klinik Pratama Sehat', type: 'klinik', distance: '2.8 km', address: 'Jl. Soekarno Hatta No. 25', queue: '9 Orang', rooms: '6 Ruang', available: true },
+  { id: 5, name: 'Apotek K24 Soekarno Hatta', type: 'apotek', distance: '1.6 km', address: 'Jl. Soekarno Hatta No. 8', queue: '3 Orang', rooms: 'Obat tersedia', available: true },
 ];
 
 export default function CariLayanan() {
@@ -21,8 +22,9 @@ export default function CariLayanan() {
   const tabs = [
     { id: 'semua', label: 'Semua' },
     { id: 'rumah-sakit', label: 'Rumah Sakit' },
-    { id: 'igd', label: 'IGD Darurat' },
-    { id: 'spesialis', label: 'Spesialis' },
+    { id: 'puskesmas', label: 'Puskesmas' },
+    { id: 'klinik', label: 'Klinik' },
+    { id: 'apotek', label: 'Apotek' },
   ];
   const visibleServices = services.filter((service) =>
     (activeTab === 'semua' || service.type === activeTab) && `${service.name} ${service.address}`.toLowerCase().includes(searchTerm.toLowerCase())
@@ -62,8 +64,8 @@ export default function CariLayanan() {
               <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">{service.name}</h3>
               <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 mb-3"><MapPin className="w-4 h-4 shrink-0" /><span>{service.distance} · {service.address}</span></div>
               <div className="mt-auto space-y-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <div className="flex justify-between text-sm"><span className="text-gray-500">Antrean IGD</span><span className="font-medium text-gray-900 dark:text-white">{service.queue}</span></div>
-                <div className="flex justify-between text-sm"><span className="text-gray-500">Kamar Kosong</span><span className="font-medium text-gray-900 dark:text-white">{service.rooms}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-gray-500">Antrean</span><span className="font-medium text-gray-900 dark:text-white">{service.queue}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-gray-500">Ketersediaan</span><span className="font-medium text-gray-900 dark:text-white">{service.rooms}</span></div>
                 <div className="flex flex-col sm:flex-row gap-2 mt-4">
                   <Button variant="outline" className="flex-1" onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(service.name)}`, '_blank', 'noopener,noreferrer')}><Navigation className="w-4 h-4 mr-2" /> Rute</Button>
                   <Button variant="primary" className="flex-1" onClick={() => navigate(`/pasien/rujukan/RJ-20261015-${service.id}A`)}>Pilih</Button>
