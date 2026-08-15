@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
 import { Pill, Clock, Activity, CheckCircle2 } from 'lucide-react';
+import NotificationMenu from '../../components/shared/NotificationMenu';
 
 const Dashboard = () => {
   const stats = [
@@ -14,9 +15,12 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Dashboard Apotek</h1>
-        <p className="text-slate-500 dark:text-slate-400">Ringkasan transaksi hari ini.</p>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Dashboard Apotek</h1>
+          <p className="text-slate-500 dark:text-slate-400">Ringkasan transaksi hari ini.</p>
+        </div>
+        <NotificationMenu role="admin_apotek" />
       </div>
 
       <motion.div 

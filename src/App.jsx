@@ -110,7 +110,8 @@ function App() {
           >
             <Route index element={<AdminRSDashboard />} />
             <Route path="buat-rujukan" element={<AdminRSBuatRujukan />} />
-            <Route path="rujukan/:status" element={<AdminRSRujukanList />} />
+            <Route path="rujukan" element={<AdminRSRujukanList />} />
+            <Route path="rujukan/:status" element={<Navigate to="/admin-rs/rujukan" replace />} />
             <Route path="ketersediaan" element={<AdminRSKetersediaan />} />
             <Route path="jadwal-dokter" element={<AdminRSJadwalDokter />} />
             <Route path="rekomendasi" element={<AdminRSRekomendasiFasilitas />} />

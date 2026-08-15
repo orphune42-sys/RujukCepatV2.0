@@ -1,30 +1,30 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
+import Button from '../../components/ui/Button';
 import { slideUp } from '../../utils/animations';
-import { Search, Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const mockData = [
-  { id: 'RJ-20231001-01', pasien: 'Eka Wahyu', asal: 'Puskesmas Cisadea', tanggal: '2023-10-01', status: 'Masuk', prioritas: 'Segera' },
-  { id: 'RJ-20231001-02', pasien: 'Lintang Siddiq', asal: 'Klinik Bunga Melati', tanggal: '2023-10-01', status: 'Aktif', prioritas: 'Rutin' },
+  {
+    id: 'RJ-20231001-01', pasien: 'Eka Wahyu', asal: 'Puskesmas Cisadea', tanggal: '2023-10-01', status: 'Masuk', prioritas: 'Segera',
+    noRm: 'RM-240183', tanggalLahir: '12 Mei 1986', jenisKelamin: 'Laki-laki', tujuan: 'RSUD Dr. Saiful Anwar',
+    diagnosis: 'Pneumonia komunitas', catatan: 'Sesak napas sejak dua hari, membutuhkan evaluasi dokter spesialis paru.', waktuDibuat: '1 Okt 2023, 09.30 WIB',
+  },
+  {
+    id: 'RJ-20231001-02', pasien: 'Lintang Siddiq', asal: 'Klinik Bunga Melati', tanggal: '2023-10-01', status: 'Aktif', prioritas: 'Rutin',
+    noRm: 'RM-240184', tanggalLahir: '23 Agustus 1992', jenisKelamin: 'Perempuan', tujuan: 'RSUD Dr. Saiful Anwar',
+    diagnosis: 'Kontrol pasca operasi', catatan: 'Kontrol lanjutan sesuai jadwal dokter bedah.', waktuDibuat: '1 Okt 2023, 08.15 WIB',
+  },
   { id: 'RJ-20231001-03', pasien: 'Salsabila Nadhira', asal: 'RSUD Kota Malang', tanggal: '2023-10-01', status: 'Diproses', prioritas: 'Darurat' },
   { id: 'RJ-20230928-01', pasien: 'Rindra Ramadhani', asal: 'Puskesmas Mojolangu', tanggal: '2023-09-28', status: 'Riwayat', prioritas: 'Rutin' },
 ];
 
 export default function RujukanList() {
-  const { status } = useParams();
-  
-  // Format the status string for display
-  const displayStatus = status 
-    ? status.charAt(0).toUpperCase() + status.slice(1) 
-    : 'Semua';
-
-  // Filter data based on the route param (if applicable)
-  const filteredData = status 
-    ? mockData.filter(item => item.status.toLowerCase() === status.toLowerCase())
-    : mockData;
+  const filteredData = mockData.filter((item) => ['Masuk', 'Aktif'].includes(item.status));
+  const [selectedReferral, setSelectedReferral] = useState(null);
+  const getStatusVariant = (status) => (status === 'Aktif' ? 'success' : 'info');
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -43,8 +43,8 @@ export default function RujukanList() {
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Daftar Rujukan: {displayStatus}</h1>
-          <p className="text-gray-500 dark:text-gray-400">Kelola dan pantau rujukan pasien masuk ke rumah sakit.</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Daftar Rujukan</h1>
+          <p className="text-gray-500 dark:text-gray-400">Kelola dan pantau rujukan masuk serta rujukan aktif.</p>
         </div>
         
         <div className="flex items-center gap-3 w-full md:w-auto">
@@ -56,9 +56,6 @@ export default function RujukanList() {
               className="w-full pl-9 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]"
             />
           </div>
-          <button className="p-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors">
-            <Filter className="w-4 h-4" />
-          </button>
         </div>
       </div>
 
@@ -71,6 +68,7 @@ export default function RujukanList() {
                 <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Pasien</th>
                 <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Fasilitas Asal</th>
                 <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal</th>
+                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
                 <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Prioritas</th>
                 <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Aksi</th>
               </tr>
@@ -84,21 +82,24 @@ export default function RujukanList() {
                     <td className="p-4 text-gray-700 dark:text-gray-300">{item.asal}</td>
                     <td className="p-4 text-gray-700 dark:text-gray-300">{item.tanggal}</td>
                     <td className="p-4">
+                      <Badge variant={getStatusVariant(item.status)}>{item.status}</Badge>
+                    </td>
+                    <td className="p-4">
                       <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getPriorityColor(item.prioritas)}`}>
                         {item.prioritas}
                       </span>
                     </td>
                     <td className="p-4">
-                      <button className="text-[#9ccda5] hover:text-[#7bb085] font-medium transition-colors">
+                      <Button size="sm" variant="primary" onClick={() => setSelectedReferral(item)}>
                         Detail
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="p-8 text-center text-gray-500 dark:text-gray-400">
-                    Tidak ada data rujukan untuk status ini.
+                  <td colSpan="7" className="p-8 text-center text-gray-500 dark:text-gray-400">
+                    Tidak ada data rujukan masuk atau aktif.
                   </td>
                 </tr>
               )}
@@ -106,6 +107,68 @@ export default function RujukanList() {
           </table>
         </div>
       </Card>
+
+      <AnimatePresence>
+        {selectedReferral && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="referral-detail-title"
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) setSelectedReferral(null);
+            }}
+          >
+            <motion.div
+              className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl dark:bg-[#15241b]"
+              initial={{ scale: 0.96, y: 12 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.96, y: 12 }}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-medium text-muted">Detail Rujukan</p>
+                  <h2 id="referral-detail-title" className="mt-1 text-xl font-bold text-text dark:text-text-dark">{selectedReferral.id}</h2>
+                </div>
+                <Badge variant={getStatusVariant(selectedReferral.status)}>{selectedReferral.status}</Badge>
+              </div>
+              <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <section>
+                  <h3 className="text-sm font-bold text-text dark:text-text-dark">Informasi Pasien</h3>
+                  <dl className="mt-3 space-y-3 text-sm">
+                    <div><dt className="text-muted">Nama pasien</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.pasien}</dd></div>
+                    <div><dt className="text-muted">No. rekam medis</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.noRm}</dd></div>
+                    <div><dt className="text-muted">Tanggal lahir / jenis kelamin</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.tanggalLahir} · {selectedReferral.jenisKelamin}</dd></div>
+                  </dl>
+                </section>
+                <section>
+                  <h3 className="text-sm font-bold text-text dark:text-text-dark">Informasi Rujukan</h3>
+                  <dl className="mt-3 space-y-3 text-sm">
+                    <div><dt className="text-muted">Fasilitas asal</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.asal}</dd></div>
+                    <div><dt className="text-muted">Fasilitas tujuan</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.tujuan}</dd></div>
+                    <div><dt className="text-muted">Dibuat pada</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.waktuDibuat}</dd></div>
+                  </dl>
+                </section>
+              </div>
+              <section className="mt-6 rounded-xl bg-secondary/50 p-4 dark:bg-[#1c3626]">
+                <h3 className="text-sm font-bold text-text dark:text-text-dark">Kondisi Medis</h3>
+                <p className="mt-2 text-sm font-semibold text-text dark:text-text-dark">{selectedReferral.diagnosis}</p>
+                <p className="mt-1 text-sm text-muted dark:text-gray-400">{selectedReferral.catatan}</p>
+              </section>
+              <div className="mt-4 flex items-center justify-between rounded-lg border border-border px-4 py-3 text-sm dark:border-border-dark">
+                <span className="text-muted">Prioritas penanganan</span>
+                <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${getPriorityColor(selectedReferral.prioritas)}`}>{selectedReferral.prioritas}</span>
+              </div>
+              <div className="mt-6 flex justify-end">
+                <Button variant="outline" onClick={() => setSelectedReferral(null)}>Tutup</Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

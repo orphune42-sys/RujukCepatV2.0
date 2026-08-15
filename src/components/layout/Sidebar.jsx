@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { 
   HeartPulse, LayoutDashboard, Search, FileText, Pill, User,
-  PlusCircle, Calendar, MapPin, Inbox, CheckCircle, Clock, CheckSquare,
+  PlusCircle, Calendar, MapPin, Inbox, Clock, CheckSquare,
   LogOut, X
 } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
@@ -32,8 +32,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
         return [
           { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin-rs' },
           { icon: <PlusCircle size={20} />, label: 'Buat Rujukan', path: '/admin-rs/buat-rujukan' },
-          { icon: <Inbox size={20} />, label: 'Rujukan Masuk', path: '/admin-rs/rujukan/masuk' },
-          { icon: <CheckCircle size={20} />, label: 'Rujukan Aktif', path: '/admin-rs/rujukan/aktif' },
+          { icon: <Inbox size={20} />, label: 'Daftar Rujukan', path: '/admin-rs/rujukan' },
           { icon: <HeartPulse size={20} />, label: 'Ketersediaan', path: '/admin-rs/ketersediaan' },
           { icon: <Calendar size={20} />, label: 'Jadwal Dokter', path: '/admin-rs/jadwal-dokter' },
           { icon: <MapPin size={20} />, label: 'Rekomendasi', path: '/admin-rs/rekomendasi' },
@@ -78,7 +77,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors ${
                   isActive 
-                    ? 'bg-secondary dark:bg-[#1c3626] text-accent dark:text-primary' 
+                    ? 'bg-accent text-white shadow-sm dark:bg-primary dark:text-[#0f1a13]'
                     : 'text-muted hover:bg-gray-50 dark:hover:bg-white/5 hover:text-text dark:hover:text-text-dark'
                 }`
               }

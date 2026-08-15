@@ -17,7 +17,7 @@ export default function CariRumahSakit() {
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   const hospitals = mockHospitals;
-  const facilityTypes = ['Rumah Sakit', 'Puskesmas', 'Klinik', 'Apotek', 'Laboratorium'];
+  const facilityTypes = ['Rumah Sakit', 'Puskesmas', 'Klinik', 'Apotek'];
 
   const getFacilityCategory = (type) => {
     const normalizedType = type.toLowerCase();
@@ -25,7 +25,6 @@ export default function CariRumahSakit() {
     if (normalizedType.includes('puskesmas')) return 'Puskesmas';
     if (normalizedType.includes('klinik')) return 'Klinik';
     if (normalizedType.includes('apotek')) return 'Apotek';
-    if (normalizedType.includes('laboratorium')) return 'Laboratorium';
     return type;
   };
 

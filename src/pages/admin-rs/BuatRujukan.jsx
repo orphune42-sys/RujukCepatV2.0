@@ -21,7 +21,7 @@ export default function BuatRujukan() {
 
   return (
     <motion.div 
-      className="max-w-4xl mx-auto space-y-6 sm:p-2 lg:p-6"
+      className="w-full max-w-none space-y-6 sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
       variants={slideUp}
@@ -32,10 +32,10 @@ export default function BuatRujukan() {
       </div>
 
       {/* Stepper */}
-      <div className="flex items-center justify-between relative mb-8">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 dark:bg-gray-700 -z-10 rounded-full">
+      <div className="relative mb-8 flex items-center justify-between">
+        <div className="absolute left-5 right-5 top-5 z-0 h-1 rounded-full bg-[#b9c8bd] dark:bg-gray-600">
           <div 
-            className="h-full bg-[#9ccda5] transition-all duration-300 rounded-full"
+            className="h-full rounded-full bg-accent transition-all duration-300"
             style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
           />
         </div>
@@ -43,17 +43,17 @@ export default function BuatRujukan() {
           const isActive = step.id === currentStep;
           const isCompleted = step.id < currentStep;
           return (
-            <div key={step.id} className="flex flex-col items-center gap-2">
+            <div key={step.id} className="relative z-10 flex flex-col items-center gap-2">
               <div 
                 className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-white dark:border-[#0f1913] transition-colors ${
                   isActive || isCompleted 
-                    ? 'bg-[#9ccda5] text-white' 
-                    : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500'
+                    ? 'bg-accent text-white shadow-sm shadow-accent/30'
+                    : 'bg-[#e1e7e3] text-[#65746a] dark:bg-gray-700 dark:text-gray-300'
                 }`}
               >
                 {isCompleted ? <Check className="w-5 h-5" /> : <step.icon className="w-5 h-5" />}
               </div>
-              <span className={`text-sm font-medium ${isActive ? 'text-[#9ccda5]' : 'text-gray-500'}`}>
+              <span className={`text-sm font-semibold ${isActive ? 'text-accent dark:text-primary' : 'text-[#65746a] dark:text-gray-300'}`}>
                 {step.name}
               </span>
             </div>

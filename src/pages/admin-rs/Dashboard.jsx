@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Activity, Users, Bed, CheckCircle, Clock } from 'lucide-react';
+import NotificationMenu from '../../components/shared/NotificationMenu';
 
 const statCards = [
   { title: 'Rujukan Masuk', value: '12', icon: Activity, color: 'text-blue-500' },
@@ -25,9 +26,12 @@ export default function Dashboard() {
       animate="animate"
       variants={staggerContainer}
     >
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Admin RS</h1>
-        <p className="text-gray-500 dark:text-gray-400">Ringkasan aktivitas dan ketersediaan rumah sakit hari ini.</p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Admin RS</h1>
+          <p className="text-gray-500 dark:text-gray-400">Ringkasan aktivitas dan ketersediaan rumah sakit hari ini.</p>
+        </div>
+        <NotificationMenu role="admin_rs" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -48,9 +52,9 @@ export default function Dashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <motion.div variants={slideUp}>
-          <Card>
+      <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+        <motion.div variants={slideUp} className="h-full">
+          <Card className="h-full">
             <CardHeader>
               <CardTitle>Ketersediaan Tempat Tidur</CardTitle>
             </CardHeader>
@@ -73,8 +77,8 @@ export default function Dashboard() {
           </Card>
         </motion.div>
 
-        <motion.div variants={slideUp}>
-          <Card>
+        <motion.div variants={slideUp} className="h-full">
+          <Card className="h-full">
             <CardHeader>
               <CardTitle>Aktivitas Terkini</CardTitle>
             </CardHeader>

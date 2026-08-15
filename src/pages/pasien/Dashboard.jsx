@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Ca
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import { Activity, Pill, Clock, ChevronRight, Search, PlusCircle } from 'lucide-react';
+import NotificationMenu from '../../components/shared/NotificationMenu';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -17,11 +18,12 @@ export default function Dashboard() {
       initial="initial"
       animate="animate"
     >
-      <motion.div variants={slideUp} className="flex justify-between items-end">
+      <motion.div variants={slideUp} className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Halo, Eka Wahyu</h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">Berikut adalah ringkasan kesehatan Anda hari ini.</p>
         </div>
+        <NotificationMenu role="pasien" />
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

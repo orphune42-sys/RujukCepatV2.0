@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Building2 } from 'lucide-react';
@@ -23,6 +23,16 @@ const hospitalIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
+function RecenterMap({ center, zoom }) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.setView(center, zoom);
+  }, [center, map, zoom]);
+
+  return null;
+}
+
 export default function MapView({ hospitals = [], height = "400px", center = [-7.9666, 112.6326], zoom = 12 }) {
   return (
     <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-border dark:border-border-dark z-0 relative" style={{ height }}>
@@ -31,6 +41,7 @@ export default function MapView({ hospitals = [], height = "400px", center = [-7
         zoom={zoom} 
         style={{ height: '100%', width: '100%', zIndex: 0 }}
       >
+        <RecenterMap center={center} zoom={zoom} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
