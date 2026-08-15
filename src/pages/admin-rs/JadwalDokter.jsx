@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/Card';
 import { slideUp } from '../../utils/animations';
-import { Calendar as CalendarIcon, Clock, User, Filter, Search } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Filter, Search, Stethoscope, ChevronRight } from 'lucide-react';
 
 const doctorSchedules = [
-  { id: 1, name: 'dr. Lintang Siddiq, Sp.PD', spesialis: 'Penyakit Dalam', hari: 'Senin, Rabu, Jumat', jam: '08:00 - 14:00', status: 'Tersedia' },
-  { id: 2, name: 'dr. Eka Wahyu, Sp.B', spesialis: 'Bedah Umum', hari: 'Selasa, Kamis', jam: '10:00 - 16:00', status: 'Operasi' },
-  { id: 3, name: 'dr. Salsabila Nadhira, Sp.N', spesialis: 'Neurologi', hari: 'Senin - Jumat', jam: '09:00 - 15:00', status: 'Tersedia' },
-  { id: 4, name: 'dr. Muhammad Maulidan, Sp.OG', spesialis: 'Kandungan', hari: 'Rabu, Sabtu', jam: '13:00 - 18:00', status: 'Cuti' },
-  { id: 5, name: 'dr. Rindra Ramadhani, Sp.J', spesialis: 'Jantung', hari: 'Senin, Kamis', jam: '08:00 - 12:00', status: 'Tersedia' },
+  { id: 1, name: 'dr. Lintang Siddiq, Sp.PD', spesialis: 'Penyakit Dalam', hari: 'Senin, Rabu, Jumat', jam: '08:00 - 14:00', status: 'Tersedia', initial: 'LS' },
+  { id: 2, name: 'dr. Eka Wahyu, Sp.B', spesialis: 'Bedah Umum', hari: 'Selasa, Kamis', jam: '10:00 - 16:00', status: 'Operasi', initial: 'EW' },
+  { id: 3, name: 'dr. Salsabila Nadhira, Sp.N', spesialis: 'Neurologi', hari: 'Senin - Jumat', jam: '09:00 - 15:00', status: 'Tersedia', initial: 'SN' },
+  { id: 4, name: 'dr. Muhammad Maulidan, Sp.OG', spesialis: 'Kandungan', hari: 'Rabu, Sabtu', jam: '13:00 - 18:00', status: 'Cuti', initial: 'MM' },
+  { id: 5, name: 'dr. Rindra Ramadhani, Sp.J', spesialis: 'Jantung', hari: 'Senin, Kamis', jam: '08:00 - 12:00', status: 'Tersedia', initial: 'RR' },
 ];
 
 export default function JadwalDokter() {
@@ -20,74 +20,98 @@ export default function JadwalDokter() {
     doc.spesialis.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case 'Tersedia':
+        return 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50';
+      case 'Operasi':
+        return 'bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-900/50';
+      case 'Cuti':
+        return 'bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-900/50';
+      default:
+        return 'bg-gray-50 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 border-gray-200 dark:border-gray-700';
+    }
+  };
+
   return (
     <motion.div 
-      className="space-y-6 max-w-7xl mx-auto sm:p-2 lg:p-6"
+      className="space-y-8 max-w-7xl mx-auto sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
       variants={slideUp}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Jadwal Dokter</h1>
-          <p className="text-gray-500 dark:text-gray-400">Kelola dan lihat jadwal praktik dokter spesialis.</p>
+          <h1 className="text-3xl font-black text-gray-950 dark:text-white tracking-tight">Jadwal Praktik Dokter</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1.5 text-sm md:text-base">Pantau ketersediaan real-time dan jadwal dokter spesialis faskes.</p>
         </div>
         
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <div className="relative flex-1 md:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <div className="relative flex-1 md:w-72">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-400" />
             <input 
               type="text" 
               placeholder="Cari dokter atau spesialis..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]"
+              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-850 bg-white dark:bg-[#15241b] text-sm text-text dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
             />
           </div>
-          <button className="p-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors">
-            <Filter className="w-4 h-4" />
+          <button className="p-3 bg-white dark:bg-[#15241b] border border-gray-200 dark:border-gray-850 rounded-2xl hover:bg-gray-50 dark:hover:bg-[#1c3626] text-gray-700 dark:text-gray-300 transition-colors shadow-sm">
+            <Filter className="w-4.5 h-4.5" />
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4">
         {filteredDoctors.map((doc) => (
-          <Card key={doc.id} className="overflow-hidden hover:border-[#9ccda5]/50 transition-colors">
-            <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-start md:items-center">
-              <div className="md:col-span-5 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
-                  <User className="w-6 h-6" />
+          <Card key={doc.id} className="overflow-hidden border border-border/80 dark:border-border-dark/60 rounded-3xl shadow-sm hover:shadow-md hover:border-[#9ccda5]/50 transition-all duration-300">
+            <div className="p-5 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-center">
+              {/* Doctor Profile Info */}
+              <div className="md:col-span-5 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-secondary/50 dark:bg-black/30 border border-border/20 flex items-center justify-center text-accent dark:text-primary font-bold text-lg shrink-0 shadow-sm relative overflow-hidden">
+                  {doc.initial}
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white dark:border-[#15241b]" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{doc.name}</h3>
-                  <p className="text-sm font-medium text-[#9ccda5]">{doc.spesialis}</p>
+                  <h3 className="text-lg font-extrabold text-gray-950 dark:text-white tracking-tight">{doc.name}</h3>
+                  <div className="flex items-center gap-1.5 mt-1 text-xs font-semibold text-accent dark:text-primary uppercase tracking-wider">
+                    <Stethoscope className="w-3.5 h-3.5" />
+                    {doc.spesialis}
+                  </div>
                 </div>
               </div>
               
-              <div className="md:col-span-3 flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                <CalendarIcon className="w-4 h-4 text-gray-400 shrink-0" />
-                <span className="text-sm">{doc.hari}</span>
+              {/* Days */}
+              <div className="md:col-span-3 flex items-center gap-2.5 text-gray-600 dark:text-gray-300 font-medium">
+                <CalendarIcon className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+                <div>
+                  <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Hari Kerja</p>
+                  <p className="text-sm font-semibold">{doc.hari}</p>
+                </div>
               </div>
 
-              <div className="md:col-span-2 flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                <Clock className="w-4 h-4 text-gray-400 shrink-0" />
-                <span className="text-sm">{doc.jam}</span>
+              {/* Hours */}
+              <div className="md:col-span-2 flex items-center gap-2.5 text-gray-600 dark:text-gray-300 font-medium">
+                <Clock className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+                <div>
+                  <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Jam Praktik</p>
+                  <p className="text-sm font-semibold">{doc.jam}</p>
+                </div>
               </div>
 
-              <div className="md:col-span-2 flex md:justify-end">
-                <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                  doc.status === 'Tersedia' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
-                  doc.status === 'Operasi' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' :
-                  'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400'
-                }`}>
+              {/* Status & Action */}
+              <div className="md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+                <span className={`px-4 py-1.5 text-xs font-bold rounded-full border ${getStatusStyle(doc.status)}`}>
                   {doc.status}
                 </span>
+                <ChevronRight className="hidden md:block w-5 h-5 text-gray-300 dark:text-gray-700" />
               </div>
             </div>
           </Card>
         ))}
         {filteredDoctors.length === 0 && (
-          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+          <div className="text-center py-16 bg-white dark:bg-[#15241b] rounded-3xl border border-dashed border-border py-12 text-gray-500 dark:text-gray-400">
             Tidak ada dokter yang cocok dengan pencarian Anda.
           </div>
         )}
