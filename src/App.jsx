@@ -29,27 +29,21 @@ import AdminRSRujukanList from './pages/admin-rs/RujukanList';
 import AdminRSKetersediaan from './pages/admin-rs/Ketersediaan';
 import AdminRSJadwalDokter from './pages/admin-rs/JadwalDokter';
 import AdminRSRekomendasiFasilitas from './pages/admin-rs/RekomendasiFasilitas';
+import AdminRSProfil from './pages/admin-rs/Profil';
 
 // Admin Apotek Pages
 import AdminApotekDashboard from './pages/admin-apotek/Dashboard';
 import AdminApotekTransaksi from './pages/admin-apotek/Transaksi';
 import AdminApotekDetailTransaksi from './pages/admin-apotek/DetailTransaksi';
 import AdminApotekRiwayatTransaksi from './pages/admin-apotek/RiwayatTransaksi';
+import AdminApotekProfil from './pages/admin-apotek/Profil';
 
 // Welcome Screen
 import WelcomeScreen from './components/shared/WelcomeScreen';
 
 function App() {
-  const { isDarkMode, role } = useAppStore();
+  const { role } = useAppStore();
   const [isInitialLoading, setIsInitialLoading] = useState(true);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   useEffect(() => {
     // Simulate initial loading for welcome screen
@@ -83,8 +77,8 @@ function App() {
           </Route>
 
           {/* Pasien Routes */}
-          <Route 
-            path="/pasien" 
+          <Route
+            path="/pasien"
             element={
               <RequireRole allowedRole="pasien">
                 <DashboardLayout />
@@ -101,8 +95,8 @@ function App() {
           </Route>
 
           {/* Admin RS Routes */}
-          <Route 
-            path="/admin-rs" 
+          <Route
+            path="/admin-rs"
             element={
               <RequireRole allowedRole="admin_rs">
                 <DashboardLayout />
@@ -116,11 +110,12 @@ function App() {
             <Route path="ketersediaan" element={<AdminRSKetersediaan />} />
             <Route path="jadwal-dokter" element={<AdminRSJadwalDokter />} />
             <Route path="rekomendasi" element={<AdminRSRekomendasiFasilitas />} />
+            <Route path="profil" element={<AdminRSProfil />} />
           </Route>
 
           {/* Admin Apotek Routes */}
-          <Route 
-            path="/admin-apotek" 
+          <Route
+            path="/admin-apotek"
             element={
               <RequireRole allowedRole="admin_apotek">
                 <DashboardLayout />
@@ -131,11 +126,12 @@ function App() {
             <Route path="transaksi" element={<AdminApotekTransaksi />} />
             <Route path="transaksi/:id" element={<AdminApotekDetailTransaksi />} />
             <Route path="riwayat" element={<AdminApotekRiwayatTransaksi />} />
+            <Route path="profil" element={<AdminApotekProfil />} />
           </Route>
-          
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        
+
         <AnimatePresence>
           {isInitialLoading && <WelcomeScreen />}
         </AnimatePresence>

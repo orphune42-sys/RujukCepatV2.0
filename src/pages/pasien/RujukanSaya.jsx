@@ -19,7 +19,7 @@ export default function RujukanSaya() {
   const visibleReferrals = referrals.filter((referral) => filter === 'Semua' || referral.status === filter);
 
   return (
-    <motion.div 
+    <motion.div
       className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6"
       variants={staggerContainer}
       initial="initial"
@@ -27,10 +27,10 @@ export default function RujukanSaya() {
     >
       <motion.div variants={slideUp} className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Rujukan Saya</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Kelola riwayat rujukan dan kunjungan Anda.</p>
+          <h1 className="text-2xl font-bold text-gray-900 ">Rujukan Saya</h1>
+          <p className="text-gray-500  mt-1">Kelola riwayat rujukan dan kunjungan Anda.</p>
         </div>
-        
+
         <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0">
           <Filter className="w-4 h-4 text-gray-400 mr-2" />
           {filters.map((f) => (
@@ -38,9 +38,9 @@ export default function RujukanSaya() {
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                filter === f 
+                filter === f
                 ? 'bg-accent text-white'
-                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
+                  : 'bg-white  text-gray-600  border border-gray-200 '
               }`}
             >
               {f}
@@ -62,33 +62,33 @@ export default function RujukanSaya() {
                           <Activity className="w-5 h-5 text-accent" />
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">Nomor Rujukan</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">RJ-20261015-{item}A</p>
+                          <p className="text-sm text-gray-500 ">Nomor Rujukan</p>
+                          <p className="font-semibold text-gray-900 ">RJ-20261015-{item}A</p>
                         </div>
                       </div>
                       <Badge variant={status === 'Aktif' ? "primary" : status === 'Selesai' ? "success" : "default"}>
                         {status}
                       </Badge>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                       <div>
-                        <p className="font-medium text-lg text-gray-900 dark:text-white">Poli Penyakit Dalam</p>
-                        <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
+                        <p className="font-medium text-lg text-gray-900 ">Poli Penyakit Dalam</p>
+                        <div className="flex items-center gap-1 text-gray-500  mt-1 text-sm">
                           <MapPin className="w-4 h-4" />
                           <span>RSUD Kota Malang</span>
                         </div>
                       </div>
                       <div className="lg:text-right">
-                        <p className="font-medium text-gray-900 dark:text-white">Jadwal Kunjungan</p>
-                        <div className="flex items-center lg:justify-end gap-1 text-gray-500 dark:text-gray-400 mt-1 text-sm">
+                        <p className="font-medium text-gray-900 ">Jadwal Kunjungan</p>
+                        <div className="flex items-center lg:justify-end gap-1 text-gray-500  mt-1 text-sm">
                           <Calendar className="w-4 h-4" />
                           <span>15 Okt 2026, 09:00 WIB</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-black/20 p-4 lg:w-32 flex items-center justify-center border-t lg:border-t-0 lg:border-l border-gray-100 dark:border-gray-800 group-hover:bg-secondary/20 transition-colors">
+                  <div className="bg-gray-50  p-4 lg:w-32 flex items-center justify-center border-t lg:border-t-0 lg:border-l border-gray-100  group-hover:bg-secondary/20 transition-colors">
                     <span className="text-accent font-medium flex items-center">
                       Detail <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
                     </span>

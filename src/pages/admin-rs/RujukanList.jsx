@@ -28,14 +28,14 @@ export default function RujukanList() {
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'Darurat': return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
-      case 'Segera': return 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400';
-      default: return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400';
+      case 'Darurat': return 'bg-red-100 text-red-700  ';
+      case 'Segera': return 'bg-amber-100 text-amber-700  ';
+      default: return 'bg-emerald-100 text-emerald-700  ';
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="space-y-6 sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
@@ -43,17 +43,17 @@ export default function RujukanList() {
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Daftar Rujukan</h1>
-          <p className="text-gray-500 dark:text-gray-400">Kelola dan pantau rujukan masuk serta rujukan aktif.</p>
+          <h1 className="text-2xl font-bold text-gray-900 ">Daftar Rujukan</h1>
+          <p className="text-gray-500 ">Kelola dan pantau rujukan masuk serta rujukan aktif.</p>
         </div>
-        
+
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input 
-              type="text" 
-              placeholder="Cari pasien atau ID..." 
-              className="w-full pl-9 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1913] text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]"
+            <input
+              type="text"
+              placeholder="Cari pasien atau ID..."
+              className="w-full pl-9 pr-4 py-2 rounded-lg border border-gray-300  bg-white  text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5]"
             />
           </div>
         </div>
@@ -63,24 +63,24 @@ export default function RujukanList() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-black/20">
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">ID Rujukan</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Pasien</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Fasilitas Asal</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Prioritas</th>
-                <th className="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">Aksi</th>
+              <tr className="border-b border-gray-200  bg-gray-50 ">
+                <th className="p-4 text-sm font-medium text-gray-500 ">ID Rujukan</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Pasien</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Fasilitas Asal</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Tanggal</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Status</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Prioritas</th>
+                <th className="p-4 text-sm font-medium text-gray-500 ">Aksi</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-800 text-sm">
+            <tbody className="divide-y divide-gray-200  text-sm">
               {filteredData.length > 0 ? (
                 filteredData.map((item) => (
-                  <tr key={item.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-medium text-gray-900 dark:text-white">{item.id}</td>
-                    <td className="p-4 text-gray-700 dark:text-gray-300">{item.pasien}</td>
-                    <td className="p-4 text-gray-700 dark:text-gray-300">{item.asal}</td>
-                    <td className="p-4 text-gray-700 dark:text-gray-300">{item.tanggal}</td>
+                  <tr key={item.id} className="hover:bg-gray-50/50  transition-colors">
+                    <td className="p-4 font-medium text-gray-900 ">{item.id}</td>
+                    <td className="p-4 text-gray-700 ">{item.pasien}</td>
+                    <td className="p-4 text-gray-700 ">{item.asal}</td>
+                    <td className="p-4 text-gray-700 ">{item.tanggal}</td>
                     <td className="p-4">
                       <Badge variant={getStatusVariant(item.status)}>{item.status}</Badge>
                     </td>
@@ -98,7 +98,7 @@ export default function RujukanList() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="p-8 text-center text-gray-500 dark:text-gray-400">
+                  <td colSpan="7" className="p-8 text-center text-gray-500 ">
                     Tidak ada data rujukan masuk atau aktif.
                   </td>
                 </tr>
@@ -123,7 +123,7 @@ export default function RujukanList() {
             }}
           >
             <motion.div
-              className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl dark:bg-[#15241b]"
+              className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl "
               initial={{ scale: 0.96, y: 12 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.96, y: 12 }}
@@ -131,34 +131,34 @@ export default function RujukanList() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-medium text-muted">Detail Rujukan</p>
-                  <h2 id="referral-detail-title" className="mt-1 text-xl font-bold text-text dark:text-text-dark">{selectedReferral.id}</h2>
+                  <h2 id="referral-detail-title" className="mt-1 text-xl font-bold text-text ">{selectedReferral.id}</h2>
                 </div>
                 <Badge variant={getStatusVariant(selectedReferral.status)}>{selectedReferral.status}</Badge>
               </div>
               <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <section>
-                  <h3 className="text-sm font-bold text-text dark:text-text-dark">Informasi Pasien</h3>
+                  <h3 className="text-sm font-bold text-text ">Informasi Pasien</h3>
                   <dl className="mt-3 space-y-3 text-sm">
-                    <div><dt className="text-muted">Nama pasien</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.pasien}</dd></div>
-                    <div><dt className="text-muted">No. rekam medis</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.noRm}</dd></div>
-                    <div><dt className="text-muted">Tanggal lahir / jenis kelamin</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.tanggalLahir} · {selectedReferral.jenisKelamin}</dd></div>
+                    <div><dt className="text-muted">Nama pasien</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.pasien}</dd></div>
+                    <div><dt className="text-muted">No. rekam medis</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.noRm}</dd></div>
+                    <div><dt className="text-muted">Tanggal lahir / jenis kelamin</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.tanggalLahir} · {selectedReferral.jenisKelamin}</dd></div>
                   </dl>
                 </section>
                 <section>
-                  <h3 className="text-sm font-bold text-text dark:text-text-dark">Informasi Rujukan</h3>
+                  <h3 className="text-sm font-bold text-text ">Informasi Rujukan</h3>
                   <dl className="mt-3 space-y-3 text-sm">
-                    <div><dt className="text-muted">Fasilitas asal</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.asal}</dd></div>
-                    <div><dt className="text-muted">Fasilitas tujuan</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.tujuan}</dd></div>
-                    <div><dt className="text-muted">Dibuat pada</dt><dd className="mt-1 font-semibold text-text dark:text-text-dark">{selectedReferral.waktuDibuat}</dd></div>
+                    <div><dt className="text-muted">Fasilitas asal</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.asal}</dd></div>
+                    <div><dt className="text-muted">Fasilitas tujuan</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.tujuan}</dd></div>
+                    <div><dt className="text-muted">Dibuat pada</dt><dd className="mt-1 font-semibold text-text ">{selectedReferral.waktuDibuat}</dd></div>
                   </dl>
                 </section>
               </div>
-              <section className="mt-6 rounded-xl bg-secondary/50 p-4 dark:bg-[#1c3626]">
-                <h3 className="text-sm font-bold text-text dark:text-text-dark">Kondisi Medis</h3>
-                <p className="mt-2 text-sm font-semibold text-text dark:text-text-dark">{selectedReferral.diagnosis}</p>
-                <p className="mt-1 text-sm text-muted dark:text-gray-400">{selectedReferral.catatan}</p>
+              <section className="mt-6 rounded-xl bg-secondary/50 p-4 ">
+                <h3 className="text-sm font-bold text-text ">Kondisi Medis</h3>
+                <p className="mt-2 text-sm font-semibold text-text ">{selectedReferral.diagnosis}</p>
+                <p className="mt-1 text-sm text-muted ">{selectedReferral.catatan}</p>
               </section>
-              <div className="mt-4 flex items-center justify-between rounded-lg border border-border px-4 py-3 text-sm dark:border-border-dark">
+              <div className="mt-4 flex items-center justify-between rounded-lg border border-border px-4 py-3 text-sm ">
                 <span className="text-muted">Prioritas penanganan</span>
                 <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${getPriorityColor(selectedReferral.prioritas)}`}>{selectedReferral.prioritas}</span>
               </div>

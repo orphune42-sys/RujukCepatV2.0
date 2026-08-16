@@ -42,25 +42,25 @@ export default function CariRumahSakit() {
   );
 
   return (
-    <div className="relative isolate min-h-screen overflow-hidden bg-white dark:bg-background-dark">
+    <div className="relative isolate min-h-screen overflow-hidden bg-white ">
       {/* Header & Search */}
-      <div className="relative z-20 bg-white/90 dark:bg-[#15241b]/90 backdrop-blur-sm border-b border-border dark:border-border-dark pt-10 pb-7">
+      <div className="relative z-20 bg-white/90  backdrop-blur-sm border-b border-border  pt-10 pb-7">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-text dark:text-text-dark">Cari Fasilitas Kesehatan</h1>
+              <h1 className="text-2xl md:text-3xl font-bold text-text ">Cari Fasilitas Kesehatan</h1>
               <p className="text-sm text-muted mt-1">Temukan RS, klinik, atau apotek terdekat dari Anda</p>
             </div>
-            <div className="flex items-center gap-2 bg-secondary dark:bg-[#1c3626] p-1 rounded-xl">
+            <div className="flex items-center gap-2 bg-secondary  p-1 rounded-xl">
               <button
                 onClick={() => setViewMode('list')}
-                className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-black/30 text-accent dark:text-primary shadow-sm' : 'text-muted hover:text-text'}`}
+                className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all ${viewMode === 'list' ? 'bg-white  text-accent  shadow-sm' : 'text-muted hover:text-text'}`}
               >
                 Daftar
               </button>
               <button
                 onClick={() => setViewMode('map')}
-                className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all ${viewMode === 'map' ? 'bg-white dark:bg-black/30 text-accent dark:text-primary shadow-sm' : 'text-muted hover:text-text'}`}
+                className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all ${viewMode === 'map' ? 'bg-white  text-accent  shadow-sm' : 'text-muted hover:text-text'}`}
               >
                 Peta
               </button>
@@ -73,7 +73,7 @@ export default function CariRumahSakit() {
               <input
                 type="text"
                 placeholder="Cari nama RS, fasilitas kesehatan, atau lokasi..."
-                className="w-full h-12 pl-11 pr-4 rounded-xl border border-border dark:border-border-dark bg-[#f8faf9] dark:bg-[#0a120e] text-text dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/60 transition-shadow text-sm"
+                className="w-full h-12 pl-11 pr-4 rounded-xl border border-border  bg-[#f8faf9]  text-text  focus:outline-none focus:ring-2 focus:ring-primary/60 transition-shadow text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -83,7 +83,7 @@ export default function CariRumahSakit() {
               onClick={() => setIsFilterOpen((open) => !open)}
               aria-expanded={isFilterOpen}
               aria-controls="facility-filter"
-              className="h-12 px-5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#1c3626] text-sm font-semibold flex items-center gap-2 hover:bg-secondary dark:hover:bg-[#243d2e] transition-colors text-text dark:text-text-dark"
+              className="h-12 px-5 rounded-xl border border-border  bg-white  text-sm font-semibold flex items-center gap-2 hover:bg-secondary  transition-colors text-text "
             >
               <Filter className="h-4 w-4" /> Filter
               {selectedTypes.length > 0 && (
@@ -108,14 +108,14 @@ export default function CariRumahSakit() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute z-20 right-0 top-14 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-border dark:border-border-dark bg-white dark:bg-[#15241b] p-4 shadow-xl"
+                    className="absolute z-20 right-0 top-14 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-border  bg-white  p-4 shadow-xl"
                   >
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
-                        <h2 className="font-bold text-text dark:text-text-dark">Jenis fasilitas</h2>
+                        <h2 className="font-bold text-text ">Jenis fasilitas</h2>
                         <p className="text-xs text-muted mt-0.5">Pilih fasilitas yang ingin ditampilkan</p>
                       </div>
-                      <button type="button" onClick={() => setIsFilterOpen(false)} className="p-1 text-muted hover:text-text dark:hover:text-text-dark" aria-label="Tutup">
+                      <button type="button" onClick={() => setIsFilterOpen(false)} className="p-1 text-muted hover:text-text " aria-label="Tutup">
                         <X className="h-4 w-4" />
                       </button>
                     </div>
@@ -128,10 +128,10 @@ export default function CariRumahSakit() {
                             key={type}
                             type="button"
                             onClick={() => toggleFacilityType(type)}
-                            className={`w-full flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${isSelected ? 'bg-primary/20 text-accent dark:text-primary' : 'text-text dark:text-text-dark hover:bg-secondary dark:hover:bg-[#1c3626]'}`}
+                            className={`w-full flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${isSelected ? 'bg-primary/20 text-accent ' : 'text-text  hover:bg-secondary '}`}
                           >
                             {type}
-                            <span className={`grid place-items-center h-5 w-5 rounded-md border ${isSelected ? 'border-accent bg-accent text-white dark:border-primary dark:bg-primary dark:text-[#15301e]' : 'border-border dark:border-border-dark'}`}>
+                            <span className={`grid place-items-center h-5 w-5 rounded-md border ${isSelected ? 'border-accent bg-accent text-white   ' : 'border-border '}`}>
                               {isSelected && <Check className="h-3.5 w-3.5" />}
                             </span>
                           </button>
@@ -139,11 +139,11 @@ export default function CariRumahSakit() {
                       })}
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-border dark:border-border-dark mt-3 pt-3">
+                    <div className="flex items-center justify-between border-t border-border  mt-3 pt-3">
                       <button type="button" onClick={() => setSelectedTypes([])} disabled={selectedTypes.length === 0} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted hover:text-accent disabled:opacity-40 disabled:cursor-not-allowed">
                         <RotateCcw className="h-3.5 w-3.5" /> Reset
                       </button>
-                      <button type="button" onClick={() => setIsFilterOpen(false)} className="text-xs font-bold text-accent dark:text-primary">Terapkan</button>
+                      <button type="button" onClick={() => setIsFilterOpen(false)} className="text-xs font-bold text-accent ">Terapkan</button>
                     </div>
                   </motion.div>
                 </>
@@ -169,15 +169,15 @@ export default function CariRumahSakit() {
                 className="text-sm text-muted mb-6"
               >
                 Menampilkan{' '}
-                <span className="font-bold text-accent dark:text-primary">{filteredHospitals.length}</span>{' '}
+                <span className="font-bold text-accent ">{filteredHospitals.length}</span>{' '}
                 fasilitas kesehatan
               </motion.p>
 
               <div className="space-y-4">
                 {filteredHospitals.map((hospital, i) => {
-                  const igd = { text: 'text-green-600 dark:text-green-400', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
-                  const icu = { text: 'text-red-500', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
-                  const inap = { text: 'text-blue-500', bg: 'bg-white dark:bg-[#15241b]', border: 'border-none' };
+                  const igd = { text: 'text-green-600 ', bg: 'bg-white ', border: 'border-none' };
+                  const icu = { text: 'text-red-500', bg: 'bg-white ', border: 'border-none' };
+                  const inap = { text: 'text-blue-500', bg: 'bg-white ', border: 'border-none' };
 
                   return (
                     <motion.div
@@ -188,7 +188,7 @@ export default function CariRumahSakit() {
                       transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Link to={`/rs/${hospital.id}`} className="group block">
-                        <div className="w-full bg-white dark:bg-[#15241b] rounded-2xl border border-border dark:border-border-dark shadow-sm group-hover:shadow-lg group-hover:border-primary/30 dark:group-hover:border-primary/40 transition-all duration-300 overflow-hidden">
+                        <div className="w-full bg-white  rounded-2xl border border-border  shadow-sm group-hover:shadow-lg group-hover:border-primary/30  transition-all duration-300 overflow-hidden">
                           <div className="flex flex-col sm:flex-row">
 
                             {/* Image — tall left panel */}
@@ -214,7 +214,7 @@ export default function CariRumahSakit() {
                               {/* Row 1: name + rating */}
                               <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0">
-                                  <h3 className="text-lg lg:text-xl font-bold text-text dark:text-text-dark group-hover:text-accent dark:group-hover:text-primary transition-colors truncate">
+                                  <h3 className="text-lg lg:text-xl font-bold text-text  group-hover:text-accent  transition-colors truncate">
                                     {hospital.name}
                                   </h3>
                                   <p className="text-xs text-muted flex items-center gap-1 mt-0.5">
@@ -243,7 +243,7 @@ export default function CariRumahSakit() {
                               {/* Row 3: Specialties + CTA */}
                               <div className="flex items-center justify-between gap-3 mt-auto">
                                 <div></div>
-                                <span className="flex items-center gap-1 text-sm font-bold text-accent dark:text-primary shrink-0 group-hover:gap-2 transition-all">
+                                <span className="flex items-center gap-1 text-sm font-bold text-accent  shrink-0 group-hover:gap-2 transition-all">
                                   Detail <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </span>
                               </div>
@@ -264,7 +264,7 @@ export default function CariRumahSakit() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="w-full h-[70vh] min-h-[500px] rounded-2xl overflow-hidden border border-border dark:border-border-dark shadow-sm"
+              className="w-full h-[70vh] min-h-[500px] rounded-2xl overflow-hidden border border-border  shadow-sm"
             >
               <MapView hospitals={filteredHospitals} height="100%" />
             </motion.div>

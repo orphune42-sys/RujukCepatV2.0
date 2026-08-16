@@ -2,24 +2,24 @@ import React from 'react';
 import { cn } from '../../utils/cn';
 import { motion } from 'framer-motion';
 
-const Button = React.forwardRef(({ 
-  className, 
-  variant = 'primary', 
-  size = 'md', 
-  isLoading, 
-  children, 
-  ...props 
+const Button = React.forwardRef(({
+  className,
+  variant = 'primary',
+  size = 'md',
+  isLoading,
+  children,
+  ...props
 }, ref) => {
   const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background";
-  
+
   const variants = {
-    primary: "bg-accent text-white hover:bg-[#3d8b69] shadow-sm dark:bg-primary dark:text-[#0f1a13] dark:hover:bg-[#aee0b8]",
+    primary: "bg-accent text-white hover:bg-[#3d8b69] shadow-sm   ",
     secondary: "bg-secondary text-accent hover:bg-[#cbe3d2]",
     outline: "border border-border bg-transparent hover:bg-secondary text-text",
     ghost: "hover:bg-secondary hover:text-accent text-muted",
     danger: "bg-red-500 text-white hover:bg-red-600",
   };
-  
+
   const sizes = {
     sm: "h-9 px-3 text-sm",
     md: "h-11 px-4 py-2",

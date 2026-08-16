@@ -15,7 +15,7 @@ const doctorSchedules = [
 export default function JadwalDokter() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredDoctors = doctorSchedules.filter(doc => 
+  const filteredDoctors = doctorSchedules.filter(doc =>
     doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     doc.spesialis.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -23,18 +23,18 @@ export default function JadwalDokter() {
   const getStatusStyle = (status) => {
     switch (status) {
       case 'Tersedia':
-        return 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50';
+        return 'bg-emerald-50  text-emerald-700  border-emerald-200 ';
       case 'Operasi':
-        return 'bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-900/50';
+        return 'bg-amber-50  text-amber-700  border-amber-200 ';
       case 'Cuti':
-        return 'bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-900/50';
+        return 'bg-rose-50  text-rose-700  border-rose-200 ';
       default:
-        return 'bg-gray-50 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 border-gray-200 dark:border-gray-700';
+        return 'bg-gray-50  text-gray-700  border-gray-200 ';
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="space-y-8 max-w-7xl mx-auto sm:p-2 lg:p-6"
       initial="initial"
       animate="animate"
@@ -42,22 +42,22 @@ export default function JadwalDokter() {
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h1 className="text-3xl font-black text-gray-950 dark:text-white tracking-tight">Jadwal Praktik Dokter</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1.5 text-sm md:text-base">Pantau ketersediaan real-time dan jadwal dokter spesialis faskes.</p>
+          <h1 className="text-3xl font-black text-gray-950  tracking-tight">Jadwal Praktik Dokter</h1>
+          <p className="text-gray-500  mt-1.5 text-sm md:text-base">Pantau ketersediaan real-time dan jadwal dokter spesialis faskes.</p>
         </div>
-        
+
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:w-72">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-400" />
-            <input 
-              type="text" 
-              placeholder="Cari dokter atau spesialis..." 
+            <input
+              type="text"
+              placeholder="Cari dokter atau spesialis..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-850 bg-white dark:bg-[#15241b] text-sm text-text dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
+              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200  bg-white  text-sm text-text  focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
             />
           </div>
-          <button className="p-3 bg-white dark:bg-[#15241b] border border-gray-200 dark:border-gray-850 rounded-2xl hover:bg-gray-50 dark:hover:bg-[#1c3626] text-gray-700 dark:text-gray-300 transition-colors shadow-sm">
+          <button className="p-3 bg-white  border border-gray-200  rounded-2xl hover:bg-gray-50  text-gray-700  transition-colors shadow-sm">
             <Filter className="w-4.5 h-4.5" />
           </button>
         </div>
@@ -65,25 +65,24 @@ export default function JadwalDokter() {
 
       <div className="grid grid-cols-1 gap-4">
         {filteredDoctors.map((doc) => (
-          <Card key={doc.id} className="overflow-hidden border border-border/80 dark:border-border-dark/60 rounded-3xl shadow-sm hover:shadow-md hover:border-[#9ccda5]/50 transition-all duration-300">
+          <Card key={doc.id} className="overflow-hidden border border-border/80  rounded-3xl shadow-sm hover:shadow-md hover:border-[#9ccda5]/50 transition-all duration-300">
             <div className="p-5 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-center">
               {/* Doctor Profile Info */}
               <div className="md:col-span-5 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-secondary/50 dark:bg-black/30 border border-border/20 flex items-center justify-center text-accent dark:text-primary font-bold text-lg shrink-0 shadow-sm relative overflow-hidden">
+                <div className="w-14 h-14 rounded-2xl bg-secondary/50  border border-border/20 flex items-center justify-center text-accent  font-bold text-lg shrink-0 shadow-sm">
                   {doc.initial}
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white dark:border-[#15241b]" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-extrabold text-gray-950 dark:text-white tracking-tight">{doc.name}</h3>
-                  <div className="flex items-center gap-1.5 mt-1 text-xs font-semibold text-accent dark:text-primary uppercase tracking-wider">
+                  <h3 className="text-lg font-extrabold text-gray-950  tracking-tight">{doc.name}</h3>
+                  <div className="flex items-center gap-1.5 mt-1 text-xs font-semibold text-accent  uppercase tracking-wider">
                     <Stethoscope className="w-3.5 h-3.5" />
                     {doc.spesialis}
                   </div>
                 </div>
               </div>
-              
+
               {/* Days */}
-              <div className="md:col-span-3 flex items-center gap-2.5 text-gray-600 dark:text-gray-300 font-medium">
+              <div className="md:col-span-3 flex items-center gap-2.5 text-gray-600  font-medium">
                 <CalendarIcon className="w-4.5 h-4.5 text-gray-400 shrink-0" />
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Hari Kerja</p>
@@ -92,7 +91,7 @@ export default function JadwalDokter() {
               </div>
 
               {/* Hours */}
-              <div className="md:col-span-2 flex items-center gap-2.5 text-gray-600 dark:text-gray-300 font-medium">
+              <div className="md:col-span-2 flex items-center gap-2.5 text-gray-600  font-medium">
                 <Clock className="w-4.5 h-4.5 text-gray-400 shrink-0" />
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Jam Praktik</p>
@@ -105,13 +104,13 @@ export default function JadwalDokter() {
                 <span className={`px-4 py-1.5 text-xs font-bold rounded-full border ${getStatusStyle(doc.status)}`}>
                   {doc.status}
                 </span>
-                <ChevronRight className="hidden md:block w-5 h-5 text-gray-300 dark:text-gray-700" />
+                <ChevronRight className="hidden md:block w-5 h-5 text-gray-300 " />
               </div>
             </div>
           </Card>
         ))}
         {filteredDoctors.length === 0 && (
-          <div className="text-center py-16 bg-white dark:bg-[#15241b] rounded-3xl border border-dashed border-border py-12 text-gray-500 dark:text-gray-400">
+          <div className="text-center py-16 bg-white  rounded-3xl border border-dashed border-border py-12 text-gray-500 ">
             Tidak ada dokter yang cocok dengan pencarian Anda.
           </div>
         )}

@@ -24,15 +24,15 @@ export default function Select({ value, onChange, options, placeholder = 'Pilih 
 
   return (
     <div ref={containerRef} className={cn('relative', className)}>
-      <button type="button" aria-label={ariaLabel || placeholder} aria-expanded={isOpen} aria-required={required} onClick={() => setIsOpen((open) => !open)} className={cn('flex h-11 w-full items-center rounded-lg border border-border bg-background px-4 text-left text-sm text-text shadow-sm transition-all hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary dark:border-border-dark dark:bg-[#0a120e] dark:text-text-dark', icon && 'pl-12', buttonClassName)}>
-        {icon && <span className="pointer-events-none absolute left-4 text-muted dark:text-gray-500">{icon}</span>}
+      <button type="button" aria-label={ariaLabel || placeholder} aria-expanded={isOpen} aria-required={required} onClick={() => setIsOpen((open) => !open)} className={cn('flex h-11 w-full items-center rounded-lg border border-border bg-background px-4 text-left text-sm text-text shadow-sm transition-all hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary   ', icon && 'pl-12', buttonClassName)}>
+        {icon && <span className="pointer-events-none absolute left-4 text-muted ">{icon}</span>}
         <span className={cn('flex-1 truncate', !selectedOption && 'text-muted')}>{selectedOption?.label || placeholder}</span>
         <ChevronDown className={cn('h-4 w-4 text-muted transition-transform', isOpen && 'rotate-180')} />
       </button>
       {isOpen && (
-        <div role="listbox" className="absolute z-[70] mt-2 w-full overflow-hidden rounded-xl border border-border bg-white p-1.5 shadow-xl shadow-black/10 dark:border-border-dark dark:bg-[#15241b]">
+        <div role="listbox" className="absolute z-[70] mt-2 w-full overflow-hidden rounded-xl border border-border bg-white p-1.5 shadow-xl shadow-black/10  ">
           {options.map((option) => (
-            <button key={option.value} type="button" role="option" aria-selected={option.value === value} onClick={() => { onChange(option.value); setIsOpen(false); }} className={cn('flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-text transition-colors hover:bg-secondary dark:text-text-dark dark:hover:bg-[#1c3626]', option.value === value && 'bg-secondary text-accent dark:bg-[#1c3626] dark:text-primary')}>
+            <button key={option.value} type="button" role="option" aria-selected={option.value === value} onClick={() => { onChange(option.value); setIsOpen(false); }} className={cn('flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-text transition-colors hover:bg-secondary  ', option.value === value && 'bg-secondary text-accent  ')}>
               <span className="flex-1">{option.label}</span>{option.value === value && <Check className="h-4 w-4" />}
             </button>
           ))}

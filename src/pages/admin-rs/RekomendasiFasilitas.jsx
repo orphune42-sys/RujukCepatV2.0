@@ -17,15 +17,15 @@ export default function RekomendasiFasilitas() {
   );
 
   return (
-    <motion.div 
+    <motion.div
       className="space-y-6 max-w-7xl mx-auto flex flex-col sm:p-2 lg:h-[calc(100vh-5rem)] lg:p-6"
       initial="initial"
       animate="animate"
       variants={staggerContainer}
     >
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Rekomendasi Fasilitas</h1>
-        <p className="text-gray-500 dark:text-gray-400">Temukan fasilitas kesehatan terdekat yang tersedia untuk rujukan.</p>
+        <h1 className="text-2xl font-bold text-gray-900 ">Rekomendasi Fasilitas</h1>
+        <p className="text-gray-500 ">Temukan fasilitas kesehatan terdekat yang tersedia untuk rujukan.</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 lg:flex-1 lg:min-h-0">
@@ -35,20 +35,20 @@ export default function RekomendasiFasilitas() {
             <motion.div key={facility.id} variants={slideUp} custom={index}>
               <Card hover onClick={() => setSelectedFacilityId(facility.id)} className={`cursor-pointer border-l-4 ${selectedFacilityId === facility.id ? 'border-l-[#9ccda5]' : 'border-l-transparent hover:border-l-[#9ccda5]'}`}>
                 <CardContent className="p-4 flex gap-4">
-                  <div className={`w-16 h-16 rounded-lg ${facilityStyles[index % facilityStyles.length]} dark:opacity-80 shrink-0 flex items-center justify-center`}>
+                  <div className={`w-16 h-16 rounded-lg ${facilityStyles[index % facilityStyles.length]}  shrink-0 flex items-center justify-center`}>
                     <MapPin className="w-6 h-6 text-black/50" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white truncate">{facility.name}</h3>
+                    <h3 className="text-sm font-bold text-gray-900  truncate">{facility.name}</h3>
                     <p className="text-xs text-[#9ccda5] font-medium">{facility.type}{facility.class ? ` Kelas ${facility.class}` : ''}</p>
-                    
-                    <div className="flex items-center gap-3 mt-2 text-xs text-gray-500 dark:text-gray-400">
+
+                    <div className="flex items-center gap-3 mt-2 text-xs text-gray-500 ">
                       <span className="flex items-center gap-1"><Navigation className="w-3 h-3" /> {index + 1}.{' '}{index + 2} km</span>
                       <span className="flex items-center gap-1 text-amber-500"><Star className="w-3 h-3 fill-current" /> {facility.rating}</span>
                     </div>
-                    
+
                     <div className="mt-3 flex items-center justify-between">
-                      <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-700 dark:text-gray-300">
+                      <span className="text-xs font-medium px-2 py-1 bg-gray-100  rounded-md text-gray-700 ">
                         {facility.availability.rawatInap} Bed Tersedia
                       </span>
                       <Button size="sm" variant="ghost" className="h-7 px-2 text-xs" onClick={(event) => { event.stopPropagation(); setSelectedFacilityId(facility.id); }}>Pilih</Button>

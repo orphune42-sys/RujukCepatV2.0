@@ -25,32 +25,32 @@ const RiwayatTransaksi = () => {
     <div className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Riwayat Transaksi</h1>
-          <p className="text-slate-500 dark:text-slate-400">Lihat semua riwayat transaksi apotek yang telah selesai.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">Riwayat Transaksi</h1>
+          <p className="text-slate-500 ">Lihat semua riwayat transaksi apotek yang telah selesai.</p>
         </div>
         <div className="flex gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Cari transaksi..." 
-              className="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5] dark:text-white"
+            <input
+              type="text"
+              placeholder="Cari transaksi..."
+              className="pl-10 pr-4 py-2 bg-white  border border-slate-200  rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5] "
             />
           </div>
-          <Button variant="outline" className="gap-2 dark:border-slate-800 dark:bg-slate-900">
+          <Button variant="outline" className="gap-2  ">
             <Calendar size={18} /> Rentang Waktu
           </Button>
-          <Button variant="outline" className="gap-2 dark:border-slate-800 dark:bg-slate-900">
+          <Button variant="outline" className="gap-2  ">
             <Download size={18} /> Export
           </Button>
         </div>
       </div>
 
       <motion.div variants={slideUp} initial="initial" animate="animate">
-        <Card className="border-0 shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
+        <Card className="border-0 shadow-sm bg-white  overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
-              <thead className="text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+              <thead className="text-slate-500  bg-slate-50  border-b border-slate-200 ">
                 <tr>
                   <th className="px-6 py-4 font-medium">ID Transaksi</th>
                   <th className="px-6 py-4 font-medium">Tanggal</th>
@@ -59,13 +59,13 @@ const RiwayatTransaksi = () => {
                   <th className="px-6 py-4 font-medium">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-100 ">
                 {mockHistory.map((row) => (
-                  <tr key={row.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                    <td className="px-6 py-4 font-medium text-slate-900 dark:text-white">{row.id}</td>
-                    <td className="px-6 py-4 text-slate-500 dark:text-slate-400">{row.date}</td>
-                    <td className="px-6 py-4 text-slate-700 dark:text-slate-300">{row.patient}</td>
-                    <td className="px-6 py-4 text-slate-900 dark:text-white font-medium">{row.total}</td>
+                  <tr key={row.id} className="hover:bg-slate-50  transition-colors">
+                    <td className="px-6 py-4 font-medium text-slate-900 ">{row.id}</td>
+                    <td className="px-6 py-4 text-slate-500 ">{row.date}</td>
+                    <td className="px-6 py-4 text-slate-700 ">{row.patient}</td>
+                    <td className="px-6 py-4 text-slate-900  font-medium">{row.total}</td>
                     <td className="px-6 py-4">
                       <Badge variant={getBadgeVariant(row.status)}>
                         {row.status}
@@ -76,11 +76,11 @@ const RiwayatTransaksi = () => {
               </tbody>
             </table>
           </div>
-          <div className="px-6 py-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-            <p className="text-sm text-slate-500 dark:text-slate-400">Menampilkan 1-5 dari 45 data</p>
+          <div className="px-6 py-4 border-t border-slate-100  flex items-center justify-between">
+            <p className="text-sm text-slate-500 ">Menampilkan 1-5 dari 45 data</p>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="dark:border-slate-800 dark:bg-slate-900">Sebelumnya</Button>
-              <Button variant="outline" size="sm" className="dark:border-slate-800 dark:bg-slate-900">Selanjutnya</Button>
+              <Button variant="outline" size="sm">Sebelumnya</Button>
+              <Button variant="outline" size="sm">Selanjutnya</Button>
             </div>
           </div>
         </Card>

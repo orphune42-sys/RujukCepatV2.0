@@ -35,10 +35,10 @@ function RecenterMap({ center, zoom }) {
 
 export default function MapView({ hospitals = [], height = "400px", center = [-7.9666, 112.6326], zoom = 12 }) {
   return (
-    <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-border dark:border-border-dark z-0 relative" style={{ height }}>
-      <MapContainer 
-        center={center} 
-        zoom={zoom} 
+    <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-border  z-0 relative" style={{ height }}>
+      <MapContainer
+        center={center}
+        zoom={zoom}
         style={{ height: '100%', width: '100%', zIndex: 0 }}
       >
         <RecenterMap center={center} zoom={zoom} />
@@ -46,10 +46,10 @@ export default function MapView({ hospitals = [], height = "400px", center = [-7
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
-        
+
         {hospitals.map((hospital) => (
-          <Marker 
-            key={hospital.id} 
+          <Marker
+            key={hospital.id}
             position={[hospital.lat, hospital.lng]}
             icon={hospitalIcon}
           >
@@ -60,7 +60,7 @@ export default function MapView({ hospitals = [], height = "400px", center = [-7
                   {hospital.type}
                   {(hospital.type.toLowerCase().includes('rumah sakit') || hospital.type.toLowerCase().includes('rs')) && hospital.class && ` - Kelas ${hospital.class}`}
                 </p>
-                
+
                 <div className="flex gap-2 text-xs mb-3 font-medium bg-gray-50 p-2 rounded">
                   <div className="flex flex-col items-center flex-1">
                     <span className="text-gray-500">IGD</span>
