@@ -79,7 +79,7 @@ export default function DetailRumahSakit() {
                         <span className="text-sm font-semibold text-gray-500">IGD</span>
                       </div>
                       <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-gray-900">{hospital.availability?.igd ?? 0}</span>
+                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.igd ?? 0}</span>
                         <span className="text-sm text-gray-400">Bed</span>
                       </div>
                     </CardContent>
@@ -91,7 +91,7 @@ export default function DetailRumahSakit() {
                         <span className="text-sm font-semibold text-gray-500">ICU</span>
                       </div>
                       <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-gray-900">{hospital.availability?.icu ?? 0}</span>
+                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.icu ?? 0}</span>
                         <span className="text-sm text-gray-400">Bed</span>
                       </div>
                     </CardContent>
@@ -103,7 +103,7 @@ export default function DetailRumahSakit() {
                         <span className="text-sm font-semibold text-gray-500">Rawat Inap</span>
                       </div>
                       <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-gray-900">{hospital.availability?.rawatInap ?? 0}</span>
+                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.rawatInap ?? 0}</span>
                         <span className="text-sm text-gray-400">Bed</span>
                       </div>
                     </CardContent>

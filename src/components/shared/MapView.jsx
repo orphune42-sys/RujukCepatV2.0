@@ -64,17 +64,17 @@ export default function MapView({ hospitals = [], height = "400px", center = [-7
                 <div className="flex gap-2 text-xs mb-3 font-medium bg-gray-50 p-2 rounded">
                   <div className="flex flex-col items-center flex-1">
                     <span className="text-gray-500">IGD</span>
-                    <span className="text-green-600">{hospital.availability.igd}</span>
+                    <span className="text-accent">{hospital.availability.igd}</span>
                   </div>
                   <div className="w-[1px] bg-gray-200"></div>
                   <div className="flex flex-col items-center flex-1">
                     <span className="text-gray-500">ICU</span>
-                    <span className="text-red-500">{hospital.availability.icu}</span>
+                    <span className="text-accent">{hospital.availability.icu}</span>
                   </div>
                   <div className="w-[1px] bg-gray-200"></div>
                   <div className="flex flex-col items-center flex-1">
                     <span className="text-gray-500">Rawat Inap</span>
-                    <span className="text-blue-500">{hospital.availability.rawatInap}</span>
+                    <span className="text-accent">{hospital.availability.rawatInap}</span>
                   </div>
                 </div>
 

@@ -27,19 +27,19 @@ const Dashboard = () => {
         variants={staggerContainer}
         initial="initial"
         animate="animate"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4"
       >
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <motion.div key={index} variants={slideUp}>
               <Card className="border-0 shadow-sm bg-white  h-full">
-                <CardContent className="p-6 flex items-center gap-4">
-                  <div className={`p-4 rounded-2xl ${stat.bg} ${stat.color}`}>
+                <CardContent className="flex min-w-0 items-center gap-4 p-5">
+                  <div className={`shrink-0 p-4 rounded-2xl ${stat.bg} ${stat.color}`}>
                     <Icon size={24} />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-slate-500 ">{stat.title}</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium leading-5 text-slate-500">{stat.title}</p>
                     <h3 className="text-2xl font-bold text-slate-900  mt-1">{stat.value}</h3>
                   </div>
                 </CardContent>

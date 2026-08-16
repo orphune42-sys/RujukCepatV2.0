@@ -80,7 +80,7 @@ export default function CariLayanan() {
         ))}
       </motion.div>
 
-      <motion.div variants={fadeIn} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div variants={fadeIn} className="grid grid-cols-1 sm:grid-cols-2 min-[1800px]:grid-cols-3 gap-6">
         {visibleServices.map((service) => (
           <Card key={service.id} hover className="flex flex-col border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
             {/* Full-width image at top of card */}

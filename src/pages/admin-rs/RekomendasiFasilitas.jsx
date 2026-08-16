@@ -28,13 +28,13 @@ export default function RekomendasiFasilitas() {
         <p className="text-gray-500">Temukan fasilitas kesehatan terdekat yang tersedia untuk rujukan.</p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6 lg:flex-1 lg:min-h-0">
+      <div className="flex flex-col gap-6 lg:grid lg:flex-1 lg:min-h-0 lg:grid-cols-[minmax(20rem,0.9fr)_minmax(0,1.6fr)]">
         {/* List Fasilitas */}
-        <div className="w-full lg:w-1/3 flex flex-col gap-4 pr-2 lg:overflow-y-auto custom-scrollbar">
+        <div className="flex w-full flex-col gap-4 lg:min-w-0 lg:overflow-y-auto lg:pr-2 custom-scrollbar">
           {hospitalData.map((facility, index) => (
             <motion.div key={facility.id} variants={slideUp} custom={index}>
               <Card hover onClick={() => setSelectedFacilityId(facility.id)} className={`cursor-pointer border-l-4 ${selectedFacilityId === facility.id ? 'border-l-[#9ccda5]' : 'border-l-transparent hover:border-l-[#9ccda5]'}`}>
-                <CardContent className="p-4 flex gap-4">
+                <CardContent className="flex gap-4 p-4">
                   {/* Foto Faskes */}
                   <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-gray-200 bg-gray-100">
                     <img src={facility.image} alt={facility.name} className="w-full h-full object-cover" />
@@ -47,14 +47,14 @@ export default function RekomendasiFasilitas() {
                       <span className="flex items-center gap-1"><Navigation className="w-3 h-3" /> {index + 1}.{' '}{index + 2} km</span>
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-md text-gray-700">
+                    <div className="mt-3 flex flex-col gap-2">
+                      <span className="w-fit text-xs font-medium px-2 py-1 bg-gray-100 rounded-md text-gray-700">
                         {facility.availability.rawatInap !== undefined ? `${facility.availability.rawatInap} Bed Tersedia` : (facility.availability.status ?? 'Tersedia')}
                       </span>
                       <Button
                         size="sm"
                         variant="primary"
-                        className="h-7 px-3 text-xs font-bold rounded-lg"
+                        className="h-8 w-full px-3 text-xs font-bold rounded-lg"
                         onClick={(event) => {
                           event.stopPropagation();
                           navigate(`/admin-rs/detailrs/${facility.id}`);
@@ -70,7 +70,7 @@ export default function RekomendasiFasilitas() {
           ))}
         </div>
 
-        <motion.div variants={slideUp} className="h-[400px] w-full lg:h-auto lg:w-2/3 lg:flex-1">
+        <motion.div variants={slideUp} className="h-[400px] w-full lg:h-auto lg:min-w-0">
           <MapView hospitals={hospitalData} height="100%" center={[selectedFacility.lat, selectedFacility.lng]} zoom={14} />
         </motion.div>
       </div>

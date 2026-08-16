@@ -175,9 +175,7 @@ export default function CariRumahSakit() {
 
               <div className="space-y-4">
                 {filteredHospitals.map((hospital, i) => {
-                  const igd = { text: 'text-green-600 ', bg: 'bg-white ', border: 'border-none' };
-                  const icu = { text: 'text-red-500', bg: 'bg-white ', border: 'border-none' };
-                  const inap = { text: 'text-blue-500', bg: 'bg-white ', border: 'border-none' };
+                  const availabilityColor = { text: 'text-accent', bg: 'bg-white', border: 'border-none' };
 
                   return (
                     <motion.div
@@ -229,9 +227,9 @@ export default function CariRumahSakit() {
                               {hospital.availability.igd !== undefined ? (
                                 <div className="grid grid-cols-3 gap-2">
                                   {[
-                                    { label: 'IGD', val: hospital.availability.igd ?? 0, c: igd },
-                                    { label: 'ICU', val: hospital.availability.icu ?? 0, c: icu },
-                                    { label: 'Rawat Inap', val: hospital.availability.rawatInap ?? 0, c: inap },
+                                    { label: 'IGD', val: hospital.availability.igd ?? 0, c: availabilityColor },
+                                    { label: 'ICU', val: hospital.availability.icu ?? 0, c: availabilityColor },
+                                    { label: 'Rawat Inap', val: hospital.availability.rawatInap ?? 0, c: availabilityColor },
                                   ].map(({ label, val, c }) => (
                                     <div key={label} className={`flex flex-col items-center justify-center py-3 rounded-xl border ${c.bg} ${c.border}`}>
                                       <span className={`text-xl font-bold leading-none ${c.text}`}>{val}</span>

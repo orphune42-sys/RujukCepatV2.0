@@ -34,16 +34,16 @@ export default function Dashboard() {
         <NotificationMenu role="admin_rs" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6">
         {statCards.map((stat, index) => (
           <motion.div key={index} variants={slideUp}>
             <Card hover>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className={`p-3 rounded-xl bg-gray-100 ${stat.color}`}>
+              <CardContent className="flex min-w-0 items-center gap-4 p-5">
+                <div className={`shrink-0 p-3 rounded-xl bg-gray-100 ${stat.color}`}>
                   <stat.icon className="w-6 h-6" />
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-500">{stat.title}</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium leading-5 text-gray-500">{stat.title}</p>
                   <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
                 </div>
               </CardContent>

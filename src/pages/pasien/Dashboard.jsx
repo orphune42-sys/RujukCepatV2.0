@@ -100,14 +100,14 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3.5 p-6 flex-1">
-              <div className="flex items-center justify-between gap-3 rounded-2xl bg-secondary/50 p-4 border border-border/10">
+              <div className="flex flex-col items-start gap-2 rounded-2xl bg-secondary/50 p-4 border border-border/10 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <div className="min-w-0">
                   <p className="font-bold text-sm text-gray-950">Paracetamol 500mg</p>
                   <p className="text-xs font-semibold text-gray-400 mt-1">3x Sehari - Sesudah makan</p>
                 </div>
                 <Badge variant="warning" className="shrink-0 text-[10px] font-extrabold uppercase px-2 py-0.5 whitespace-nowrap">Tersisa 2 hari</Badge>
               </div>
-              <div className="flex items-center justify-between gap-3 rounded-2xl bg-secondary/50 p-4 border border-border/10">
+              <div className="flex flex-col items-start gap-2 rounded-2xl bg-secondary/50 p-4 border border-border/10 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <div className="min-w-0">
                   <p className="font-bold text-sm text-gray-950">Amoxicillin</p>
                   <p className="text-xs font-semibold text-gray-400 mt-1">3x Sehari - Habiskan</p>

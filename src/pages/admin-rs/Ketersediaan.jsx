@@ -5,11 +5,9 @@ import { staggerContainer, slideUp } from '../../utils/animations';
 import { Bed, Activity, Stethoscope } from 'lucide-react';
 
 const bedData = [
-  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, total: 25, available: 5, color: 'text-green-600', bg: 'bg-green-600' },
-  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, total: 15, available: 2, color: 'text-red-500', bg: 'bg-red-500' },
-  { id: 'ranap-umum', name: 'Rawat Inap Umum', icon: Bed, total: 100, available: 32, color: 'text-blue-500', bg: 'bg-blue-500' },
-  { id: 'ranap-anak', name: 'Rawat Inap Anak', icon: Bed, total: 40, available: 12, color: 'text-emerald-500', bg: 'bg-emerald-500' },
-  { id: 'ranap-maternitas', name: 'Maternitas / Kebidanan', icon: Bed, total: 30, available: 8, color: 'text-pink-500', bg: 'bg-pink-500' },
+  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, total: 25, available: 5, color: 'text-accent', bg: 'bg-primary' },
+  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, total: 15, available: 2, color: 'text-accent', bg: 'bg-primary' },
+  { id: 'ranap', name: 'Rawat Inap', icon: Bed, total: 100, available: 32, color: 'text-accent', bg: 'bg-primary' },
 ];
 
 export default function Ketersediaan() {
@@ -39,7 +37,7 @@ export default function Ketersediaan() {
                     </div>
                     <div className="text-right">
                       <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Tersedia</p>
-                      <h3 className={`text-3xl font-bold ${room.available < 5 ? 'text-red-500' : 'text-gray-900'}`}>
+                      <h3 className="text-3xl font-bold text-gray-900">
                         {room.available}
                       </h3>
                     </div>
