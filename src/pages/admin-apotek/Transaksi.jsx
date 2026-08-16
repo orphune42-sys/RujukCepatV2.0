@@ -43,11 +43,11 @@ const Transaksi = () => {
         </div>
         <div className="flex gap-2">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={20} />
             <input
               type="text"
               placeholder="Cari ID/Pasien..."
-              className="pl-10 pr-4 py-2 bg-white  border border-slate-200  rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5] "
+              className="h-12 rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
             />
           </div>
         </div>

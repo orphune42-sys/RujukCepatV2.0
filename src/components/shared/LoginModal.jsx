@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Shield, Stethoscope, Mail, Lock, UserPlus, ArrowLeft, Phone, CalendarDays, Droplets, MapPin, Building2 } from 'lucide-react';
+import { X, User, Shield, Pill, Hospital, Mail, Lock, UserPlus, ArrowLeft, Phone, CalendarDays, Droplets, MapPin, Building2 } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import { useNavigate } from 'react-router-dom';
 import Select from '../ui/Select';
@@ -73,8 +73,8 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
 
   const roles = [
     { id: 'pasien', label: 'Pasien', icon: <User className="h-5 w-5" /> },
-    { id: 'admin_rs', label: 'Rumah Sakit', icon: <Shield className="h-5 w-5" /> },
-    { id: 'admin_apotek', label: 'Apotek', icon: <Stethoscope className="h-5 w-5" /> },
+    { id: 'admin_rs', label: 'Rumah Sakit', icon: <Hospital className="h-5 w-5" /> },
+    { id: 'admin_apotek', label: 'Apotek', icon: <Pill className="h-5 w-5" /> },
   ];
   const isPatientRegistration = mode === 'register' && activeTab === 'pasien';
   const isFacilityRegistration = mode === 'register' && ['admin_rs', 'admin_apotek'].includes(activeTab);

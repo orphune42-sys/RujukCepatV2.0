@@ -48,13 +48,13 @@ export default function JadwalDokter() {
 
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:w-72">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
             <input
               type="text"
               placeholder="Cari dokter atau spesialis..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200  bg-white  text-sm text-text  focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
+              className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function JadwalDokter() {
             <div className="p-5 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-center">
               {/* Doctor Profile Info */}
               <div className="md:col-span-5 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-secondary/50  border border-border/20 flex items-center justify-center text-accent  font-bold text-lg shrink-0 shadow-sm">
+                <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-sm">
                   {doc.initial}
                 </div>
                 <div>
@@ -80,18 +80,18 @@ export default function JadwalDokter() {
 
               {/* Days */}
               <div className="md:col-span-3 flex items-center gap-2.5 text-gray-600  font-medium">
-                <CalendarIcon className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+                <CalendarIcon className="w-4.5 h-4.5 text-accent shrink-0" />
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Hari Kerja</p>
+                  <p className="mb-1 text-xs font-semibold text-gray-500 leading-none">Hari Kerja</p>
                   <p className="text-sm font-semibold">{doc.hari}</p>
                 </div>
               </div>
 
               {/* Hours */}
               <div className="md:col-span-2 flex items-center gap-2.5 text-gray-600  font-medium">
-                <Clock className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+                <Clock className="w-4.5 h-4.5 text-accent shrink-0" />
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Jam Praktik</p>
+                  <p className="mb-1 text-xs font-semibold text-gray-500 leading-none">Jam Praktik</p>
                   <p className="text-sm font-semibold">{doc.jam}</p>
                 </div>
               </div>

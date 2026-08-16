@@ -4,7 +4,9 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { MapPin, Phone, Building, CheckCircle2, Circle, Clock, FileText, Download } from 'lucide-react';
+import { MapPin, Phone, CheckCircle2, Circle, Clock, Download } from 'lucide-react';
+
+const hospitalImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1qE0c1msns5qEa3RUbUwueqn0B2YdJewUFpVA3EtibJNrbhR-9cAhXdI&s=10';
 
 export default function DetailRujukan() {
   const downloadReferral = () => {
@@ -34,7 +36,7 @@ export default function DetailRujukan() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-bold text-gray-900 ">Detail Rujukan</h1>
-            <Badge variant="primary">Aktif</Badge>
+            <Badge variant="success">Aktif</Badge>
           </div>
           <p className="text-gray-500 ">No. RJ-20261015-1A</p>
         </div>
@@ -49,8 +51,8 @@ export default function DetailRujukan() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 bg-secondary/50 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Building className="w-8 h-8 text-accent" />
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-border bg-secondary">
+                  <img src={hospitalImage} alt="RSUP Dr. Sardjito" className="h-full w-full object-cover" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 ">RSUP Dr. Sardjito</h3>
@@ -88,12 +90,9 @@ export default function DetailRujukan() {
               <CardTitle>Catatan Rujukan</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-gray-400 mt-1" />
-                <div>
-                  <p className="text-gray-900 ">Pasien mengeluh nyeri perut bagian bawah berulang sejak 3 hari lalu. Hasil lab darah menunjukkan leukosit tinggi. Mohon evaluasi lanjutan dan USG abdomen.</p>
-                  <p className="text-sm text-gray-500  mt-2">Diagnosa Awal: K52.9 Noninfective gastroenteritis and colitis, unspecified</p>
-                </div>
+              <div>
+                <p className="text-gray-900 ">Pasien mengeluh nyeri perut bagian bawah berulang sejak 3 hari lalu. Hasil lab darah menunjukkan leukosit tinggi. Mohon evaluasi lanjutan dan USG abdomen.</p>
+                <p className="text-sm text-gray-500  mt-2">Diagnosa Awal: K52.9 Noninfective gastroenteritis and colitis, unspecified</p>
               </div>
             </CardContent>
           </Card>
@@ -110,7 +109,7 @@ export default function DetailRujukan() {
                   <div key={index} className="relative">
                     <span className="absolute -left-[35px] top-1 bg-white ">
                       {step.completed ? (
-                        <CheckCircle2 className="w-6 h-6 text-primary" />
+                        <CheckCircle2 className="w-6 h-6 text-accent" />
                       ) : step.current ? (
                         <Clock className="w-6 h-6 text-yellow-500" />
                       ) : (

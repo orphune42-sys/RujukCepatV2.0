@@ -41,7 +41,7 @@ export default function Dashboard() {
                   <FileText className="w-5 h-5 text-accent" />
                   Rujukan Aktif
                 </CardTitle>
-                <Badge variant={isReferralCancelled ? 'default' : 'primary'} className="font-extrabold uppercase text-[10px] tracking-widest px-2.5 py-1 shrink-0">
+                <Badge variant={isReferralCancelled ? 'default' : 'primary'} className="px-2.5 py-1 text-xs font-bold shrink-0">
                   {isReferralCancelled ? 'Dibatalkan' : 'Menunggu Konfirmasi'}
                 </Badge>
               </CardHeader>
@@ -49,18 +49,18 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
-                      <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Rumah Sakit Tujuan</p>
+                      <p className="mb-1 text-sm font-semibold text-gray-500">Rumah Sakit Tujuan</p>
                       <p className="font-bold text-lg text-gray-950">RSUP Dr. Sardjito</p>
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Poliklinik Tujuan</p>
+                      <p className="mb-1 text-sm font-semibold text-gray-500">Poliklinik Tujuan</p>
                       <p className="font-semibold text-gray-800">Poli Penyakit Dalam</p>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Jadwal Kunjungan</p>
-                      <div className="flex items-center gap-2 mt-1 bg-secondary/30 p-3 rounded-2xl border border-border/30">
+                      <p className="mb-1 text-sm font-semibold text-gray-500">Jadwal Kunjungan</p>
+                      <div className="mt-1 flex items-center gap-2">
                         <Clock className="w-4 h-4 text-accent shrink-0" />
                         <p className="text-sm font-semibold text-gray-800">Senin, 15 Okt 2026 · 09:00 WIB</p>
                       </div>
@@ -73,7 +73,7 @@ export default function Dashboard() {
             <div className="px-6 py-5 border-t border-border/50 bg-gray-50/50 flex flex-col sm:flex-row gap-3">
               <Button
                 variant="outline"
-                className="flex-1 rounded-xl text-xs font-bold py-3"
+                className="h-12 flex-1 rounded-xl text-sm font-bold"
                 onClick={() => setIsReferralCancelled(true)}
                 disabled={isReferralCancelled}
               >
@@ -81,7 +81,7 @@ export default function Dashboard() {
               </Button>
               <Button
                 variant="primary"
-                className="flex-1 rounded-xl text-xs font-bold py-3 flex items-center justify-center gap-1 shadow-md shadow-primary/10"
+                className="h-12 flex-1 rounded-xl text-sm font-bold flex items-center justify-center gap-1 shadow-md shadow-primary/10"
                 onClick={() => navigate('/pasien/rujukan/RJ-20261015-1A')}
               >
                 Lihat Detail

@@ -5,9 +5,9 @@ import { staggerContainer, slideUp } from '../../utils/animations';
 import { Bed, Activity, Stethoscope } from 'lucide-react';
 
 const bedData = [
-  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, total: 25, available: 5, color: 'text-accent', bg: 'bg-primary' },
-  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, total: 15, available: 2, color: 'text-accent', bg: 'bg-primary' },
-  { id: 'ranap', name: 'Rawat Inap', icon: Bed, total: 100, available: 32, color: 'text-accent', bg: 'bg-primary' },
+  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, total: 25, available: 5, bg: 'bg-accent' },
+  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, total: 15, available: 2, bg: 'bg-accent' },
+  { id: 'ranap', name: 'Rawat Inap', icon: Bed, total: 100, available: 32, bg: 'bg-accent' },
 ];
 
 export default function Ketersediaan() {
@@ -32,7 +32,7 @@ export default function Ketersediaan() {
               <Card hover className="h-full flex flex-col justify-between">
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`p-3 rounded-xl bg-gray-100 ${room.color}`}>
+                    <div className="rounded-xl bg-accent p-3 text-white">
                       <room.icon className="w-6 h-6" />
                     </div>
                     <div className="text-right">

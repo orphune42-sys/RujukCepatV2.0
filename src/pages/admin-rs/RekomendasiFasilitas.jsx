@@ -52,9 +52,8 @@ export default function RekomendasiFasilitas() {
                         {facility.availability.rawatInap !== undefined ? `${facility.availability.rawatInap} Bed Tersedia` : (facility.availability.status ?? 'Tersedia')}
                       </span>
                       <Button
-                        size="sm"
                         variant="primary"
-                        className="h-8 w-full px-3 text-xs font-bold rounded-lg"
+                        className="h-11 w-full rounded-xl px-4 text-sm font-bold"
                         onClick={(event) => {
                           event.stopPropagation();
                           navigate(`/admin-rs/detailrs/${facility.id}`);

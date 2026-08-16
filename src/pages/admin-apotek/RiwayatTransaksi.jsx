@@ -65,11 +65,11 @@ const RiwayatTransaksi = () => {
         </div>
         <div className="flex flex-wrap gap-2">
           <div className="relative flex-1 sm:flex-none">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input type="text" value={searchTerm} onChange={(event) => updateSearch(event.target.value)} placeholder="Cari transaksi..." className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#9ccda5] sm:w-64" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={20} />
+            <input type="text" value={searchTerm} onChange={(event) => updateSearch(event.target.value)} placeholder="Cari transaksi..." className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60 sm:w-64" />
           </div>
           <div className="relative">
-            <Button variant="outline" onClick={() => setIsDateFilterOpen((open) => !open)} aria-expanded={isDateFilterOpen} className="gap-2">
+            <Button onClick={() => setIsDateFilterOpen((open) => !open)} aria-expanded={isDateFilterOpen} className="h-12 gap-2 px-5 text-sm">
               <Calendar size={18} /> Rentang Waktu
             </Button>
             {isDateFilterOpen && (
@@ -88,17 +88,18 @@ const RiwayatTransaksi = () => {
       <motion.div variants={slideUp} initial="initial" animate="animate">
         <Card className="border-0 shadow-sm bg-white overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
+            <table className="min-w-[800px] w-full table-fixed text-sm text-left">
+              <colgroup><col className="w-1/5" /><col className="w-1/5" /><col className="w-1/5" /><col className="w-1/5" /><col className="w-1/5" /></colgroup>
               <thead className="text-slate-500 bg-slate-50 border-b border-slate-200"><tr><th className="px-6 py-4 font-medium">ID Transaksi</th><th className="px-6 py-4 font-medium">Tanggal</th><th className="px-6 py-4 font-medium">Pasien</th><th className="px-6 py-4 font-medium">Total Harga</th><th className="px-6 py-4 font-medium">Status</th></tr></thead>
               <tbody className="divide-y divide-slate-100">
-                {visibleHistory.map((row) => <tr key={row.id} className="hover:bg-slate-50 transition-colors"><td className="px-6 py-4 font-medium text-slate-900">{row.id}</td><td className="px-6 py-4 text-slate-500">{row.date}</td><td className="px-6 py-4 text-slate-700">{row.patient}</td><td className="px-6 py-4 text-slate-900 font-medium">{row.total}</td><td className="px-6 py-4"><Badge variant={getBadgeVariant(row.status)}>{row.status}</Badge></td></tr>)}
+                {visibleHistory.map((row) => <tr key={row.id} className="hover:bg-slate-50 transition-colors"><td className="whitespace-nowrap px-6 py-4 font-medium text-slate-900">{row.id}</td><td className="whitespace-nowrap px-6 py-4 text-slate-500">{row.date}</td><td className="whitespace-nowrap px-6 py-4 text-slate-700">{row.patient}</td><td className="whitespace-nowrap px-6 py-4 text-slate-900 font-medium">{row.total}</td><td className="whitespace-nowrap px-6 py-4"><Badge variant={getBadgeVariant(row.status)}>{row.status}</Badge></td></tr>)}
                 {visibleHistory.length === 0 && <tr><td colSpan="5" className="px-6 py-12 text-center text-slate-500">Tidak ada transaksi yang sesuai.</td></tr>}
               </tbody>
             </table>
           </div>
           <div className="px-6 py-4 border-t border-slate-100 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-slate-500">Menampilkan {filteredHistory.length ? startIndex + 1 : 0}-{Math.min(startIndex + PAGE_SIZE, filteredHistory.length)} dari {filteredHistory.length} data</p>
-            <div className="flex gap-2"><Button variant="outline" size="sm" disabled={currentPage === 1} onClick={() => setPage((current) => current - 1)}>Sebelumnya</Button><Button variant="outline" size="sm" disabled={currentPage === totalPages} onClick={() => setPage((current) => current + 1)}>Selanjutnya</Button></div>
+            <div className="flex gap-2"><Button variant="outline" className="h-11 px-4 text-sm" disabled={currentPage === 1} onClick={() => setPage((current) => current - 1)}>Sebelumnya</Button><Button className="h-11 px-4 text-sm" disabled={currentPage === totalPages} onClick={() => setPage((current) => current + 1)}>Selanjutnya</Button></div>
           </div>
         </Card>
       </motion.div>

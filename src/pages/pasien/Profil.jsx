@@ -76,14 +76,14 @@ export default function Profil() {
         <Card>
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full bg-secondary text-3xl font-bold text-accent">
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full bg-accent text-3xl font-bold text-white">
                 {profilePhoto ? <img src={profilePhoto} alt={`Foto ${profile.name}`} className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center">{profile.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase()}</div>}
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-2xl font-bold text-gray-900 ">{profile.name}</h2>
                 <p className="text-gray-500  mb-2">NIK: 3404012345678901</p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-3">
-                  <Badge variant="primary" className="px-3 py-1 text-sm">Pasien BPJS</Badge>
+                  <Badge variant="success" className="px-3 py-1 text-sm">Pasien BPJS</Badge>
                   <Badge variant="success" className="px-3 py-1 text-sm">Akun Terverifikasi</Badge>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function Profil() {
               {settingItems.map(({ label, icon: Icon }) => (
                 <div key={label} className="w-full flex items-center justify-between p-3 rounded-lg text-left text-gray-700">
                   <div className="flex items-center gap-3">
-                    <Icon className="w-5 h-5 text-gray-400" />
+                    <Icon className="w-5 h-5 text-accent" />
                     <span className="font-medium">{label}</span>
                   </div>
                 </div>

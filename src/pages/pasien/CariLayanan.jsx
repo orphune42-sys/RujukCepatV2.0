@@ -51,13 +51,13 @@ export default function CariLayanan() {
 
       <motion.form variants={slideUp} className="flex flex-col sm:flex-row gap-3" onSubmit={(event) => event.preventDefault()}>
         <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
           <input
             type="search"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Cari nama faskes, alamat, atau jenis layanan..."
-            className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white text-gray-950 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm font-medium text-sm"
+            className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
           />
         </div>
         <Button type="submit" variant="primary" size="lg" className="px-8 rounded-2xl font-bold shadow-md shadow-primary/10">Cari Faskes</Button>
@@ -114,7 +114,7 @@ export default function CariLayanan() {
                 <div className="mt-5">
                   <Button
                     variant="primary"
-                    className="w-full rounded-xl text-xs font-bold py-3 flex items-center justify-center gap-1"
+                    className="h-12 w-full rounded-xl text-sm font-bold flex items-center justify-center gap-1"
                     onClick={() => navigate(`/pasien/detailrs/${service.id}`)}
                   >
                     Pilih

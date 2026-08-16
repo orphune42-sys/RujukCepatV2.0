@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, ArrowLeft } from 'lucide-react';
+import { MapPin, Phone, ArrowLeft, Activity, Stethoscope, Bed } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
@@ -19,6 +19,11 @@ export default function DetailRumahSakit() {
   const isAdminRsRoute = location.pathname.startsWith('/admin-rs');
   const isPasienRoute = location.pathname.startsWith('/pasien');
   const backPath = isAdminRsRoute ? "/admin-rs/rekomendasi" : isPasienRoute ? "/pasien/cari-layanan" : "/#cari-fk";
+  const availabilityRooms = [
+    { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, available: hospital.availability?.igd ?? 0, total: hospital.availability?.totalIgd ?? 25 },
+    { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, available: hospital.availability?.icu ?? 0, total: hospital.availability?.totalIcu ?? 15 },
+    { id: 'rawat-inap', name: 'Rawat Inap', icon: Bed, available: hospital.availability?.rawatInap ?? 0, total: hospital.availability?.totalRawatInap ?? 100 },
+  ];
 
   return (
     <div className="bg-background min-h-screen pb-20">
@@ -72,42 +77,25 @@ export default function DetailRumahSakit() {
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-2xl font-bold text-gray-950">Kapasitas & Ketersediaan Ruangan</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="bg-white border border-border shadow-sm hover:border-[#9ccda5]/40 transition-all duration-300">
-                    <CardContent className="p-5 flex flex-col justify-between h-32">
-                      <div>
-                        <span className="text-sm font-semibold text-gray-500">IGD</span>
-                      </div>
-                      <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.igd ?? 0}</span>
-                        <span className="text-sm text-gray-400">Bed</span>
-                      </div>
-                    </CardContent>
-                  </Card>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  {availabilityRooms.map((room) => {
+                    const occupied = Math.max(0, room.total - room.available);
+                    const occupancyRate = Math.min(100, (occupied / room.total) * 100);
+                    const Icon = room.icon;
 
-                  <Card className="bg-white border border-border shadow-sm hover:border-[#9ccda5]/40 transition-all duration-300">
-                    <CardContent className="p-5 flex flex-col justify-between h-32">
-                      <div>
-                        <span className="text-sm font-semibold text-gray-500">ICU</span>
-                      </div>
-                      <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.icu ?? 0}</span>
-                        <span className="text-sm text-gray-400">Bed</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-white border border-border shadow-sm hover:border-[#9ccda5]/40 transition-all duration-300">
-                    <CardContent className="p-5 flex flex-col justify-between h-32">
-                      <div>
-                        <span className="text-sm font-semibold text-gray-500">Rawat Inap</span>
-                      </div>
-                      <div className="flex items-baseline gap-1 mt-2">
-                        <span className="text-4xl font-extrabold text-accent">{hospital.availability?.rawatInap ?? 0}</span>
-                        <span className="text-sm text-gray-400">Bed</span>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    return (
+                      <Card key={room.id} hover className="flex h-full flex-col justify-between">
+                        <CardContent className="p-5">
+                          <div className="mb-5 flex items-start justify-between">
+                            <div className="rounded-xl bg-accent p-3 text-white"><Icon className="h-5 w-5" /></div>
+                            <div className="text-right"><p className="text-xs font-medium uppercase tracking-wider text-gray-500">Tersedia</p><h3 className="text-3xl font-bold text-gray-900">{room.available}</h3></div>
+                          </div>
+                          <h3 className="mb-4 text-base font-semibold text-gray-900">{room.name}</h3>
+                          <div className="space-y-2"><div className="flex justify-between text-sm"><span className="text-gray-500">Terisi: {occupied}</span><span className="text-gray-500">Total: {room.total}</span></div><div className="h-2 w-full overflow-hidden rounded-full bg-gray-200"><div className="h-full bg-accent transition-all duration-500" style={{ width: `${occupancyRate}%` }} /></div></div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </motion.section>
 

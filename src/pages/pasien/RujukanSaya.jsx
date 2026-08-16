@@ -56,15 +56,15 @@ export default function RujukanSaya() {
                   <div className="p-4 lg:p-6 flex-1">
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex items-center gap-2">
-                        <div className="p-2 bg-secondary/50 rounded-lg">
-                          <FileText className="w-5 h-5 text-accent" />
+                        <div className="rounded-lg bg-accent p-2 text-white">
+                          <FileText className="w-5 h-5" />
                         </div>
                         <div>
                           <p className="text-sm text-gray-500">Nomor Rujukan</p>
                           <p className="font-semibold text-gray-900">RJ-20261015-{item}A</p>
                         </div>
                       </div>
-                      <Badge variant={status === 'Aktif' ? "primary" : status === 'Selesai' ? "success" : "default"}>
+                      <Badge variant={status === 'Aktif' || status === 'Selesai' ? "success" : "default"}>
                         {status}
                       </Badge>
                     </div>

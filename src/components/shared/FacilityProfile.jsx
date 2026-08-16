@@ -122,7 +122,7 @@ export default function FacilityProfile({ title, description, initialProfile }) 
 }
 
 function ProfileValue({ label, value, icon: Icon, className = '' }) {
-  return <div className={className}><p className="flex items-center gap-1.5 text-sm text-gray-500">{Icon && <Icon className="h-3.5 w-3.5" />}{label}</p><p className="mt-1 font-medium text-gray-900">{value}</p></div>;
+  return <div className={className}><p className="flex items-center gap-1.5 text-sm text-gray-500">{Icon && <Icon className="h-3.5 w-3.5 text-accent" />}{label}</p><p className="mt-1 font-medium text-gray-900">{value}</p></div>;
 }
 
 function ProfileField({ label, children, className = '' }) {
@@ -130,5 +130,5 @@ function ProfileField({ label, children, className = '' }) {
 }
 
 function SettingItem({ icon: Icon, label }) {
-  return <div className="flex w-full items-center gap-3 rounded-lg p-3 text-left text-gray-700"><Icon className="h-5 w-5 text-gray-400" /><span className="font-medium">{label}</span></div>;
+  return <div className="flex w-full items-center gap-3 rounded-lg p-3 text-left text-gray-700"><Icon className="h-5 w-5 text-accent" /><span className="font-medium">{label}</span></div>;
 }

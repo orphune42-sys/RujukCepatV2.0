@@ -67,7 +67,7 @@ export default function Dashboard() {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
                     <div
-                      className="bg-[#9ccda5] h-2.5 rounded-full"
+                      className="bg-accent h-2.5 rounded-full"
                       style={{ width: `${((bed.total - bed.available) / bed.total) * 100}%` }}
                     ></div>
                   </div>
@@ -86,7 +86,7 @@ export default function Dashboard() {
               <div className="space-y-4">
                 {[1, 2, 3].map((_, i) => (
                   <div key={i} className="flex items-start gap-4 border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                    <div className="p-2 rounded-full bg-[#9ccda5]/20 text-[#9ccda5]">
+                    <div className="rounded-full bg-accent p-2 text-white">
                       <FileText className="w-4 h-4" />
                     </div>
                     <div>
