@@ -2,18 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { slideUp, staggerContainer } from '../../utils/animations';
+import { Activity, Users, CheckCircle, Clock } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
 
-import ActivityIcon from '../../assets/icons/activity.svg?react';
-import UsersIcon from '../../assets/icons/users.svg?react';
-import CheckCircleIcon from '../../assets/icons/check-circle.svg?react';
-import ClockIcon from '../../assets/icons/clock.svg?react';
-
 const statCards = [
-  { title: 'Rujukan Masuk', value: '12', icon: ActivityIcon, color: 'text-blue-500' },
-  { title: 'Rujukan Aktif', value: '5', icon: ClockIcon, color: 'text-amber-500' },
-  { title: 'Selesai Hari Ini', value: '18', icon: CheckCircleIcon, color: 'text-emerald-500' },
-  { title: 'Pasien IGD', value: '24', icon: UsersIcon, color: 'text-purple-500' },
+  { title: 'Rujukan Masuk', value: '12', icon: Activity, color: 'text-blue-500' },
+  { title: 'Rujukan Aktif', value: '5', icon: Clock, color: 'text-amber-500' },
+  { title: 'Selesai Hari Ini', value: '18', icon: CheckCircle, color: 'text-emerald-500' },
+  { title: 'Pasien IGD', value: '24', icon: Users, color: 'text-purple-500' },
 ];
 
 const bedStats = [
@@ -91,7 +87,7 @@ export default function Dashboard() {
                 {[1, 2, 3].map((_, i) => (
                   <div key={i} className="flex items-start gap-4 border-b border-gray-100 pb-4 last:border-0 last:pb-0">
                     <div className="p-2 rounded-full bg-[#9ccda5]/20 text-[#9ccda5]">
-                      <ActivityIcon className="w-4 h-4" />
+                      <Activity className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Rujukan baru dari Puskesmas Melati</p>

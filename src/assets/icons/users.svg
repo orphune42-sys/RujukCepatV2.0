@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Orang pertama -->
-  <circle cx="7.5" cy="6" r="3"/>
-  <path d="M1.5 17.5c0-3.5 2.7-5.5 6-5.5s6 2 6 5.5"/>
-  <!-- Orang kedua (background) -->
-  <circle cx="14.5" cy="6" r="2.5"/>
-  <path d="M14.5 12c1.8 0 4 1 4 4"/>
-</svg>

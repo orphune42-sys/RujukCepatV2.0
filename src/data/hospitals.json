@@ -64,9 +64,9 @@
     "phone": "(0341) 567890",
     "rating": 4.5,
     "availability": {
-      "igd": 0,
+      "igd": 2,
       "icu": 0,
-      "rawatInap": 0
+      "rawatInap": 4
     },
     "specialties": ["Pelayanan Umum", "KIA", "Gigi", "Imunisasi", "Laboratorium"],
     "image": "https://tbcpuskesmasdinoyo.weebly.com/uploads/3/3/2/0/3320660/5689182_orig.jpg"
@@ -82,9 +82,9 @@
     "phone": "(0341) 456789",
     "rating": 4.4,
     "availability": {
-      "igd": 0,
+      "igd": 3,
       "icu": 0,
-      "rawatInap": 8
+      "rawatInap": 6
     },
     "specialties": ["Pelayanan Umum", "Penyakit Dalam", "Anak", "Gigi"],
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvGtKIxdCOisM1A0cQJbEggUn-qwnE8oyLd58367_PAdnAn0VvMkUahSm2&s=10"
@@ -98,12 +98,12 @@
     "lat": -7.9528,
     "lng": 112.6146,
     "phone": "(0341) 000000",
+    "rating": 4.8,
     "availability": {
-      "ruang konsultasi": 2,
-      "resepsionis": 3,
-      "ruang tunggu": 2
+      "status": "Buka 24 Jam",
+      "stock": "Obat & Resep Lengkap"
     },
-    "services": [ "Pelayanan Resep", "Konsultasi Obat", "Obat Bebas", "Vitamin & Suplemen"],
+    "services": ["Pelayanan Resep", "Konsultasi Obat", "Obat Bebas", "Vitamin & Suplemen"],
     "image": "https://apotek-k24.com/images/blog/16777494720240618045331yunita.isnacara%20buka%20franchise.jpg"
   }
 ]

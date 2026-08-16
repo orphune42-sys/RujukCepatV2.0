@@ -225,20 +225,31 @@ export default function CariRumahSakit() {
 
                               </div>
 
-                              {/* Row 2: Bed availability */}
-                              <div className="grid grid-cols-3 gap-2">
-                                {[
-                                  { label: 'IGD', val: hospital.availability.igd, c: igd },
-                                  { label: 'ICU', val: hospital.availability.icu, c: icu },
-                                  { label: 'Rawat Inap', val: hospital.availability.rawatInap, c: inap },
-                                ].map(({ label, val, c }) => (
-                                  <div key={label} className={`flex flex-col items-center justify-center py-3 rounded-xl border ${c.bg} ${c.border}`}>
-                                    <span className={`text-xl font-bold leading-none ${c.text}`}>{val}</span>
-                                    <span className="text-[10px] text-muted mt-1 font-semibold uppercase tracking-widest">{label}</span>
-                                    <span className="text-[9px] text-muted/60">Bed</span>
-                                  </div>
-                                ))}
-                              </div>
+                              {/* Row 2: Bed availability or Apotek info */}
+                              {hospital.availability.igd !== undefined ? (
+                                <div className="grid grid-cols-3 gap-2">
+                                  {[
+                                    { label: 'IGD', val: hospital.availability.igd ?? 0, c: igd },
+                                    { label: 'ICU', val: hospital.availability.icu ?? 0, c: icu },
+                                    { label: 'Rawat Inap', val: hospital.availability.rawatInap ?? 0, c: inap },
+                                  ].map(({ label, val, c }) => (
+                                    <div key={label} className={`flex flex-col items-center justify-center py-3 rounded-xl border ${c.bg} ${c.border}`}>
+                                      <span className={`text-xl font-bold leading-none ${c.text}`}>{val}</span>
+                                      <span className="text-[10px] text-muted mt-1 font-semibold uppercase tracking-widest">{label}</span>
+                                      <span className="text-[9px] text-muted/60">Bed</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-between p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-100/80">
+                                  <span className="text-xs font-bold text-emerald-800">
+                                    🟢 {hospital.availability.status ?? 'Buka 24 Jam'}
+                                  </span>
+                                  <span className="text-xs font-semibold text-emerald-700">
+                                    {hospital.availability.stock ?? 'Obat & Resep Tersedia'}
+                                  </span>
+                                </div>
+                              )}
 
                               {/* Row 3: Specialties + CTA */}
                               <div className="flex items-center justify-between gap-3 mt-auto">

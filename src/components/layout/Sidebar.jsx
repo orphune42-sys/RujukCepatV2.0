@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { HeartPulse, X } from 'lucide-react';
+import {
+  HeartPulse, LayoutDashboard, Search, FileText, Pill, User,
+  PlusCircle, Calendar, MapPin, Inbox, Clock, LogOut, X
+} from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
-
-import DashboardIcon from '../../assets/icons/dashboard.svg?react';
-import SearchIcon from '../../assets/icons/search.svg?react';
-import DocumentIcon from '../../assets/icons/document.svg?react';
-import PillIcon from '../../assets/icons/pill.svg?react';
-import UserIcon from '../../assets/icons/user.svg?react';
-import PlusCircleIcon from '../../assets/icons/plus-circle.svg?react';
-import InboxIcon from '../../assets/icons/inbox.svg?react';
-import BedIcon from '../../assets/icons/bed.svg?react';
-import CalendarIcon from '../../assets/icons/calendar.svg?react';
-import MapPinIcon from '../../assets/icons/map-pin.svg?react';
-import ClockIcon from '../../assets/icons/clock.svg?react';
-import LogoutIcon from '../../assets/icons/logout.svg?react';
 
 export default function Sidebar({ isOpen = false, onClose = () => {} }) {
   const { role, setRole } = useAppStore();
@@ -31,28 +21,28 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
     switch (role) {
       case 'pasien':
         return [
-          { icon: <DashboardIcon className="w-5 h-5" />, label: 'Dashboard', path: '/pasien' },
-          { icon: <SearchIcon className="w-5 h-5" />, label: 'Cari Layanan', path: '/pasien/cari-layanan' },
-          { icon: <DocumentIcon className="w-5 h-5" />, label: 'Rujukan Saya', path: '/pasien/rujukan' },
-          { icon: <PillIcon className="w-5 h-5" />, label: 'Layanan Obat', path: '/pasien/obat' },
-          { icon: <UserIcon className="w-5 h-5" />, label: 'Profil', path: '/pasien/profil' },
+          { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/pasien' },
+          { icon: <Search size={20} />, label: 'Cari Layanan', path: '/pasien/cari-layanan' },
+          { icon: <FileText size={20} />, label: 'Rujukan Saya', path: '/pasien/rujukan' },
+          { icon: <Pill size={20} />, label: 'Layanan Obat', path: '/pasien/obat' },
+          { icon: <User size={20} />, label: 'Profil', path: '/pasien/profil' },
         ];
       case 'admin_rs':
         return [
-          { icon: <DashboardIcon className="w-5 h-5" />, label: 'Dashboard', path: '/admin-rs' },
-          { icon: <PlusCircleIcon className="w-5 h-5" />, label: 'Buat Rujukan', path: '/admin-rs/buat-rujukan' },
-          { icon: <InboxIcon className="w-5 h-5" />, label: 'Daftar Rujukan', path: '/admin-rs/rujukan' },
-          { icon: <BedIcon className="w-5 h-5" />, label: 'Ketersediaan', path: '/admin-rs/ketersediaan' },
-          { icon: <CalendarIcon className="w-5 h-5" />, label: 'Jadwal Dokter', path: '/admin-rs/jadwal-dokter' },
-          { icon: <MapPinIcon className="w-5 h-5" />, label: 'Rekomendasi', path: '/admin-rs/rekomendasi' },
-          { icon: <UserIcon className="w-5 h-5" />, label: 'Profil', path: '/admin-rs/profil' },
+          { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin-rs' },
+          { icon: <PlusCircle size={20} />, label: 'Buat Rujukan', path: '/admin-rs/buat-rujukan' },
+          { icon: <Inbox size={20} />, label: 'Daftar Rujukan', path: '/admin-rs/rujukan' },
+          { icon: <HeartPulse size={20} />, label: 'Ketersediaan', path: '/admin-rs/ketersediaan' },
+          { icon: <Calendar size={20} />, label: 'Jadwal Dokter', path: '/admin-rs/jadwal-dokter' },
+          { icon: <MapPin size={20} />, label: 'Rekomendasi', path: '/admin-rs/rekomendasi' },
+          { icon: <User size={20} />, label: 'Profil', path: '/admin-rs/profil' },
         ];
       case 'admin_apotek':
         return [
-          { icon: <DashboardIcon className="w-5 h-5" />, label: 'Dashboard', path: '/admin-apotek' },
-          { icon: <InboxIcon className="w-5 h-5" />, label: 'Transaksi', path: '/admin-apotek/transaksi' },
-          { icon: <ClockIcon className="w-5 h-5" />, label: 'Riwayat', path: '/admin-apotek/riwayat' },
-          { icon: <UserIcon className="w-5 h-5" />, label: 'Profil', path: '/admin-apotek/profil' },
+          { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin-apotek' },
+          { icon: <Inbox size={20} />, label: 'Transaksi', path: '/admin-apotek/transaksi' },
+          { icon: <Clock size={20} />, label: 'Riwayat', path: '/admin-apotek/riwayat' },
+          { icon: <User size={20} />, label: 'Profil', path: '/admin-apotek/profil' },
         ];
       default:
         return [];
@@ -105,7 +95,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
           onClick={() => setIsLogoutDialogOpen(true)}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium text-red-500 hover:bg-red-50 transition-colors"
         >
-          <LogoutIcon className="w-5 h-5" />
+          <LogOut size={20} />
           Keluar
         </button>
       </div>

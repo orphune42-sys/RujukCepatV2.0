@@ -2,17 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '../../components/ui/Card';
 import { staggerContainer, slideUp } from '../../utils/animations';
-
-import BedIcon from '../../assets/icons/bed.svg?react';
-import ActivityIcon from '../../assets/icons/activity.svg?react';
-import StethoscopeIcon from '../../assets/icons/stethoscope.svg?react';
+import { Bed, Activity, Stethoscope } from 'lucide-react';
 
 const bedData = [
-  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: ActivityIcon, total: 25, available: 5, color: 'text-red-500', bg: 'bg-red-500' },
-  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: StethoscopeIcon, total: 15, available: 2, color: 'text-purple-500', bg: 'bg-purple-500' },
-  { id: 'ranap-umum', name: 'Rawat Inap Umum', icon: BedIcon, total: 100, available: 32, color: 'text-blue-500', bg: 'bg-blue-500' },
-  { id: 'ranap-anak', name: 'Rawat Inap Anak', icon: BedIcon, total: 40, available: 12, color: 'text-emerald-500', bg: 'bg-emerald-500' },
-  { id: 'ranap-maternitas', name: 'Maternitas / Kebidanan', icon: BedIcon, total: 30, available: 8, color: 'text-pink-500', bg: 'bg-pink-500' },
+  { id: 'igd', name: 'IGD (Instalasi Gawat Darurat)', icon: Activity, total: 25, available: 5, color: 'text-red-500', bg: 'bg-red-500' },
+  { id: 'icu', name: 'ICU (Intensive Care Unit)', icon: Stethoscope, total: 15, available: 2, color: 'text-purple-500', bg: 'bg-purple-500' },
+  { id: 'ranap-umum', name: 'Rawat Inap Umum', icon: Bed, total: 100, available: 32, color: 'text-blue-500', bg: 'bg-blue-500' },
+  { id: 'ranap-anak', name: 'Rawat Inap Anak', icon: Bed, total: 40, available: 12, color: 'text-emerald-500', bg: 'bg-emerald-500' },
+  { id: 'ranap-maternitas', name: 'Maternitas / Kebidanan', icon: Bed, total: 30, available: 8, color: 'text-pink-500', bg: 'bg-pink-500' },
 ];
 
 export default function Ketersediaan() {

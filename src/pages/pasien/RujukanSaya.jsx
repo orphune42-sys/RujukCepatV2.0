@@ -4,12 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
-import { ChevronRight } from 'lucide-react';
-
-import ActivityIcon from '../../assets/icons/activity.svg?react';
-import MapPinIcon from '../../assets/icons/map-pin.svg?react';
-import CalendarIcon from '../../assets/icons/calendar.svg?react';
-import FilterIcon from '../../assets/icons/filter.svg?react';
+import { Filter, Calendar, MapPin, ChevronRight, Activity } from 'lucide-react';
 
 export default function RujukanSaya() {
   const [filter, setFilter] = useState('Semua');
@@ -36,7 +31,7 @@ export default function RujukanSaya() {
         </div>
 
         <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0">
-          <FilterIcon className="w-4 h-4 text-gray-400 mr-2" />
+          <Filter className="w-4 h-4 text-gray-400 mr-2" />
           {filters.map((f) => (
             <button
               key={f}
@@ -63,7 +58,7 @@ export default function RujukanSaya() {
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex items-center gap-2">
                         <div className="p-2 bg-secondary/50 rounded-lg">
-                          <ActivityIcon className="w-5 h-5 text-accent" />
+                          <Activity className="w-5 h-5 text-accent" />
                         </div>
                         <div>
                           <p className="text-sm text-gray-500">Nomor Rujukan</p>
@@ -79,14 +74,14 @@ export default function RujukanSaya() {
                       <div>
                         <p className="font-medium text-lg text-gray-900">Poli Penyakit Dalam</p>
                         <div className="flex items-center gap-1 text-gray-500 mt-1 text-sm">
-                          <MapPinIcon className="w-4 h-4" />
+                          <MapPin className="w-4 h-4" />
                           <span>RSUD Kota Malang</span>
                         </div>
                       </div>
                       <div className="lg:text-right">
                         <p className="font-medium text-gray-900">Jadwal Kunjungan</p>
                         <div className="flex items-center lg:justify-end gap-1 text-gray-500 mt-1 text-sm">
-                          <CalendarIcon className="w-4 h-4" />
+                          <Calendar className="w-4 h-4" />
                           <span>15 Okt 2026, 09:00 WIB</span>
                         </div>
                       </div>

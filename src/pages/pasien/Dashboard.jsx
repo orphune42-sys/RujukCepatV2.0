@@ -5,12 +5,8 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { ChevronRight, ArrowRight } from 'lucide-react';
+import { Activity, Pill, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
-
-import ActivityIcon from '../../assets/icons/activity.svg?react';
-import PillIcon from '../../assets/icons/pill.svg?react';
-import ClockIcon from '../../assets/icons/clock.svg?react';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -42,7 +38,7 @@ export default function Dashboard() {
             <div>
               <CardHeader className="flex flex-row items-center justify-between px-6 py-5 border-b border-border/50">
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
-                  <ActivityIcon className="w-5 h-5 text-accent" />
+                  <Activity className="w-5 h-5 text-accent" />
                   Rujukan Aktif
                 </CardTitle>
                 <Badge variant={isReferralCancelled ? 'default' : 'primary'} className="font-extrabold uppercase text-[10px] tracking-widest px-2.5 py-1 shrink-0">
@@ -65,7 +61,7 @@ export default function Dashboard() {
                     <div>
                       <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Jadwal Kunjungan</p>
                       <div className="flex items-center gap-2 mt-1 bg-secondary/30 p-3 rounded-2xl border border-border/30">
-                        <ClockIcon className="w-4 h-4 text-accent shrink-0" />
+                        <Clock className="w-4 h-4 text-accent shrink-0" />
                         <p className="text-sm font-semibold text-gray-800">Senin, 15 Okt 2026 · 09:00 WIB</p>
                       </div>
                     </div>
@@ -99,7 +95,7 @@ export default function Dashboard() {
           <Card className="h-full border border-border/80 rounded-3xl overflow-hidden shadow-sm flex flex-col justify-between">
             <CardHeader className="px-6 py-5 border-b border-border/50">
               <CardTitle className="text-lg font-bold flex items-center gap-2">
-                <PillIcon className="w-5 h-5 text-accent" />
+                <Pill className="w-5 h-5 text-accent" />
                 Obat Aktif
               </CardTitle>
             </CardHeader>
