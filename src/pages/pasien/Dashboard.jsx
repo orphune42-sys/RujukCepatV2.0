@@ -73,7 +73,7 @@ export default function Dashboard() {
             <div className="px-6 py-5 border-t border-border/50 bg-gray-50/50 flex flex-col sm:flex-row gap-3">
               <Button
                 variant="outline"
-                className="h-12 flex-1 rounded-xl text-sm font-bold"
+                className="flex-1 h-12 rounded-2xl text-base font-semibold"
                 onClick={() => setIsReferralCancelled(true)}
                 disabled={isReferralCancelled}
               >
@@ -81,7 +81,7 @@ export default function Dashboard() {
               </Button>
               <Button
                 variant="primary"
-                className="h-12 flex-1 rounded-xl text-sm font-bold flex items-center justify-center gap-1 shadow-md shadow-primary/10"
+                className="flex-1 h-12 rounded-2xl text-base font-semibold shadow-md shadow-primary/10"
                 onClick={() => navigate('/pasien/rujukan/RJ-20261015-1A')}
               >
                 Lihat Detail

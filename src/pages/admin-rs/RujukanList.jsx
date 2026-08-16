@@ -163,7 +163,7 @@ export default function RujukanList() {
                 <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${getPriorityColor(selectedReferral.prioritas)}`}>{selectedReferral.prioritas}</span>
               </div>
               <div className="mt-6 flex justify-end">
-                <Button variant="outline" onClick={() => setSelectedReferral(null)}>Tutup</Button>
+                <Button variant="primary" className="px-6" onClick={() => setSelectedReferral(null)}>Tutup</Button>
               </div>
             </motion.div>
           </motion.div>

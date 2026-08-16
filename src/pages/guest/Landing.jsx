@@ -91,13 +91,13 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Link to="/register">
-                  <Button size="lg" className="shadow-lg shadow-primary/25">
+                <Link to="/register" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full shadow-lg shadow-primary/25">
                     Daftar Sekarang
                   </Button>
                 </Link>
-                <a href="#cari-fk">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white/50 backdrop-blur-sm border-gray-200">
+                <a href="#cari-fk" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full bg-white/50 backdrop-blur-sm border-gray-200">
                     Cari Rumah Sakit
                   </Button>
                 </a>

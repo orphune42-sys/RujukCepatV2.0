@@ -2,14 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
-import { Pill, Clock, Activity, CheckCircle2 } from 'lucide-react';
+import { Pill, Clock, FlaskConical, CheckCircle2 } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
 
 const Dashboard = () => {
   const stats = [
     { title: 'Total Transaksi Hari Ini', value: '45', icon: Pill, color: 'text-blue-500', bg: 'bg-blue-100 ' },
     { title: 'Menunggu', value: '12', icon: Clock, color: 'text-orange-500', bg: 'bg-orange-100 ' },
-    { title: 'Diproses', value: '18', icon: Activity, color: 'text-[#9ccda5]', bg: 'bg-[#9ccda5]/20 ' },
+    { title: 'Diproses', value: '18', icon: FlaskConical, color: 'text-[#9ccda5]', bg: 'bg-[#9ccda5]/20 ' },
     { title: 'Selesai', value: '15', icon: CheckCircle2, color: 'text-green-500', bg: 'bg-green-100 ' },
   ];
 
