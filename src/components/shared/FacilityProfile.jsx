@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Building2, Bell, Shield, Edit2, FileText, Mail, MapPin, Phone, Settings, X, Camera } from 'lucide-react';
+import { Building2, Bell, Shield, Edit2, FileText, Mail, MapPin, Phone, Settings, X, Camera, Palette, Languages, Accessibility, CircleHelp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import Button from '../ui/Button';
 import { slideUp, staggerContainer } from '../../utils/animations';
 
 const fieldClass = 'w-full rounded-lg border border-border bg-background px-4 py-2 text-sm text-text outline-none transition-shadow focus:ring-2 focus:ring-primary';
+const settingItems = [
+  { label: 'Notifikasi', icon: Bell },
+  { label: 'Privasi & Keamanan', icon: Shield },
+  { label: 'Tampilan', icon: Palette },
+  { label: 'Bahasa', icon: Languages },
+  { label: 'Aksesibilitas', icon: Accessibility },
+  { label: 'Bantuan & Dukungan', icon: CircleHelp },
+];
 
 export default function FacilityProfile({ title, description, initialProfile }) {
   const [profile, setProfile] = useState(initialProfile);
@@ -77,8 +85,7 @@ export default function FacilityProfile({ title, description, initialProfile }) 
           <Card className="h-full">
             <CardHeader><CardTitle className="flex items-center gap-2"><Settings className="h-5 w-5 text-accent" />Pengaturan Akun</CardTitle></CardHeader>
             <CardContent className="space-y-1 p-3">
-              <SettingButton icon={Bell} label="Notifikasi" onClick={() => setMessage('Pengaturan notifikasi dibuka.')} />
-              <SettingButton icon={Shield} label="Privasi & Keamanan" onClick={() => setMessage('Pengaturan privasi dan keamanan dibuka.')} />
+              {settingItems.map(({ label, icon: Icon }) => <SettingItem key={label} icon={Icon} label={label} />)}
             </CardContent>
           </Card>
         </motion.div>
@@ -122,6 +129,6 @@ function ProfileField({ label, children, className = '' }) {
   return <label className={`block ${className}`}><span className="mb-2 block text-sm text-gray-600">{label}</span>{children}</label>;
 }
 
-function SettingButton({ icon: Icon, label, onClick }) {
-  return <button type="button" onClick={onClick} className="flex w-full items-center gap-3 rounded-lg p-3 text-left text-gray-700 transition-colors hover:bg-gray-50"><Icon className="h-5 w-5 text-gray-400" /><span className="font-medium">{label}</span></button>;
+function SettingItem({ icon: Icon, label }) {
+  return <div className="flex w-full items-center gap-3 rounded-lg p-3 text-left text-gray-700"><Icon className="h-5 w-5 text-gray-400" /><span className="font-medium">{label}</span></div>;
 }

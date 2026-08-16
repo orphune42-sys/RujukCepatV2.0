@@ -52,12 +52,12 @@ export default function Profil() {
     navigate('/');
   };
   const settingItems = [
-    { label: 'Notifikasi', icon: Bell, message: 'Pengaturan notifikasi dibuka.' },
-    { label: 'Privasi & Keamanan', icon: Shield, message: 'Pengaturan privasi & keamanan dibuka.' },
-    { label: 'Tampilan', icon: Palette, message: 'Pengaturan tampilan dibuka.' },
-    { label: 'Bahasa', icon: Languages, message: 'Pengaturan bahasa dibuka.' },
-    { label: 'Aksesibilitas', icon: Accessibility, message: 'Pengaturan aksesibilitas dibuka.' },
-    { label: 'Bantuan & Dukungan', icon: CircleHelp, message: 'Pusat bantuan dan dukungan dibuka.' },
+    { label: 'Notifikasi', icon: Bell },
+    { label: 'Privasi & Keamanan', icon: Shield },
+    { label: 'Tampilan', icon: Palette },
+    { label: 'Bahasa', icon: Languages },
+    { label: 'Aksesibilitas', icon: Accessibility },
+    { label: 'Bantuan & Dukungan', icon: CircleHelp },
   ];
   return (
     <motion.div
@@ -125,13 +125,13 @@ export default function Profil() {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-1 flex-col p-3">
-              {settingItems.map(({ label, icon: Icon, message: settingMessage }) => (
-                <button key={label} type="button" onClick={() => showMessage(settingMessage)} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50  transition-colors text-left text-gray-700 ">
+              {settingItems.map(({ label, icon: Icon }) => (
+                <div key={label} className="w-full flex items-center justify-between p-3 rounded-lg text-left text-gray-700">
                   <div className="flex items-center gap-3">
                     <Icon className="w-5 h-5 text-gray-400" />
                     <span className="font-medium">{label}</span>
                   </div>
-                </button>
+                </div>
               ))}
             </CardContent>
           </Card>

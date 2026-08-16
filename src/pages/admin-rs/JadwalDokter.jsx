@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/Card';
 import { slideUp } from '../../utils/animations';
-import { Calendar as CalendarIcon, Clock, Filter, Search, Stethoscope, ChevronRight } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Search, Stethoscope } from 'lucide-react';
 
 const doctorSchedules = [
   { id: 1, name: 'dr. Lintang Siddiq, Sp.PD', spesialis: 'Penyakit Dalam', hari: 'Senin, Rabu, Jumat', jam: '08:00 - 14:00', status: 'Tersedia', initial: 'LS' },
@@ -57,9 +57,6 @@ export default function JadwalDokter() {
               className="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200  bg-white  text-sm text-text  focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
             />
           </div>
-          <button className="p-3 bg-white  border border-gray-200  rounded-2xl hover:bg-gray-50  text-gray-700  transition-colors shadow-sm">
-            <Filter className="w-4.5 h-4.5" />
-          </button>
         </div>
       </div>
 
@@ -99,12 +96,11 @@ export default function JadwalDokter() {
                 </div>
               </div>
 
-              {/* Status & Action */}
-              <div className="md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+              {/* Status */}
+              <div className="md:col-span-2 flex items-center justify-end">
                 <span className={`px-4 py-1.5 text-xs font-bold rounded-full border ${getStatusStyle(doc.status)}`}>
                   {doc.status}
                 </span>
-                <ChevronRight className="hidden md:block w-5 h-5 text-gray-300 " />
               </div>
             </div>
           </Card>
