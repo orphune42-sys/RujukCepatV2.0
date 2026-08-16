@@ -1,13 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { slideUp, staggerContainer } from '../../utils/animations';
-import { Navigation, Star } from 'lucide-react';
+import { Navigation } from 'lucide-react';
 import MapView from '../../components/shared/MapView';
 import hospitalData from '../../data/hospitals.json';
 
 export default function RekomendasiFasilitas() {
+  const navigate = useNavigate();
   const [selectedFacilityId, setSelectedFacilityId] = useState(hospitalData[0]?.id);
   const selectedFacility = useMemo(
     () => hospitalData.find((facility) => facility.id === selectedFacilityId) ?? hospitalData[0],
@@ -43,14 +45,23 @@ export default function RekomendasiFasilitas() {
 
                     <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
                       <span className="flex items-center gap-1"><Navigation className="w-3 h-3" /> {index + 1}.{' '}{index + 2} km</span>
-                      <span className="flex items-center gap-1 text-amber-500"><Star className="w-3 h-3 fill-current" /> {facility.rating}</span>
                     </div>
 
                     <div className="mt-3 flex items-center justify-between">
                       <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-md text-gray-700">
                         {facility.availability.rawatInap !== undefined ? `${facility.availability.rawatInap} Bed Tersedia` : (facility.availability.status ?? 'Tersedia')}
                       </span>
-                      <Button size="sm" variant="ghost" className="h-7 px-2 text-xs" onClick={(event) => { event.stopPropagation(); setSelectedFacilityId(facility.id); }}>Pilih</Button>
+                      <Button
+                        size="sm"
+                        variant="primary"
+                        className="h-7 px-3 text-xs font-bold rounded-lg"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          navigate(`/admin-rs/detailrs/${facility.id}`);
+                        }}
+                      >
+                        Pilih
+                      </Button>
                     </div>
                   </div>
                 </CardContent>

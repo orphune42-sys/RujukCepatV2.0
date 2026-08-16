@@ -5,7 +5,7 @@ import { slideUp, staggerContainer, fadeIn } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Search, MapPin, Navigation } from 'lucide-react';
+import { Search, MapPin } from 'lucide-react';
 import facilities from '../../data/hospitals.json';
 
 const services = [
@@ -14,7 +14,15 @@ const services = [
   { id: 'PKM-001', name: 'Puskesmas Dinoyo', type: 'puskesmas', distance: '3.2 km', address: 'Jl. MT. Haryono No. 134', queue: '7 Orang', rooms: '4 Ruang', available: true },
   { id: 'KLINIK-001', name: 'Klinik Rawat Inap Brawijaya', type: 'klinik', distance: '2.8 km', address: 'Jl. Veteran No. 8', queue: '9 Orang', rooms: '6 Ruang', available: true },
   { id: 'APOTEK-001', name: 'Apotek K24 Soekarno Hatta', type: 'apotek', distance: '1.6 km', address: 'Jl. Soekarno Hatta No. 8', queue: '3 Orang', rooms: 'Obat tersedia', available: true },
-].map((service) => ({ ...service, image: facilities.find((facility) => facility.id === service.id)?.image }));
+].map((service) => {
+  const fac = facilities.find((facility) => facility.id === service.id);
+  return {
+    ...service,
+    image: fac?.image,
+    class: fac?.class,
+    facilityType: fac?.type || (service.type === 'rumah-sakit' ? 'Rumah Sakit' : service.type.charAt(0).toUpperCase() + service.type.slice(1)),
+  };
+});
 
 export default function CariLayanan() {
   const [activeTab, setActiveTab] = useState('semua');
@@ -79,9 +87,9 @@ export default function CariLayanan() {
             <div className="relative w-full h-44 overflow-hidden">
               <img src={service.image} alt={`Foto ${service.name}`} className="w-full h-full object-cover" />
               <div className="absolute top-3 left-3">
-                <Badge variant={service.available ? 'success' : 'warning'} className="px-2.5 py-1 text-xs font-semibold shadow-md">
-                  {service.available ? 'Tersedia' : 'Penuh'}
-                </Badge>
+                <span className="bg-[#9ccda5] text-[#0f1913] text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                  {service.class ? `Kelas ${service.class}` : service.facilityType}
+                </span>
               </div>
             </div>
 
@@ -103,17 +111,10 @@ export default function CariLayanan() {
                   <span className="text-gray-400">Ketersediaan Ruang</span>
                   <span className="text-gray-900">{service.rooms}</span>
                 </div>
-                <div className="flex gap-2.5 mt-5">
-                  <Button
-                    variant="outline"
-                    className="flex-1 rounded-xl text-xs font-bold py-3"
-                    onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(service.name)}`, '_blank', 'noopener,noreferrer')}
-                  >
-                    <Navigation className="w-3.5 h-3.5 mr-1.5" /> Rute
-                  </Button>
+                <div className="mt-5">
                   <Button
                     variant="primary"
-                    className="flex-1 rounded-xl text-xs font-bold py-3 flex items-center justify-center gap-1"
+                    className="w-full rounded-xl text-xs font-bold py-3 flex items-center justify-center gap-1"
                     onClick={() => navigate(`/pasien/detailrs/${service.id}`)}
                   >
                     Pilih

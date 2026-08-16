@@ -9,10 +9,7 @@ import DashboardLayout from './components/layout/DashboardLayout';
 
 // Public Pages
 import Landing from './pages/guest/Landing';
-import CariRumahSakit from './pages/guest/CariRumahSakit';
 import DetailRumahSakit from './pages/guest/DetailRumahSakit';
-import Tentang from './pages/guest/Tentang';
-import HubungiKami from './pages/guest/HubungiKami';
 
 // Pasien Pages
 import PasienDashboard from './pages/pasien/Dashboard';
@@ -46,14 +43,12 @@ function App() {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading for welcome screen
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Middleware / Guard - in a real app, this would check auth tokens
   const RequireRole = ({ children, allowedRole }) => {
     if (role !== allowedRole) {
       return <Navigate to="/" replace />;
@@ -110,6 +105,7 @@ function App() {
             <Route path="ketersediaan" element={<AdminRSKetersediaan />} />
             <Route path="jadwal-dokter" element={<AdminRSJadwalDokter />} />
             <Route path="rekomendasi" element={<AdminRSRekomendasiFasilitas />} />
+            <Route path="detailrs/:id" element={<DetailRumahSakit />} />
             <Route path="profil" element={<AdminRSProfil />} />
           </Route>
 
