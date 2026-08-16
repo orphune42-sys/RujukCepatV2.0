@@ -5,7 +5,7 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Activity, Pill, Clock, ChevronRight, ArrowRight } from 'lucide-react';
+import { FileText, Pill, Clock, ChevronRight } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
 
 export default function Dashboard() {
@@ -38,7 +38,7 @@ export default function Dashboard() {
             <div>
               <CardHeader className="flex flex-row items-center justify-between px-6 py-5 border-b border-border/50">
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-accent" />
+                  <FileText className="w-5 h-5 text-accent" />
                   Rujukan Aktif
                 </CardTitle>
                 <Badge variant={isReferralCancelled ? 'default' : 'primary'} className="font-extrabold uppercase text-[10px] tracking-widest px-2.5 py-1 shrink-0">
@@ -84,7 +84,7 @@ export default function Dashboard() {
                 className="flex-1 rounded-xl text-xs font-bold py-3 flex items-center justify-center gap-1 shadow-md shadow-primary/10"
                 onClick={() => navigate('/pasien/rujukan/RJ-20261015-1A')}
               >
-                Lihat Detail <ArrowRight className="w-3.5 h-3.5" />
+                Lihat Detail
               </Button>
             </div>
           </Card>

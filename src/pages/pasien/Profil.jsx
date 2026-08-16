@@ -87,7 +87,7 @@ export default function Profil() {
                   <Badge variant="success" className="px-3 py-1 text-sm">Akun Terverifikasi</Badge>
                 </div>
               </div>
-              <Button variant="outline" className="shrink-0 w-full md:w-auto" onClick={startEditing}><Edit2 className="w-4 h-4 mr-2" /> Edit Profil</Button>
+              <Button className="shrink-0 w-full md:w-auto" onClick={startEditing}><Edit2 className="w-4 h-4 mr-2" /> Edit Profil</Button>
             </div>
             {message && <p role="status" className="mt-5 rounded-lg bg-secondary/60 p-3 text-sm text-accent">{message}</p>}
           </CardContent>

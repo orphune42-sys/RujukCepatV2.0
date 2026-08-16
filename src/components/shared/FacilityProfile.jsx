@@ -56,7 +56,7 @@ export default function FacilityProfile({ title, description, initialProfile }) 
                 <p className="mt-1 text-gray-500">{profile.type}</p>
                 <span className="mt-3 inline-flex rounded-full bg-primary/20 px-3 py-1 text-sm font-medium text-accent">Fasilitas terverifikasi</span>
               </div>
-              <Button variant="outline" className="w-full shrink-0 md:w-auto" onClick={startEditing}><Edit2 className="mr-2 h-4 w-4" />Edit Profil</Button>
+              <Button className="w-full shrink-0 md:w-auto" onClick={startEditing}><Edit2 className="mr-2 h-4 w-4" />Edit Profil</Button>
             </div>
             {message && <p role="status" className="mt-5 rounded-lg bg-secondary/60 p-3 text-sm text-accent">{message}</p>}
           </CardContent>

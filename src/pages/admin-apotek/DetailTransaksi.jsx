@@ -1,22 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate, useParams } from 'react-router-dom';
 import { slideUp } from '../../utils/animations';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { ArrowLeft, Printer, CheckCircle, Package, Check } from 'lucide-react';
+import { ArrowLeft, Printer } from 'lucide-react';
 
 const DetailTransaksi = () => {
+  const navigate = useNavigate();
+  const { id = 'TRX-001' } = useParams();
+
   return (
-    <div className="max-w-5xl mx-auto space-y-6 sm:p-2 lg:p-6">
+    <div className="max-w-7xl mx-auto space-y-6 sm:p-2 lg:p-6">
       <motion.div variants={slideUp} initial="initial" animate="animate" className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="p-2 h-auto rounded-full hover:bg-slate-100 ">
+          <Button variant="ghost" onClick={() => navigate('/admin-apotek/transaksi')} className="p-2 h-auto rounded-full hover:bg-slate-100 ">
             <ArrowLeft size={20} className="text-slate-600 " />
           </Button>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-slate-900  flex items-center gap-3">
-              TRX-001
+              {id}
               <Badge variant="warning">Menunggu</Badge>
             </h1>
             <p className="text-slate-500  text-sm">12 Aug 2026, 09:00 WIB</p>
@@ -91,22 +95,6 @@ const DetailTransaksi = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-[#9ccda5]/10  border border-[#9ccda5]/30">
-            <CardHeader>
-              <CardTitle className="text-lg text-emerald-900 ">Aksi Status</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button className="w-full bg-[#9ccda5] hover:bg-[#8bb893] text-emerald-950 font-medium gap-2 border-0">
-                <Package size={18} /> Proses Resep
-              </Button>
-              <Button variant="outline" className="w-full border-slate-200  hover:bg-slate-50  gap-2">
-                <CheckCircle size={18} /> Siap Diambil
-              </Button>
-              <Button variant="outline" className="w-full border-slate-200  hover:bg-slate-50  gap-2">
-                <Check size={18} /> Selesai
-              </Button>
-            </CardContent>
-          </Card>
         </motion.div>
       </div>
     </div>

@@ -62,9 +62,9 @@ export default function LayananObat() {
                 </div>
               </div>
 
-              <div className="bg-blue-50  p-4 rounded-xl flex gap-3">
-                <AlertCircle className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-                <p className="text-sm text-blue-800 ">
+              <div className="bg-secondary/50 p-4 rounded-xl flex gap-3">
+                <AlertCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                <p className="text-sm text-accent">
                   Obat Anda sedang diracik oleh apoteker. Anda akan menerima notifikasi saat obat siap diambil.
                 </p>
               </div>
@@ -80,7 +80,7 @@ export default function LayananObat() {
             </CardHeader>
             <CardContent className="space-y-3 p-4 sm:p-6">
               <label className={`grid grid-cols-[20px_minmax(0,1fr)] items-start gap-3 p-4 border rounded-xl cursor-pointer ${pickupMethod === 'pickup' ? 'border-primary bg-primary/5 ' : 'border-gray-200 '}`}>
-                <input type="radio" name="pickup" value="pickup" checked={pickupMethod === 'pickup'} onChange={() => setPickupMethod('pickup')} className="mt-1 h-4 w-4 text-primary" />
+                <input type="radio" name="pickup" value="pickup" checked={pickupMethod === 'pickup'} onChange={() => setPickupMethod('pickup')} className="mt-1 h-4 w-4 accent-accent" />
                 <div className="min-w-0">
                   <div className="flex items-start gap-2">
                     <PackageCheck className="w-5 h-5 text-accent" />
@@ -91,7 +91,7 @@ export default function LayananObat() {
               </label>
 
               <label className={`grid grid-cols-[20px_minmax(0,1fr)] items-start gap-3 p-4 border rounded-xl cursor-pointer transition-colors ${pickupMethod === 'delivery' ? 'border-primary bg-primary/5 ' : 'border-gray-200  hover:border-primary '}`}>
-                <input type="radio" name="pickup" value="delivery" checked={pickupMethod === 'delivery'} onChange={() => setPickupMethod('delivery')} className="mt-1 h-4 w-4 text-primary" />
+                <input type="radio" name="pickup" value="delivery" checked={pickupMethod === 'delivery'} onChange={() => setPickupMethod('delivery')} className="mt-1 h-4 w-4 accent-accent" />
                 <div className="min-w-0">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex min-w-0 items-start gap-2">

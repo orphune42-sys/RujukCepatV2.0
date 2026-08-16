@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
-import { Filter, Calendar, MapPin, ChevronRight, Activity } from 'lucide-react';
+import { Calendar, MapPin, ChevronRight, FileText } from 'lucide-react';
 
 export default function RujukanSaya() {
   const [filter, setFilter] = useState('Semua');
@@ -31,7 +31,6 @@ export default function RujukanSaya() {
         </div>
 
         <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0">
-          <Filter className="w-4 h-4 text-gray-400 mr-2" />
           {filters.map((f) => (
             <button
               key={f}
@@ -58,7 +57,7 @@ export default function RujukanSaya() {
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex items-center gap-2">
                         <div className="p-2 bg-secondary/50 rounded-lg">
-                          <Activity className="w-5 h-5 text-accent" />
+                          <FileText className="w-5 h-5 text-accent" />
                         </div>
                         <div>
                           <p className="text-sm text-gray-500">Nomor Rujukan</p>

@@ -243,7 +243,7 @@ export default function CariRumahSakit() {
                               ) : (
                                 <div className="flex items-center justify-between p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-100/80">
                                   <span className="text-xs font-bold text-emerald-800">
-                                    🟢 {hospital.availability.status ?? 'Buka 24 Jam'}
+                                    {hospital.availability.status ?? 'Buka 24 Jam'}
                                   </span>
                                   <span className="text-xs font-semibold text-emerald-700">
                                     {hospital.availability.stock ?? 'Obat & Resep Tersedia'}

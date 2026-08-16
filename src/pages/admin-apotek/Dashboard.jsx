@@ -59,7 +59,6 @@ const Dashboard = () => {
                   {[1,2,3].map((i) => (
                     <div key={i} className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50  transition-colors">
                        <div className="flex items-center gap-3">
-                         <div className="w-2 h-2 rounded-full bg-[#9ccda5]"></div>
                          <div>
                             <p className="font-medium text-slate-900 ">TRX-20260812-00{i}</p>
                             <p className="text-sm text-slate-500 ">Pasien: Eka Wahyu</p>
