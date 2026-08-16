@@ -83,40 +83,41 @@ export default function Navbar() {
   ];
 
   return (
-    <header className={`fixed top-3 left-3 right-3 md:left-1/2 md:-translate-x-1/2 z-50 bg-white/90  backdrop-blur-lg border border-border/50  rounded-2xl md:rounded-full shadow-lg shadow-black/5 transition-all duration-300 ${isScrolled ? 'md:top-4 md:w-[62%] md:max-w-4xl' : 'md:top-6 md:w-[90%] md:max-w-5xl'}`}>
+    <header className={`fixed top-3 left-3 right-3 md:left-1/2 md:-translate-x-1/2 z-50 bg-white/90 backdrop-blur-lg border border-border/50 rounded-2xl md:rounded-full shadow-lg shadow-black/5 transition-all duration-300 ${isScrolled ? 'md:top-4 md:w-[62%] md:max-w-4xl' : 'md:top-6 md:w-[90%] md:max-w-5xl'}`}>
       <div className="px-4 md:px-6">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" onClick={() => setActiveHash('#beranda')} className="flex items-center gap-2 group shrink-0">
+        {/* 3-column grid: logo | nav | actions — nav selalu di tengah */}
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16">
+
+          {/* Kolom 1: Logo (kiri) */}
+          <Link to="/" onClick={() => setActiveHash('#beranda')} className="flex items-center gap-2 group shrink-0 justify-self-start">
             <div className="bg-primary/20 p-2 rounded-full group-hover:bg-primary/30 transition-colors">
-              <HeartPulse className="h-5 w-5 md:h-6 md:w-6 text-accent " />
+              <HeartPulse className="h-5 w-5 md:h-6 md:w-6 text-accent" />
             </div>
-            <span className="font-bold text-lg md:text-xl tracking-tight text-text ">
-              Rujuk<span className="text-accent ">Cepat</span>
+            <span className="font-bold text-lg md:text-xl tracking-tight text-text">
+              Rujuk<span className="text-accent">Cepat</span>
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
-            {/* Desktop Navigation */}
-            <nav className="flex items-center gap-6 lg:gap-8">
-              {publicLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => handleLinkClick(link.path)}
-                  className={`text-sm font-semibold transition-colors hover:text-accent  ${
-                    activeHash === link.path
-                      ? 'text-accent '
-                      : 'text-muted '
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
+          {/* Kolom 2: Nav links (tengah absolut) */}
+          <nav className="hidden lg:flex items-center justify-center gap-6 lg:gap-8">
+            {publicLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => handleLinkClick(link.path)}
+                className={`text-sm font-semibold whitespace-nowrap transition-colors hover:text-accent ${
+                  activeHash === link.path ? 'text-accent' : 'text-muted'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-            {/* Actions */}
-            <div className="flex shrink-0">
+          {/* Kolom 3: Tombol & hamburger (kanan) */}
+          <div className="flex items-center justify-end gap-2">
+            {/* Tombol Desktop */}
+            <div className="hidden lg:flex shrink-0">
               {role !== 'guest' ? (
                 <Link to={`/${role.replace('_', '-')}`}>
                   <Button variant="primary" className="rounded-full px-6">Dashboard</Button>
@@ -125,23 +126,24 @@ export default function Navbar() {
                 <Button variant="primary" className="rounded-full px-6" onClick={openLogin}>Masuk</Button>
               )}
             </div>
+
+            {/* Hamburger Mobile */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                className="p-2 text-text bg-secondary/50 rounded-full"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              className="p-2 text-text  bg-secondary/50  rounded-full"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-[110%] left-0 right-0 bg-white  border border-border  rounded-2xl shadow-xl py-4 px-4 overflow-hidden">
+        <div className="lg:hidden absolute top-[110%] left-0 right-0 bg-white border border-border rounded-2xl shadow-xl py-4 px-4 overflow-hidden">
           <nav className="flex flex-col gap-2">
             {publicLinks.map((link) => (
               <Link
@@ -150,14 +152,14 @@ export default function Navbar() {
                 onClick={() => handleLinkClick(link.path)}
                 className={`text-sm font-semibold py-3 px-4 rounded-xl transition-colors ${
                   activeHash === link.path
-                    ? 'bg-secondary  text-accent '
-                    : 'text-muted  hover:bg-gray-50 '
+                    ? 'bg-secondary text-accent'
+                    : 'text-muted hover:bg-gray-50'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="pt-4 mt-2 border-t border-border ">
+            <div className="pt-4 mt-2 border-t border-border">
               {role !== 'guest' ? (
                 <Link to={`/${role.replace('_', '-')}`} onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="w-full rounded-xl">Masuk Dashboard</Button>

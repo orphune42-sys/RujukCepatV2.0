@@ -20,6 +20,7 @@ export default function CariLayanan() {
   const [activeTab, setActiveTab] = useState('semua');
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+
   const tabs = [
     { id: 'semua', label: 'Semua' },
     { id: 'rumah-sakit', label: 'Rumah Sakit' },
@@ -29,14 +30,15 @@ export default function CariLayanan() {
   ];
 
   const visibleServices = services.filter((service) =>
-    (activeTab === 'semua' || service.type === activeTab) && `${service.name} ${service.address}`.toLowerCase().includes(searchTerm.toLowerCase())
+    (activeTab === 'semua' || service.type === activeTab) &&
+    `${service.name} ${service.address}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <motion.div className="max-w-7xl mx-auto space-y-8 sm:p-2 lg:p-6" variants={staggerContainer} initial="initial" animate="animate">
       <motion.div variants={slideUp} className="space-y-2">
-        <h1 className="text-3xl font-black text-gray-950  tracking-tight">Cari Layanan Kesehatan</h1>
-        <p className="text-gray-500  text-sm md:text-base">Temukan rumah sakit, klinik, puskesmas, dan apotik terdekat dengan informasi ketersediaan real-time.</p>
+        <h1 className="text-3xl font-black text-gray-950 tracking-tight">Cari Layanan Kesehatan</h1>
+        <p className="text-gray-500 text-sm md:text-base">Temukan rumah sakit, klinik, puskesmas, dan apotik terdekat dengan informasi ketersediaan real-time.</p>
       </motion.div>
 
       <motion.form variants={slideUp} className="flex flex-col sm:flex-row gap-3" onSubmit={(event) => event.preventDefault()}>
@@ -47,7 +49,7 @@ export default function CariLayanan() {
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Cari nama faskes, alamat, atau jenis layanan..."
-            className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-gray-200  bg-white  text-gray-950  focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm font-medium text-sm"
+            className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white text-gray-950 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm font-medium text-sm"
           />
         </div>
         <Button type="submit" variant="primary" size="lg" className="px-8 rounded-2xl font-bold shadow-md shadow-primary/10">Cari Faskes</Button>
@@ -61,8 +63,8 @@ export default function CariLayanan() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap text-sm font-semibold transition-all ${
               activeTab === tab.id
-                ? 'bg-accent  text-white  shadow-md shadow-accent/15'
-                : 'bg-white  text-gray-600  border border-gray-200/80  hover:bg-gray-50  hover:border-gray-300'
+                ? 'bg-accent text-white shadow-md shadow-accent/15'
+                : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50 hover:border-gray-300'
             }`}
           >
             {tab.label}
@@ -72,32 +74,34 @@ export default function CariLayanan() {
 
       <motion.div variants={fadeIn} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {visibleServices.map((service) => (
-          <Card key={service.id} hover className="flex flex-col border border-border/80  rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-            <CardContent className="p-6 flex-1 flex flex-col justify-between">
+          <Card key={service.id} hover className="flex flex-col border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+            {/* Full-width image at top of card */}
+            <div className="relative w-full h-44 overflow-hidden">
+              <img src={service.image} alt={`Foto ${service.name}`} className="w-full h-full object-cover" />
+              <div className="absolute top-3 left-3">
+                <Badge variant={service.available ? 'success' : 'warning'} className="px-2.5 py-1 text-xs font-semibold shadow-md">
+                  {service.available ? 'Tersedia' : 'Penuh'}
+                </Badge>
+              </div>
+            </div>
+
+            <CardContent className="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="h-14 w-14 overflow-hidden rounded-2xl border border-border/10 bg-secondary/50">
-                    <img src={service.image} alt={`Foto ${service.name}`} className="h-full w-full object-cover" />
-                  </div>
-                  <Badge variant={service.available ? 'success' : 'warning'} className="px-2.5 py-1 text-xs font-semibold">
-                    {service.available ? 'Tersedia' : 'Penuh'}
-                  </Badge>
-                </div>
-                <h3 className="font-bold text-xl text-gray-950  mb-2 tracking-tight line-clamp-1">{service.name}</h3>
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 mb-5">
-                  <MapPin className="w-3.5 h-3.5 shrink-0 text-accent " />
+                <h3 className="font-bold text-lg text-gray-950 mb-1.5 tracking-tight line-clamp-1">{service.name}</h3>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 mb-4">
+                  <MapPin className="w-3.5 h-3.5 shrink-0 text-accent" />
                   <span className="truncate">{service.distance} · {service.address}</span>
                 </div>
               </div>
 
-              <div className="space-y-3.5 pt-4 border-t border-gray-100 ">
+              <div className="space-y-3.5 pt-4 border-t border-gray-100">
                 <div className="flex justify-between text-xs font-semibold">
                   <span className="text-gray-400">Antrean Saat Ini</span>
-                  <span className="text-gray-900 ">{service.queue}</span>
+                  <span className="text-gray-900">{service.queue}</span>
                 </div>
                 <div className="flex justify-between text-xs font-semibold">
                   <span className="text-gray-400">Ketersediaan Ruang</span>
-                  <span className="text-gray-900 ">{service.rooms}</span>
+                  <span className="text-gray-900">{service.rooms}</span>
                 </div>
                 <div className="flex gap-2.5 mt-5">
                   <Button
@@ -119,7 +123,11 @@ export default function CariLayanan() {
             </CardContent>
           </Card>
         ))}
-        {visibleServices.length === 0 && <p className="col-span-full rounded-2xl border border-dashed border-border p-12 text-center text-muted font-medium text-sm">Layanan tidak ditemukan.</p>}
+        {visibleServices.length === 0 && (
+          <p className="col-span-full rounded-2xl border border-dashed border-border p-12 text-center text-muted font-medium text-sm">
+            Layanan tidak ditemukan.
+          </p>
+        )}
       </motion.div>
     </motion.div>
   );
