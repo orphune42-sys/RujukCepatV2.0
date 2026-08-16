@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Lingkaran luar -->
+  <circle cx="14" cy="14" r="11"/>
+  <!-- Lingkaran tengah -->
+  <circle cx="14" cy="14" r="5.5"/>
+  <!-- Titik pusat -->
+  <circle cx="14" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+  <!-- Garis silang kompas -->
+  <line x1="14" y1="2" x2="14" y2="5.5"/>
+  <line x1="14" y1="22.5" x2="14" y2="26"/>
+  <line x1="2" y1="14" x2="5.5" y2="14"/>
+  <line x1="22.5" y1="14" x2="26" y2="14"/>
+</svg>

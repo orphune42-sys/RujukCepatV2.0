@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeartPulse, Target, Shield, Users } from 'lucide-react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import SectionWaveBackground from '../../components/shared/SectionWaveBackground';
+import VisionIcon from '../../assets/icons/vision.svg?react';
+import ShieldIcon from '../../assets/icons/shield.svg?react';
+import CollaborationIcon from '../../assets/icons/collaboration.svg?react';
 
 /* ─── Reusable reveal primitives ─────────────────────────── */
 function FadeUp({ children, delay = 0, className = '' }) {
@@ -43,17 +45,17 @@ function ScaleIn({ children, delay = 0, className = '' }) {
 
 const missions = [
   {
-    Icon: Target,
+    Icon: VisionIcon,
     title: 'Visi Kami',
     desc: 'Membangun jaringan rujukan kesehatan digital terdepan di Indonesia guna mempercepat penanganan medis kritis tanpa kendala administratif.',
   },
   {
-    Icon: Shield,
+    Icon: ShieldIcon,
     title: 'Keamanan Data',
     desc: 'Menerapkan standar enkripsi data medis tingkat tinggi untuk menjamin kerahasiaan dan privasi informasi rekam medis pasien.',
   },
   {
-    Icon: Users,
+    Icon: CollaborationIcon,
     title: 'Sinergi & Kolaborasi',
     desc: 'Mengintegrasikan rumah sakit, klinik, dan apotek untuk menciptakan ekosistem pelayanan kesehatan yang terpadu dan responsif.',
   },

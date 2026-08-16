@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Kepala stetoskop (earpiece kiri dan kanan) -->
+  <line x1="5" y1="3" x2="5" y2="6"/>
+  <line x1="13" y1="3" x2="13" y2="6"/>
+  <!-- Lengkung U -->
+  <path d="M5 6a5 5 0 0010 0"/>
+  <!-- Selang turun ke diafragma -->
+  <path d="M15 6v3a4 4 0 01-4 4"/>
+  <!-- Lingkaran diafragma -->
+  <circle cx="11" cy="15" r="2.5"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Frame tempat tidur -->
+  <path d="M2 14V8a1 1 0 011-1h14a1 1 0 011 1v6"/>
+  <!-- Sandaran kepala -->
+  <line x1="5" y1="7" x2="5" y2="4"/>
+  <!-- Bantal -->
+  <rect x="6" y="8.5" width="4.5" height="3" rx="1"/>
+  <!-- Kaki tempat tidur -->
+  <line x1="2" y1="14" x2="2" y2="16.5"/>
+  <line x1="18" y1="14" x2="18" y2="16.5"/>
+  <line x1="2" y1="14" x2="18" y2="14"/>
+</svg>
