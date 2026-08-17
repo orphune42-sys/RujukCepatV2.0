@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-text  mb-4">Perusahaan</h4>
+            <h4 className="font-semibold text-text  mb-4">Informasi</h4>
             <ul className="space-y-3">
               <li><Link to="/tentang" className="text-sm text-muted hover:text-accent  transition-colors">Tentang Kami</Link></li>
               <li><Link to="/hubungi-kami" className="text-sm text-muted hover:text-accent  transition-colors">Hubungi Kami</Link></li>
