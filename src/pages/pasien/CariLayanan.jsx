@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer, fadeIn } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Search, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import SearchInput from '../../components/shared/SearchInput';
+import FilterPills from '../../components/shared/FilterPills';
 import facilities from '../../data/hospitals.json';
 
 const services = [
@@ -50,33 +51,24 @@ export default function CariLayanan() {
       </motion.div>
 
       <motion.form variants={slideUp} className="flex flex-col sm:flex-row gap-3" onSubmit={(event) => event.preventDefault()}>
-        <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
-          <input
-            type="search"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            placeholder="Cari nama faskes, alamat, atau jenis layanan..."
-            className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
-          />
-        </div>
+        <SearchInput
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Cari nama faskes, alamat, atau jenis layanan..."
+          className="flex-1"
+        />
       </motion.form>
 
-      <motion.div variants={slideUp} className="flex overflow-x-auto pb-2 gap-2.5 no-scrollbar">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap text-sm font-semibold transition-all ${
-              activeTab === tab.id
-                ? 'bg-accent text-white shadow-md shadow-accent/15'
-                : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50 hover:border-gray-300'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <motion.div variants={slideUp}>
+        <FilterPills
+          items={tabs}
+          activeItem={activeTab}
+          onSelect={setActiveTab}
+          activeClassName="bg-accent text-white shadow-md shadow-accent/15"
+          inactiveClassName="bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50 hover:border-gray-300"
+          pillClassName="flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap text-sm font-semibold transition-all"
+          className="no-scrollbar gap-2.5"
+        />
       </motion.div>
 
       <motion.div variants={fadeIn} className="grid grid-cols-1 sm:grid-cols-2 min-[1800px]:grid-cols-3 gap-6">

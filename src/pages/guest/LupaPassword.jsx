@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, HeartPulse } from 'lucide-react';
+import { Mail, HeartPulse } from 'lucide-react';
 import Button from '../../components/ui/Button';
 
 export default function LupaPassword() {

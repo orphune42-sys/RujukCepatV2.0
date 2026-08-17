@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/Card';
 import { slideUp } from '../../utils/animations';
-import { Calendar as CalendarIcon, Clock, Search, Stethoscope } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Stethoscope } from 'lucide-react';
+import SearchInput from '../../components/shared/SearchInput';
+import { getStatusStyle } from '../../utils/helpers';
 
 const doctorSchedules = [
   { id: 1, name: 'dr. Lintang Siddiq, Sp.PD', spesialis: 'Penyakit Dalam', hari: 'Senin, Rabu, Jumat', jam: '08:00 - 14:00', status: 'Tersedia', initial: 'LS' },
@@ -20,18 +22,7 @@ export default function JadwalDokter() {
     doc.spesialis.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getStatusStyle = (status) => {
-    switch (status) {
-      case 'Tersedia':
-        return 'bg-emerald-50  text-emerald-700  border-emerald-200 ';
-      case 'Operasi':
-        return 'bg-amber-50  text-amber-700  border-amber-200 ';
-      case 'Cuti':
-        return 'bg-rose-50  text-rose-700  border-rose-200 ';
-      default:
-        return 'bg-gray-50  text-gray-700  border-gray-200 ';
-    }
-  };
+
 
   return (
     <motion.div
@@ -47,16 +38,12 @@ export default function JadwalDokter() {
         </div>
 
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <div className="relative flex-1 md:w-72">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
-            <input
-              type="text"
-              placeholder="Cari dokter atau spesialis..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
-            />
-          </div>
+          <SearchInput
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Cari dokter atau spesialis..."
+            className="flex-1 md:w-72"
+          />
         </div>
       </div>
 

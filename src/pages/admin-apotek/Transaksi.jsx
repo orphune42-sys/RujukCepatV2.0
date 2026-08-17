@@ -5,7 +5,10 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Search, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
+import SearchInput from '../../components/shared/SearchInput';
+import FilterPills from '../../components/shared/FilterPills';
+import { getBadgeVariant } from '../../utils/helpers';
 
 const statuses = ['Semua', 'Menunggu', 'Diproses', 'Siap Diambil', 'Selesai'];
 
@@ -16,15 +19,7 @@ const mockTransactions = [
   { id: 'TRX-004', date: '12 Aug 2026 11:00', patient: 'Megawati', doctor: 'Dr. Anton', status: 'Selesai' },
 ];
 
-const getBadgeVariant = (status) => {
-  switch (status) {
-    case 'Menunggu': return 'warning';
-    case 'Diproses': return 'info';
-    case 'Siap Diambil': return 'primary';
-    case 'Selesai': return 'success';
-    default: return 'default';
-  }
-};
+
 
 const Transaksi = () => {
   const [activeTab, setActiveTab] = useState('Semua');
@@ -42,32 +37,18 @@ const Transaksi = () => {
           <p className="text-slate-500 ">Kelola pesanan dan resep obat pasien.</p>
         </div>
         <div className="flex gap-2">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={20} />
-            <input
-              type="text"
-              placeholder="Cari ID/Pasien..."
-              className="h-12 rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
-            />
-          </div>
+          <SearchInput placeholder="Cari ID/Pasien..." className="" />
         </div>
       </div>
 
-      <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide">
-        {statuses.map(status => (
-          <button
-            key={status}
-            onClick={() => setActiveTab(status)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-              activeTab === status
-                ? 'bg-accent text-white shadow-sm'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200   '
-            }`}
-          >
-            {status}
-          </button>
-        ))}
-      </div>
+      <FilterPills
+        items={statuses}
+        activeItem={activeTab}
+        onSelect={setActiveTab}
+        inactiveClassName="bg-slate-100 text-slate-600 hover:bg-slate-200   "
+        pillClassName="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all"
+        className="scrollbar-hide"
+      />
 
       <motion.div variants={staggerContainer} initial="initial" animate="animate" className="space-y-4">
         {filtered.map((trx) => (

@@ -4,7 +4,9 @@ import { slideUp } from '../../utils/animations';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { Search, Calendar, RotateCcw } from 'lucide-react';
+import { Calendar, RotateCcw } from 'lucide-react';
+import SearchInput from '../../components/shared/SearchInput';
+import { getBadgeVariant } from '../../utils/helpers';
 
 const PAGE_SIZE = 5;
 const mockHistory = [
@@ -20,11 +22,7 @@ const mockHistory = [
   { id: 'TRX-014', date: '05 Aug 2026', dateValue: '2026-08-05', patient: 'Maya Sari', total: 'Rp 75.000', status: 'Selesai' },
 ];
 
-const getBadgeVariant = (status) => {
-  if (status === 'Selesai') return 'success';
-  if (status === 'Dibatalkan') return 'danger';
-  return 'default';
-};
+
 
 const RiwayatTransaksi = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -64,10 +62,7 @@ const RiwayatTransaksi = () => {
           <p className="text-slate-500">Lihat semua riwayat transaksi apotek yang telah selesai.</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <div className="relative flex-1 sm:flex-none">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={20} />
-            <input type="text" value={searchTerm} onChange={(event) => updateSearch(event.target.value)} placeholder="Cari transaksi..." className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60 sm:w-64" />
-          </div>
+          <SearchInput value={searchTerm} onChange={(event) => updateSearch(event.target.value)} placeholder="Cari transaksi..." className="flex-1 sm:flex-none sm:w-64" />
           <div className="relative">
             <Button onClick={() => setIsDateFilterOpen((open) => !open)} aria-expanded={isDateFilterOpen} className="h-12 gap-2 px-5 text-sm">
               <Calendar size={18} /> Rentang Waktu

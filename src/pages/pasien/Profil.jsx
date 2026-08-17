@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
@@ -8,11 +7,10 @@ import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Select from '../../components/ui/Select';
 import { User, Settings, CreditCard, Bell, Shield, Edit2, Camera, Palette, Languages, Accessibility, CircleHelp } from 'lucide-react';
-import useAppStore from '../../store/useAppStore';
+import { getInitials } from '../../utils/helpers';
 
 export default function Profil() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [profile, setProfile] = useState({
@@ -24,8 +22,6 @@ export default function Profil() {
     address: 'Jl. Bendungan Sigura-Gura No. 19 A, Sumbersari, Lowokwaru, Malang',
   });
   const [draftProfile, setDraftProfile] = useState(profile);
-  const { setRole } = useAppStore();
-  const navigate = useNavigate();
   const showMessage = (text) => setMessage(text);
   const startEditing = () => {
     setDraftProfile(profile);
@@ -46,10 +42,6 @@ export default function Profil() {
   const handlePhotoChange = (event) => {
     const [file] = event.target.files;
     if (file) setProfilePhoto(URL.createObjectURL(file));
-  };
-  const confirmLogout = () => {
-    setRole('guest');
-    navigate('/');
   };
   const settingItems = [
     { label: 'Notifikasi', icon: Bell },
@@ -77,7 +69,7 @@ export default function Profil() {
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
               <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full bg-accent text-3xl font-bold text-white">
-                {profilePhoto ? <img src={profilePhoto} alt={`Foto ${profile.name}`} className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center">{profile.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase()}</div>}
+                {profilePhoto ? <img src={profilePhoto} alt={`Foto ${profile.name}`} className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center">{getInitials(profile.name)}</div>}
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-2xl font-bold text-gray-900 ">{profile.name}</h2>
@@ -156,7 +148,7 @@ export default function Profil() {
             <motion.form onSubmit={saveProfile} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl " initial={{ scale: 0.95, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 12 }}>
               <h2 id="edit-profile-title" className="text-xl font-bold text-text ">Edit Profil</h2>
               <p className="mt-1 text-sm text-muted ">Perbarui data pribadi dan foto profil Anda.</p>
-              <div className="mt-5 flex items-center gap-4"><div className="h-20 w-20 overflow-hidden rounded-full bg-secondary">{profilePhoto ? <img src={profilePhoto} alt="Pratinjau foto profil" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-2xl font-bold text-accent">{profile.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase()}</div>}</div><label className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-text hover:bg-secondary  "><Camera className="h-4 w-4" /> Ganti Foto<input type="file" accept="image/*" onChange={handlePhotoChange} className="sr-only" /></label></div>
+              <div className="mt-5 flex items-center gap-4"><div className="h-20 w-20 overflow-hidden rounded-full bg-secondary">{profilePhoto ? <img src={profilePhoto} alt="Pratinjau foto profil" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-2xl font-bold text-accent">{getInitials(profile.name)}</div>}</div><label className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-text hover:bg-secondary  "><Camera className="h-4 w-4" /> Ganti Foto<input type="file" accept="image/*" onChange={handlePhotoChange} className="sr-only" /></label></div>
               <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <ProfileField label="Nama Lengkap"><Input value={draftProfile.name} onChange={(event) => updateDraft('name', event.target.value)} required /></ProfileField>
                 <ProfileField label="Nomor Telepon"><Input type="tel" value={draftProfile.phone} onChange={(event) => updateDraft('phone', event.target.value)} required /></ProfileField>
@@ -167,18 +159,6 @@ export default function Profil() {
               </div>
               <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><Button type="button" variant="outline" onClick={cancelEditing}>Batal</Button><Button type="submit">Simpan Perubahan</Button></div>
             </motion.form>
-          </motion.div>
-        )}
-        {isLogoutDialogOpen && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-modal="true" aria-labelledby="logout-title" onMouseDown={(event) => { if (event.target === event.currentTarget) setIsLogoutDialogOpen(false); }}>
-            <motion.div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl " initial={{ scale: 0.95, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 12 }}>
-              <h2 id="logout-title" className="text-xl font-bold text-text ">Keluar dari akun?</h2>
-              <p className="mt-2 text-sm text-muted ">Anda perlu masuk kembali untuk mengakses informasi dan layanan pasien.</p>
-              <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-                <Button variant="outline" onClick={() => setIsLogoutDialogOpen(false)}>Batal</Button>
-                <Button variant="danger" onClick={confirmLogout}>Ya, Keluar</Button>
-              </div>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

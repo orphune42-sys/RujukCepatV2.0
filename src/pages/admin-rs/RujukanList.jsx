@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import { slideUp } from '../../utils/animations';
-import { Search } from 'lucide-react';
+import SearchInput from '../../components/shared/SearchInput';
+import { getPriorityColor } from '../../utils/helpers';
 
 const mockData = [
   {
@@ -26,13 +27,7 @@ export default function RujukanList() {
   const [selectedReferral, setSelectedReferral] = useState(null);
   const getStatusVariant = (status) => (status === 'Aktif' ? 'success' : 'info');
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'Darurat': return 'bg-red-100 text-red-700  ';
-      case 'Segera': return 'bg-amber-100 text-amber-700  ';
-      default: return 'bg-emerald-100 text-emerald-700  ';
-    }
-  };
+
 
   return (
     <motion.div
@@ -48,14 +43,10 @@ export default function RujukanList() {
         </div>
 
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <div className="relative flex-1 md:w-64">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
-            <input
-              type="text"
-              placeholder="Cari pasien atau ID..."
-              className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
-            />
-          </div>
+          <SearchInput
+            placeholder="Cari pasien atau ID..."
+            className="flex-1 md:w-64"
+          />
         </div>
       </div>
 

@@ -39,8 +39,15 @@ import AdminApotekProfil from './pages/admin-apotek/Profil';
 // Welcome Screen
 import WelcomeScreen from './components/shared/WelcomeScreen';
 
-function App() {
+function RequireRole({ children, allowedRole }) {
   const { role } = useAppStore();
+  if (role !== allowedRole) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+}
+
+function App() {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
@@ -49,13 +56,6 @@ function App() {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const RequireRole = ({ children, allowedRole }) => {
-    if (role !== allowedRole) {
-      return <Navigate to="/" replace />;
-    }
-    return children;
-  };
 
   return (
     <BrowserRouter>

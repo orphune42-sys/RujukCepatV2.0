@@ -5,6 +5,7 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Calendar, MapPin, ChevronRight, FileText } from 'lucide-react';
+import FilterPills from '../../components/shared/FilterPills';
 
 export default function RujukanSaya() {
   const [filter, setFilter] = useState('Semua');
@@ -30,21 +31,11 @@ export default function RujukanSaya() {
           <p className="text-gray-500 mt-1">Kelola riwayat rujukan dan kunjungan Anda.</p>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0">
-          {filters.map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                filter === f
-                  ? 'bg-accent text-white'
-                  : 'bg-white text-gray-600 border border-gray-200'
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
+        <FilterPills
+          items={filters}
+          activeItem={filter}
+          onSelect={setFilter}
+        />
       </motion.div>
 
       <motion.div variants={staggerContainer} className="space-y-4">

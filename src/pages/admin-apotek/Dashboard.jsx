@@ -4,6 +4,7 @@ import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
 import { Pill, Clock, FlaskConical, CheckCircle2 } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
+import StatCard from '../../components/shared/StatCard';
 
 const Dashboard = () => {
   const stats = [
@@ -27,26 +28,8 @@ const Dashboard = () => {
         variants={staggerContainer}
         initial="initial"
         animate="animate"
-        className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4"
       >
-        {stats.map((stat, index) => {
-          const Icon = stat.icon;
-          return (
-            <motion.div key={index} variants={slideUp}>
-              <Card className="border-0 shadow-sm bg-white  h-full">
-                <CardContent className="flex min-w-0 items-center gap-4 p-5">
-                  <div className={`shrink-0 p-4 rounded-2xl ${stat.bg} ${stat.color}`}>
-                    <Icon size={24} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium leading-5 text-slate-500">{stat.title}</p>
-                    <h3 className="text-2xl font-bold text-slate-900  mt-1">{stat.value}</h3>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          );
-        })}
+        <StatCard stats={stats} gridClassName="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4" cardClassName="border-0 shadow-sm bg-white  h-full" titleClassName="text-sm font-medium leading-5 text-slate-500" valueClassName="text-2xl font-bold text-slate-900  mt-1" />
       </motion.div>
 
       <motion.div variants={slideUp} initial="initial" animate="animate">

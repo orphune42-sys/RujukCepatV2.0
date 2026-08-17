@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Ca
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { FileText, Users, CheckCircle, Clock } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
+import StatCard from '../../components/shared/StatCard';
 
 const statCards = [
   { title: 'Rujukan Masuk', value: '12', icon: FileText, color: 'text-blue-600', bg: 'bg-blue-100' },
@@ -34,23 +35,7 @@ export default function Dashboard() {
         <NotificationMenu role="admin_rs" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6">
-        {statCards.map((stat, index) => (
-          <motion.div key={index} variants={slideUp}>
-            <Card hover>
-              <CardContent className="flex min-w-0 items-center gap-4 p-5">
-                <div className={`shrink-0 p-4 rounded-2xl ${stat.bg} ${stat.color}`}>
-                  <stat.icon size={24} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-medium leading-5 text-gray-500">{stat.title}</p>
-                  <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+      <StatCard stats={statCards} />
 
       <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
         <motion.div variants={slideUp} className="h-full">
