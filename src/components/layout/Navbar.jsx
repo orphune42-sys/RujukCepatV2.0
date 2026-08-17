@@ -91,7 +91,7 @@ export default function Navbar() {
 
           {/* Kolom 1: Logo (kiri) */}
           <Link to="/" onClick={() => setActiveHash('#beranda')} className="flex items-center group shrink-0 justify-self-start">
-            <img src={RC_Logo1} alt="RujukCepat Logo" className="h-12 md:h-14 w-auto object-contain" />
+            <img src={RC_Logo1} alt="RujukCepat Logo" className="h-12 md:h-14 w-auto object-contain scale-[1.35] origin-left" />
           </Link>
 
           {/* Kolom 2: Nav links (tengah absolut) */}

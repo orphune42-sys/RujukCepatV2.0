@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeartPulse } from 'lucide-react';
+import RC_Logo2 from '../../assets/RC_Logo2.png';
 
 export default function WelcomeScreen() {
   return (
@@ -23,7 +23,7 @@ export default function WelcomeScreen() {
         className="mb-6 relative"
       >
         <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
-        <HeartPulse className="h-20 w-20 text-accent  relative z-10" />
+        <img src={RC_Logo2} alt="Logo" className="h-24 w-auto object-contain relative z-10" />
       </motion.div>
 
       <motion.div
@@ -32,8 +32,8 @@ export default function WelcomeScreen() {
         transition={{ delay: 0.2 }}
         className="text-center"
       >
-        <h1 className="text-3xl font-bold tracking-tight text-text  flex items-center justify-center gap-1">
-          Rujuk<span className="text-accent ">Cepat</span>
+        <h1 className="text-3xl font-bold tracking-tight text-[#009360] flex items-center justify-center gap-1">
+          Rujuk<span className="text-[#41c379]">Cepat</span>
         </h1>
         <p className="text-muted  mt-2 font-medium">Mempersiapkan Layanan Kesehatan...</p>
       </motion.div>

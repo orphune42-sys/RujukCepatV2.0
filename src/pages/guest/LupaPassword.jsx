@@ -24,8 +24,8 @@ export default function LupaPassword() {
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-2">
             <HeartPulse className="h-8 w-8 text-accent" />
-            <span className="font-bold text-2xl tracking-tight text-text">
-              Rujuk<span className="text-accent">Cepat</span>
+            <span className="font-bold text-2xl tracking-tight text-[#009360]">
+              Rujuk<span className="text-[#41c379]">Cepat</span>
             </span>
           </div>
         </div>

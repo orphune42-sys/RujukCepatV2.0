@@ -18,7 +18,7 @@ export default function DashboardLayout() {
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="lg:hidden h-16 bg-white  border-b border-border  flex items-center justify-between px-4 shrink-0">
-          <span className="font-bold text-lg text-text ">Rujuk<span className="text-accent ">Cepat</span></span>
+          <span className="font-bold text-lg text-[#009360]">Rujuk<span className="text-[#41c379]">Cepat</span></span>
           <button
             type="button"
             onClick={() => setIsSidebarOpen((isOpen) => !isOpen)}
