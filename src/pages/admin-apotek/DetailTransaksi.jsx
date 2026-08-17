@@ -26,7 +26,7 @@ const DetailTransaksi = () => {
             <p className="text-slate-500  text-sm">12 Aug 2026, 09:00 WIB</p>
           </div>
         </div>
-        <Button variant="outline" className="gap-2  ">
+        <Button variant="primary" className="gap-2">
           <Printer size={18} /> Cetak Struk
         </Button>
       </motion.div>
@@ -39,7 +39,7 @@ const DetailTransaksi = () => {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left">
+                <table className="w-full text-sm text-left whitespace-nowrap">
                   <thead className="text-slate-500  border-b border-slate-200 ">
                     <tr>
                       <th className="pb-3 font-medium">Nama Obat</th>

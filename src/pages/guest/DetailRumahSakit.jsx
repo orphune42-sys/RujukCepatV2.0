@@ -162,14 +162,6 @@ export default function DetailRumahSakit() {
           <div className="lg:col-span-5 space-y-6">
             <Card className="bg-white border border-border shadow-md sticky top-[90px] rounded-2xl overflow-hidden">
               <CardContent className="p-6 md:p-8 space-y-6">
-                {role !== 'pasien' && (
-                  <Link to="/login" className="block">
-                    <Button size="lg" className="w-full text-base py-5 shadow-lg shadow-primary/10 rounded-xl font-bold">
-                      Buat Rujukan Resmi
-                    </Button>
-                  </Link>
-                )}
-
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Kontak Hubungan Darurat</h4>
@@ -196,6 +188,16 @@ export default function DetailRumahSakit() {
                     </a>
                   </div>
                 </div>
+
+                {role !== 'pasien' && (
+                  <div className="pt-6 border-t border-border mt-6">
+                    <Link to="/login" className="block">
+                      <Button size="lg" className="w-full text-base py-4 shadow-lg shadow-primary/10 rounded-xl font-bold">
+                        Buat Rujukan Resmi
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

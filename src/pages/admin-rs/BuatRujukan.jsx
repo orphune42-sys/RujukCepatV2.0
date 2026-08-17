@@ -135,7 +135,7 @@ export default function BuatRujukan() {
             </motion.div>
           </AnimatePresence>
         </CardContent>
-        <CardFooter className="justify-between bg-transparent border-t border-gray-100 ">
+        <CardFooter className="justify-end gap-3 bg-transparent border-t border-gray-100 ">
           <Button
             variant="outline"
             onClick={prevStep}
@@ -175,7 +175,7 @@ export default function BuatRujukan() {
               <button type="button" onClick={closeSuccessModal} className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-secondary hover:text-text  " aria-label="Tutup notifikasi">
                 <X className="h-5 w-5" />
               </button>
-              <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-accent ">
+              <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-accent text-white ">
                 <CheckCircle2 className="h-9 w-9" />
               </div>
               <h2 id="referral-success-title" className="text-2xl font-bold text-text ">Rujukan berhasil dibuat</h2>

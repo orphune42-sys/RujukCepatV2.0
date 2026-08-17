@@ -107,11 +107,11 @@ export default function Tentang() {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <motion.div
-                    className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary  mb-5 mx-auto"
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent  mb-5 mx-auto"
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <Icon className="h-7 w-7 text-accent " />
+                    <Icon className="h-7 w-7 text-white " />
                   </motion.div>
 
                   <h3 className="text-xl font-bold text-text  mb-3">{title}</h3>

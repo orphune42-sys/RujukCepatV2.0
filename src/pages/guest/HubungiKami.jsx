@@ -176,7 +176,7 @@ export default function HubungiKami() {
             <button type="button" onClick={() => setIsSuccessOpen(false)} className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-secondary hover:text-text  " aria-label="Tutup notifikasi">
               <X className="h-5 w-5" />
             </button>
-            <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-accent ">
+            <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-accent text-white ">
               <CheckCircle2 className="h-9 w-9" />
             </div>
             <h2 id="success-title" className="text-2xl font-bold text-text ">Pesan berhasil dikirim</h2>

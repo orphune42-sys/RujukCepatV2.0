@@ -38,9 +38,9 @@ export default function DetailRujukan() {
         <div>
           <button 
             onClick={() => navigate(-1)} 
-            className="flex items-center text-sm font-semibold text-gray-500 hover:text-accent mb-3 transition-colors"
+            className="inline-flex items-center text-white bg-accent hover:bg-accent/90 shadow-sm shadow-accent/20 px-4 py-2 rounded-full text-sm font-bold transition-all mb-4"
           >
-            <ArrowLeft className="w-4 h-4 mr-1.5" /> Kembali
+            <ArrowLeft className="h-4 w-4 mr-2" /> Kembali
           </button>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-bold text-gray-900 ">Detail Rujukan</h1>
@@ -48,7 +48,10 @@ export default function DetailRujukan() {
           </div>
           <p className="text-gray-500">No. RJ-20261015-1A</p>
         </div>
-        <Button variant="outline" className="w-full sm:w-auto" onClick={downloadReferral}><Download className="w-4 h-4 mr-2"/> Unduh Surat Rujukan</Button>
+        <Button variant="primary" className="w-full sm:w-auto" onClick={downloadReferral}><Download className="w-4 h-4 mr-2"/> Unduh Surat Rujukan</Button>
+      </motion.div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div variants={slideUp} className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Informasi Tujuan</CardTitle>

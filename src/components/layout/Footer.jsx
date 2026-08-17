@@ -4,9 +4,9 @@ import { HeartPulse, Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'l
 
 export default function Footer() {
   return (
-    <footer className="bg-white  border-t border-border  pt-16 pb-8">
+    <footer className="bg-white  border-t border-border  pt-10 pb-8">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-muted  text-sm leading-relaxed">
-              Platform integrasi layanan kesehatan yang menghubungkan rumah sakit, pasien, dan apotek dalam satu sistem digital terpadu untuk mempercepat akses informasi dan proses rujukan medis.
+              Platform integrasi layanan kesehatan digital terpadu untuk mempercepat proses rujukan medis.
             </p>
 
           </div>
@@ -37,8 +37,6 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/tentang" className="text-sm text-muted hover:text-accent  transition-colors">Tentang Kami</Link></li>
               <li><Link to="/hubungi-kami" className="text-sm text-muted hover:text-accent  transition-colors">Hubungi Kami</Link></li>
-              <li><Link to="#" className="text-sm text-muted hover:text-accent  transition-colors">Karir</Link></li>
-              <li><Link to="#" className="text-sm text-muted hover:text-accent  transition-colors">Blog & Berita</Link></li>
             </ul>
           </div>
 
