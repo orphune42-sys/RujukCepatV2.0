@@ -16,6 +16,7 @@ export default function DetailRumahSakit() {
   const { role } = useAppStore();
   const hospital = mockHospitals.find(h => h.id === id) || mockHospitals[0];
   const isHospital = hospital.type.toLowerCase().includes('rumah sakit') || hospital.type.toLowerCase().includes('rs');
+  const isApotek = hospital.type.toLowerCase().includes('apotek');
   const isAdminRsRoute = location.pathname.startsWith('/admin-rs');
   const isPasienRoute = location.pathname.startsWith('/pasien');
   const backPath = isAdminRsRoute ? "/admin-rs/rekomendasi" : isPasienRoute ? "/pasien/cari-layanan" : "/#cari-fk";
@@ -66,7 +67,7 @@ export default function DetailRumahSakit() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 mt-8 max-w-6xl">
+      <div className="w-full max-w-[95%] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 md:px-6 mt-8">
         <div className="grid lg:grid-cols-12 gap-8 md:gap-12">
           {/* Main Content */}
           <div className="lg:col-span-7 space-y-8">
@@ -75,28 +76,63 @@ export default function DetailRumahSakit() {
               {/* Ketersediaan */}
               <motion.section variants={slideUp}>
                 <div className="flex justify-between items-center mb-5">
-                  <h2 className="text-2xl font-bold text-gray-950">Kapasitas & Ketersediaan Ruangan</h2>
+                  <h2 className="text-2xl font-bold text-gray-950">
+                    {isApotek ? "Daftar Obat Tersedia" : "Kapasitas & Ketersediaan Ruangan"}
+                  </h2>
                 </div>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                  {availabilityRooms.map((room) => {
-                    const occupied = Math.max(0, room.total - room.available);
-                    const occupancyRate = Math.min(100, (occupied / room.total) * 100);
-                    const Icon = room.icon;
+                {isApotek ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     <Card className="p-4 flex items-center justify-between border border-border shadow-sm rounded-xl">
+                        <div>
+                          <p className="font-bold text-gray-900">Paracetamol 500mg</p>
+                          <p className="text-xs text-gray-500">Stok: 150 Strip</p>
+                        </div>
+                        <Badge variant="success" className="bg-green-100 text-green-700">Tersedia</Badge>
+                     </Card>
+                     <Card className="p-4 flex items-center justify-between border border-border shadow-sm rounded-xl">
+                        <div>
+                          <p className="font-bold text-gray-900">Amoxicillin 500mg</p>
+                          <p className="text-xs text-gray-500">Stok: 85 Strip</p>
+                        </div>
+                        <Badge variant="success" className="bg-green-100 text-green-700">Tersedia</Badge>
+                     </Card>
+                     <Card className="p-4 flex items-center justify-between border border-border shadow-sm rounded-xl">
+                        <div>
+                          <p className="font-bold text-gray-900">Vitamin C 1000mg</p>
+                          <p className="text-xs text-gray-500">Stok: 200 Botol</p>
+                        </div>
+                        <Badge variant="success" className="bg-green-100 text-green-700">Tersedia</Badge>
+                     </Card>
+                     <Card className="p-4 flex items-center justify-between border border-border shadow-sm rounded-xl bg-gray-50/50">
+                        <div>
+                          <p className="font-bold text-gray-400">Sirup OBH Combi 100ml</p>
+                          <p className="text-xs text-gray-400">Stok: 0 Botol</p>
+                        </div>
+                        <Badge variant="destructive" className="bg-red-50 text-red-600 border-red-100">Habis</Badge>
+                     </Card>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    {availabilityRooms.map((room) => {
+                      const occupied = Math.max(0, room.total - room.available);
+                      const occupancyRate = Math.min(100, (occupied / room.total) * 100);
+                      const Icon = room.icon;
 
-                    return (
-                      <Card key={room.id} hover className="flex h-full flex-col justify-between">
-                        <CardContent className="p-5">
-                          <div className="mb-5 flex items-start justify-between">
-                            <div className="rounded-xl bg-accent p-3 text-white"><Icon className="h-5 w-5" /></div>
-                            <div className="text-right"><p className="text-xs font-medium uppercase tracking-wider text-gray-500">Tersedia</p><h3 className="text-3xl font-bold text-gray-900">{room.available}</h3></div>
-                          </div>
-                          <h3 className="mb-4 text-base font-semibold text-gray-900">{room.name}</h3>
-                          <div className="space-y-2"><div className="flex justify-between text-sm"><span className="text-gray-500">Terisi: {occupied}</span><span className="text-gray-500">Total: {room.total}</span></div><div className="h-2 w-full overflow-hidden rounded-full bg-gray-200"><div className="h-full bg-accent transition-all duration-500" style={{ width: `${occupancyRate}%` }} /></div></div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
+                      return (
+                        <Card key={room.id} hover className="flex h-full flex-col justify-between">
+                          <CardContent className="p-5 flex flex-col h-full">
+                            <div className="mb-5 flex items-start justify-between">
+                              <div className="rounded-xl bg-accent p-3 text-white"><Icon className="h-5 w-5" /></div>
+                              <div className="text-right"><p className="text-xs font-medium uppercase tracking-wider text-gray-500">Tersedia</p><h3 className="text-3xl font-bold text-gray-900">{room.available}</h3></div>
+                            </div>
+                            <h3 className="mb-4 text-base font-semibold text-gray-900 flex-1">{room.name}</h3>
+                            <div className="space-y-2 mt-auto"><div className="flex justify-between text-sm"><span className="text-gray-500">Terisi: {occupied}</span><span className="text-gray-500">Total: {room.total}</span></div><div className="h-2 w-full overflow-hidden rounded-full bg-gray-200"><div className="h-full bg-accent transition-all duration-500" style={{ width: `${occupancyRate}%` }} /></div></div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                )}
               </motion.section>
 
               {/* Layanan Unggulan */}
@@ -126,14 +162,6 @@ export default function DetailRumahSakit() {
           <div className="lg:col-span-5 space-y-6">
             <Card className="bg-white border border-border shadow-md sticky top-[90px] rounded-2xl overflow-hidden">
               <CardContent className="p-6 md:p-8 space-y-6">
-                {role !== 'pasien' && (
-                  <Link to="/login" className="block">
-                    <Button size="lg" className="w-full text-base py-5 shadow-lg shadow-primary/10 rounded-xl font-bold">
-                      Buat Rujukan Resmi
-                    </Button>
-                  </Link>
-                )}
-
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Kontak Hubungan Darurat</h4>
@@ -146,7 +174,6 @@ export default function DetailRumahSakit() {
                   </div>
 
                   <div className="pt-6 border-t border-border">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Integrasi Peta Fasilitas</h4>
                     <div className="rounded-xl overflow-hidden shadow-sm h-[280px] border border-border relative">
                       <MapView hospitals={[hospital]} height="100%" center={[hospital.lat, hospital.lng]} zoom={15} />
                     </div>
@@ -160,6 +187,16 @@ export default function DetailRumahSakit() {
                     </a>
                   </div>
                 </div>
+
+                {role !== 'pasien' && (
+                  <div className="pt-6 border-t border-border mt-6">
+                    <Link to="/login" className="block">
+                      <Button size="lg" className="w-full text-base py-4 shadow-lg shadow-primary/10 rounded-xl font-bold">
+                        Buat Rujukan Resmi
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

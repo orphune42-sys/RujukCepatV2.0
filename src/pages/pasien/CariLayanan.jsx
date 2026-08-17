@@ -60,7 +60,6 @@ export default function CariLayanan() {
             className="h-12 w-full rounded-xl border border-border bg-[#f8faf9] pl-11 pr-4 text-sm text-text placeholder:text-muted/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-primary/60"
           />
         </div>
-        <Button type="submit" variant="primary" size="lg" className="px-8 rounded-2xl font-bold shadow-md shadow-primary/10">Cari Faskes</Button>
       </motion.form>
 
       <motion.div variants={slideUp} className="flex overflow-x-auto pb-2 gap-2.5 no-scrollbar">

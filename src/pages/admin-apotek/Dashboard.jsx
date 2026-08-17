@@ -7,10 +7,10 @@ import NotificationMenu from '../../components/shared/NotificationMenu';
 
 const Dashboard = () => {
   const stats = [
-    { title: 'Total Transaksi Hari Ini', value: '45', icon: Pill, color: 'text-blue-500', bg: 'bg-blue-100 ' },
-    { title: 'Menunggu', value: '12', icon: Clock, color: 'text-orange-500', bg: 'bg-orange-100 ' },
-    { title: 'Diproses', value: '18', icon: FlaskConical, color: 'text-[#9ccda5]', bg: 'bg-[#9ccda5]/20 ' },
-    { title: 'Selesai', value: '15', icon: CheckCircle2, color: 'text-green-500', bg: 'bg-green-100 ' },
+    { title: 'Total Transaksi Hari Ini', value: '45', icon: Pill, color: 'text-blue-600', bg: 'bg-blue-100 ' },
+    { title: 'Menunggu', value: '12', icon: Clock, color: 'text-orange-600', bg: 'bg-orange-100 ' },
+    { title: 'Diproses', value: '18', icon: FlaskConical, color: 'text-teal-600', bg: 'bg-teal-100 ' },
+    { title: 'Selesai', value: '15', icon: CheckCircle2, color: 'text-green-600', bg: 'bg-green-100 ' },
   ];
 
   return (
