@@ -40,14 +40,14 @@ const Dashboard = () => {
             <CardContent>
                <div className="space-y-4">
                   {[1,2,3].map((i) => (
-                    <div key={i} className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50  transition-colors">
-                       <div className="flex items-center gap-3">
-                         <div>
-                            <p className="font-medium text-slate-900 ">TRX-20260812-00{i}</p>
-                            <p className="text-sm text-slate-500 ">Pasien: Eka Wahyu</p>
+                    <div key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                       <div className="flex items-center gap-3 min-w-0">
+                         <div className="min-w-0">
+                            <p className="font-medium text-slate-900 truncate">TRX-20260812-00{i}</p>
+                            <p className="text-sm text-slate-500 truncate">Pasien: Eka Wahyu</p>
                          </div>
                        </div>
-                       <span className="text-sm text-slate-500 ">10 menit yang lalu</span>
+                       <span className="text-sm text-slate-500 shrink-0 whitespace-nowrap">10 menit yang lalu</span>
                     </div>
                   ))}
                </div>
