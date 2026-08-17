@@ -174,7 +174,6 @@ export default function DetailRumahSakit() {
                   </div>
 
                   <div className="pt-6 border-t border-border">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Integrasi Peta Fasilitas</h4>
                     <div className="rounded-xl overflow-hidden shadow-sm h-[280px] border border-border relative">
                       <MapView hospitals={[hospital]} height="100%" center={[hospital.lat, hospital.lng]} zoom={15} />
                     </div>
