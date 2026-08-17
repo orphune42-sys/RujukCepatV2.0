@@ -4,6 +4,7 @@ import { HeartPulse, Menu, X } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import Button from '../ui/Button';
 import LoginModal from '../shared/LoginModal';
+import RC_Logo1 from '../../assets/RC_Logo1.png';
 
 export default function Navbar() {
   const { role } = useAppStore();
@@ -89,13 +90,8 @@ export default function Navbar() {
         <div className="grid grid-cols-[auto_1fr_auto] items-center h-16">
 
           {/* Kolom 1: Logo (kiri) */}
-          <Link to="/" onClick={() => setActiveHash('#beranda')} className="flex items-center gap-2 group shrink-0 justify-self-start">
-            <div className="bg-primary/20 p-2 rounded-full group-hover:bg-primary/30 transition-colors">
-              <HeartPulse className="h-5 w-5 md:h-6 md:w-6 text-accent" />
-            </div>
-            <span className="font-bold text-lg md:text-xl tracking-tight text-text">
-              Rujuk<span className="text-accent">Cepat</span>
-            </span>
+          <Link to="/" onClick={() => setActiveHash('#beranda')} className="flex items-center group shrink-0 justify-self-start">
+            <img src={RC_Logo1} alt="RujukCepat Logo" className="h-12 md:h-14 w-auto object-contain" />
           </Link>
 
           {/* Kolom 2: Nav links (tengah absolut) */}

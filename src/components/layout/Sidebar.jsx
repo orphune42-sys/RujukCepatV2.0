@@ -6,6 +6,7 @@ import {
   PlusCircle, Calendar, MapPin, Inbox, Clock, LogOut, X
 } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
+import RC_Logo1 from '../../assets/RC_Logo1.png';
 
 export default function Sidebar({ isOpen = false, onClose = () => { } }) {
   const { role, setRole } = useAppStore();
@@ -56,11 +57,8 @@ export default function Sidebar({ isOpen = false, onClose = () => { } }) {
       {isOpen && <button type="button" aria-label="Tutup menu" onClick={onClose} className="fixed inset-0 z-30 bg-black/45 backdrop-blur-sm lg:hidden" />}
       <aside className={`fixed inset-y-3 left-3 right-3 z-40 flex w-auto flex-col rounded-2xl border border-border bg-white/95 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300 sm:inset-y-8 sm:left-1/2 sm:right-auto sm:w-[min(30rem,calc(100vw-4rem))] sm:-translate-x-1/2 lg:static lg:z-auto lg:my-6 lg:ml-6 lg:w-64 lg:translate-x-0 lg:rounded-2xl lg:border lg:border-border lg:bg-white/90 lg:shadow-lg lg:shadow-black/5 lg:backdrop-blur-lg lg:opacity-100 lg:pointer-events-auto lg:scale-100 ${isOpen ? 'translate-x-0 opacity-100 pointer-events-auto sm:-translate-x-1/2 sm:scale-100' : '-translate-x-[calc(100%+1rem)] opacity-0 pointer-events-none sm:-translate-x-1/2 sm:scale-95'}`}>
         <div className="h-16 flex items-center justify-between px-6 border-b border-border ">
-          <div className="flex items-center gap-2">
-            <HeartPulse className="h-6 w-6 text-accent " />
-            <span className="font-bold text-xl tracking-tight text-text ">
-              Rujuk<span className="text-accent ">Cepat</span>
-            </span>
+          <div className="flex items-center">
+            <img src={RC_Logo1} alt="RujukCepat Logo" className="h-12 md:h-14 w-auto object-contain" />
           </div>
           <button type="button" onClick={onClose} aria-label="Tutup menu" className="grid h-9 w-9 place-items-center rounded-full text-muted hover:bg-secondary lg:hidden">
             <X size={20} />

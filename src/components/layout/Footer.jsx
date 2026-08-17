@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HeartPulse, Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import RC_Logo1 from '../../assets/RC_Logo1.png';
 
 export default function Footer() {
   return (
@@ -9,11 +10,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <HeartPulse className="h-6 w-6 text-accent " />
-              <span className="font-bold text-xl tracking-tight text-text ">
-                Rujuk<span className="text-accent ">Cepat</span>
-              </span>
+            <Link to="/" className="flex items-center">
+              <img src={RC_Logo1} alt="RujukCepat Logo" className="h-14 md:h-16 w-auto object-contain" />
             </Link>
             <p className="text-muted  text-sm leading-relaxed">
               Platform integrasi layanan kesehatan yang menghubungkan rumah sakit, pasien, dan apotek dalam satu sistem digital terpadu untuk mempercepat akses informasi dan proses rujukan medis.
