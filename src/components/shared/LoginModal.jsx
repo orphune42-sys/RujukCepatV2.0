@@ -249,6 +249,7 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }) {
                     {mode === 'login' && (
                       <button
                         type="button"
+                        onClick={() => { onClose(); navigate('/lupa-password'); }}
                         className="w-full text-sm text-muted  hover:text-text  transition-colors py-1"
                       >
                         Lupa password?

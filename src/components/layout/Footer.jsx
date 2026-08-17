@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-muted  text-sm leading-relaxed">
-              Platform integrasi layanan kesehatan digital terpadu untuk mempercepat proses rujukan medis.
+              Platform integrasi layanan kesehatan yang menghubungkan rumah sakit, pasien, dan apotek dalam satu sistem digital terpadu.
             </p>
 
           </div>

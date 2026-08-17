@@ -6,10 +6,10 @@ import { FileText, Users, CheckCircle, Clock } from 'lucide-react';
 import NotificationMenu from '../../components/shared/NotificationMenu';
 
 const statCards = [
-  { title: 'Rujukan Masuk', value: '12', icon: FileText, color: 'text-blue-500' },
-  { title: 'Rujukan Aktif', value: '5', icon: Clock, color: 'text-amber-500' },
-  { title: 'Selesai Hari Ini', value: '18', icon: CheckCircle, color: 'text-emerald-500' },
-  { title: 'Pasien IGD', value: '24', icon: Users, color: 'text-purple-500' },
+  { title: 'Rujukan Masuk', value: '12', icon: FileText, color: 'text-blue-600', bg: 'bg-blue-100' },
+  { title: 'Rujukan Aktif', value: '5', icon: Clock, color: 'text-amber-600', bg: 'bg-amber-100' },
+  { title: 'Selesai Hari Ini', value: '18', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+  { title: 'Pasien IGD', value: '24', icon: Users, color: 'text-purple-600', bg: 'bg-purple-100' },
 ];
 
 const bedStats = [
@@ -39,8 +39,8 @@ export default function Dashboard() {
           <motion.div key={index} variants={slideUp}>
             <Card hover>
               <CardContent className="flex min-w-0 items-center gap-4 p-5">
-                <div className={`shrink-0 p-3 rounded-xl bg-gray-100 ${stat.color}`}>
-                  <stat.icon className="w-6 h-6" />
+                <div className={`shrink-0 p-4 rounded-2xl ${stat.bg} ${stat.color}`}>
+                  <stat.icon size={24} />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-medium leading-5 text-gray-500">{stat.title}</p>

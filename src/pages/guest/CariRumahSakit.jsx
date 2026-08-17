@@ -232,19 +232,16 @@ export default function CariRumahSakit() {
                                     { label: 'Rawat Inap', val: hospital.availability.rawatInap ?? 0, c: availabilityColor },
                                   ].map(({ label, val, c }) => (
                                     <div key={label} className={`flex flex-col items-center justify-center py-3 rounded-xl border ${c.bg} ${c.border}`}>
-                                      <span className={`text-xl font-bold leading-none ${c.text}`}>{val}</span>
-                                      <span className="text-[10px] text-muted mt-1 font-semibold uppercase tracking-widest">{label}</span>
-                                      <span className="text-[9px] text-muted/60">Bed</span>
+                                      <span className={`text-2xl font-bold leading-none ${c.text}`}>{val}</span>
+                                      <span className="text-xs text-muted mt-1 font-semibold uppercase tracking-widest">{label}</span>
+                                      <span className="text-xs text-muted/60 mt-0.5">Bed</span>
                                     </div>
                                   ))}
                                 </div>
                               ) : (
-                                <div className="flex items-center justify-between p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-100/80">
-                                  <span className="text-xs font-bold text-emerald-800">
+                                <div className="flex items-center mt-2">
+                                  <span className="text-sm font-bold text-accent">
                                     {hospital.availability.status ?? 'Buka 24 Jam'}
-                                  </span>
-                                  <span className="text-xs font-semibold text-emerald-700">
-                                    {hospital.availability.stock ?? 'Obat & Resep Tersedia'}
                                   </span>
                                 </div>
                               )}

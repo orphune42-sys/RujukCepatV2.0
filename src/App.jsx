@@ -10,6 +10,7 @@ import DashboardLayout from './components/layout/DashboardLayout';
 // Public Pages
 import Landing from './pages/guest/Landing';
 import DetailRumahSakit from './pages/guest/DetailRumahSakit';
+import LupaPassword from './pages/guest/LupaPassword';
 
 // Pasien Pages
 import PasienDashboard from './pages/pasien/Dashboard';
@@ -69,6 +70,7 @@ function App() {
             <Route path="register" element={<Navigate to="/?auth=register" replace />} />
             <Route path="tentang" element={<Navigate to="/#tentang" replace />} />
             <Route path="hubungi-kami" element={<Navigate to="/#hubungi-kami" replace />} />
+            <Route path="lupa-password" element={<LupaPassword />} />
           </Route>
 
           {/* Pasien Routes */}
