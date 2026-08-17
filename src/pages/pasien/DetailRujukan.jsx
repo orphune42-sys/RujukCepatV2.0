@@ -1,14 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { slideUp, staggerContainer } from '../../utils/animations';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import { MapPin, Phone, CheckCircle2, Circle, Clock, Download } from 'lucide-react';
+import { MapPin, Phone, CheckCircle2, Circle, Clock, Download, ArrowLeft } from 'lucide-react';
 
 const hospitalImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1qE0c1msns5qEa3RUbUwueqn0B2YdJewUFpVA3EtibJNrbhR-9cAhXdI&s=10';
 
 export default function DetailRujukan() {
+  const navigate = useNavigate();
   const downloadReferral = () => {
     const letter = new Blob(['SURAT RUJUKAN\nNomor: RJ-20261015-1A\nTujuan: RSUP Dr. Sardjito\nPoli: Penyakit Dalam'], { type: 'text/plain' });
     const url = URL.createObjectURL(letter);
@@ -34,17 +36,19 @@ export default function DetailRujukan() {
     >
       <motion.div variants={slideUp} className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
+          <button 
+            onClick={() => navigate(-1)} 
+            className="flex items-center text-sm font-semibold text-gray-500 hover:text-accent mb-3 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1.5" /> Kembali
+          </button>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-bold text-gray-900 ">Detail Rujukan</h1>
             <Badge variant="success">Aktif</Badge>
           </div>
-          <p className="text-gray-500 ">No. RJ-20261015-1A</p>
+          <p className="text-gray-500">No. RJ-20261015-1A</p>
         </div>
         <Button variant="outline" className="w-full sm:w-auto" onClick={downloadReferral}><Download className="w-4 h-4 mr-2"/> Unduh Surat Rujukan</Button>
-      </motion.div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <motion.div variants={slideUp} className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Informasi Tujuan</CardTitle>

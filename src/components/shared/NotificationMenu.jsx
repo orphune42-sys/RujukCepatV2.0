@@ -28,7 +28,7 @@ export default function NotificationMenu({ role }) {
         onClick={() => setIsOpen((open) => !open)}
         aria-label="Buka notifikasi"
         aria-expanded={isOpen}
-        className="relative grid h-11 w-11 place-items-center rounded-xl border border-border bg-white text-accent shadow-sm transition-colors hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent    "
+        className="relative grid h-11 w-11 place-items-center rounded-xl bg-primary text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <Bell className="h-5 w-5" />
         {notifications.length > 0 && (
