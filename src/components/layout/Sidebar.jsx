@@ -32,7 +32,7 @@ export default function Sidebar({ isOpen = false, onClose = () => { } }) {
         return [
           { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin-rs' },
           { icon: <PlusCircle size={20} />, label: 'Buat Rujukan', path: '/admin-rs/buat-rujukan' },
-          { icon: <Inbox size={20} />, label: 'Daftar Rujukan', path: '/admin-rs/rujukan' },
+          { icon: <FileText size={20} />, label: 'Daftar Rujukan', path: '/admin-rs/rujukan' },
           { icon: <HeartPulse size={20} />, label: 'Ketersediaan', path: '/admin-rs/ketersediaan' },
           { icon: <Calendar size={20} />, label: 'Jadwal Dokter', path: '/admin-rs/jadwal-dokter' },
           { icon: <MapPin size={20} />, label: 'Rekomendasi', path: '/admin-rs/rekomendasi' },
